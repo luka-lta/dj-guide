@@ -31,6 +31,8 @@ yarn-error.*
 *.pem
 
 # local env files
+.env
+.env.*
 .env*.local
 
 # typescript
@@ -39,3 +41,8 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# Google Service Account Keys (Play Store API)
+*-service-account.json
+google-service-account.json
+flowtix-501208-c186f04d002b.json
