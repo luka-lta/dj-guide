@@ -54,7 +54,8 @@
           }
         }
       ],
-      "./plugins/withFirebaseSPMFix"
+      "./plugins/withFirebaseSPMFix",
+      "./plugins/withPodsDeploymentTarget"
     ],
     "extra": {
       "router": {},
