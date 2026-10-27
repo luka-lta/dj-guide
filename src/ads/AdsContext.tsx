@@ -105,7 +105,11 @@ export function AdsProvider({ children }: { children: React.ReactNode }) {
   // Ends the reward at its wall-clock time, also after the app returns from background (timers pause there).
   useEffect(() => {
     if (rewardEnd === null) return;
+    // Timer and AppState listener can both fire before React cleans up; the notice must show only once.
+    let hasExpired = false;
     const expire = () => {
+      if (hasExpired) return;
+      hasExpired = true;
       setRewardEnd(null);
       clearStoredReward();
       if (isExpiryNoticeDue({ isPro, rewardEnd, nowMs: Date.now() })) showExpiryNotice();
