@@ -1,42 +1,45 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { finishTransaction, getAvailablePurchases, requestPurchase, useIAP } from 'expo-iap';
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { logIap } from '../analytics';
 
 export const REMOVE_ADS_SKU = 'free_ads';
 const STORAGE_KEY = 'adFree_v1';
 
-interface AdFreeContextValue {
-  isAdFree: boolean;
+export type PurchaseSource = 'header' | 'bookmark' | 'teaser' | 'expiry_notice';
+
+interface ProContextValue {
+  isPro: boolean;
   isPending: boolean;
   price: string | null;
-  buy: () => Promise<void>;
+  buy: (source: PurchaseSource) => Promise<void>;
   restore: () => Promise<void>;
 }
 
-const AdFreeContext = createContext<AdFreeContextValue>({
-  isAdFree: false,
+const ProContext = createContext<ProContextValue>({
+  isPro: false,
   isPending: false,
   price: null,
   buy: async () => {},
   restore: async () => {},
 });
 
-export function useAdFree() {
-  return useContext(AdFreeContext);
+export function usePro() {
+  return useContext(ProContext);
 }
 
-export function AdFreeProvider({ children }: { children: React.ReactNode }) {
-  const [isAdFree, setIsAdFree] = useState(false);
+export function ProProvider({ children }: { children: React.ReactNode }) {
+  const [isPro, setIsPro] = useState(false);
   const [isPending, setIsPending] = useState(false);
+  const purchaseSourceRef = useRef<PurchaseSource | undefined>(undefined);
 
   const { connected, products, fetchProducts } = useIAP({
     onPurchaseSuccess: async purchase => {
       await finishTransaction({ purchase, isConsumable: false });
       await AsyncStorage.setItem(STORAGE_KEY, '1');
-      setIsAdFree(true);
+      setIsPro(true);
       setIsPending(false);
-      logIap('purchase');
+      logIap('purchase', purchaseSourceRef.current);
     },
     onPurchaseError: () => {
       setIsPending(false);
@@ -45,7 +48,7 @@ export function AdFreeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     AsyncStorage.getItem(STORAGE_KEY).then(v => {
-      if (v === '1') setIsAdFree(true);
+      if (v === '1') setIsPro(true);
     });
   }, []);
 
@@ -55,8 +58,9 @@ export function AdFreeProvider({ children }: { children: React.ReactNode }) {
     }
   }, [connected]);
 
-  const buy = useCallback(async () => {
+  const buy = useCallback(async (source: PurchaseSource) => {
     if (!connected || isPending) return;
+    purchaseSourceRef.current = source;
     setIsPending(true);
     await requestPurchase({
       type: 'in-app',
@@ -75,7 +79,7 @@ export function AdFreeProvider({ children }: { children: React.ReactNode }) {
       const found = purchases.some(p => p.productId === REMOVE_ADS_SKU);
       if (found) {
         await AsyncStorage.setItem(STORAGE_KEY, '1');
-        setIsAdFree(true);
+        setIsPro(true);
         logIap('restore');
       }
     } finally {
@@ -86,8 +90,8 @@ export function AdFreeProvider({ children }: { children: React.ReactNode }) {
   const price = products.find(p => p.id === REMOVE_ADS_SKU)?.displayPrice ?? null;
 
   return (
-    <AdFreeContext.Provider value={{ isAdFree, isPending, price, buy, restore }}>
+    <ProContext.Provider value={{ isPro, isPending, price, buy, restore }}>
       {children}
-    </AdFreeContext.Provider>
+    </ProContext.Provider>
   );
 }

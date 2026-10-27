@@ -6,7 +6,7 @@ import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { logScreenView } from '../src/analytics';
 import i18n, { initI18n } from '../src/i18n';
-import { AdFreeProvider } from '../src/iap/AdFreeContext';
+import { ProProvider } from '../src/iap/ProContext';
 import { maybeRequestReview } from '../src/reviewPrompt';
 import { COLORS } from '../src/theme/colors';
 
@@ -36,11 +36,11 @@ export default function RootLayout() {
   return (
     <I18nextProvider i18n={i18n}>
       <SafeAreaProvider>
-          <AdFreeProvider>
+          <ProProvider>
             <ScreenTracker />
             <StatusBar style="light" />
             <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: COLORS.bg } }} />
-          </AdFreeProvider>
+          </ProProvider>
       </SafeAreaProvider>
     </I18nextProvider>
   );

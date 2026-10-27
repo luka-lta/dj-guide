@@ -1,10 +1,10 @@
 import { Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useAdFree } from './AdFreeContext';
+import { usePro } from './ProContext';
 
 export function useRemoveAdsPrompt() {
   const { t } = useTranslation();
-  const { price, buy, restore } = useAdFree();
+  const { price, buy, restore } = usePro();
 
   return function showRemoveAdsPrompt() {
     Alert.alert(
@@ -13,7 +13,7 @@ export function useRemoveAdsPrompt() {
       [
         { text: t('iap.restore'), onPress: restore, style: 'default' },
         { text: t('common.cancel'), style: 'cancel' },
-        { text: t('iap.buy', { price: price ?? '…' }), onPress: buy, style: 'default' },
+        { text: t('iap.buy', { price: price ?? '…' }), onPress: () => buy('teaser'), style: 'default' },
       ],
     );
   };

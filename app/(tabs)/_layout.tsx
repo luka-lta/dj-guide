@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useInterstitialAd } from 'react-native-google-mobile-ads';
 import { INTERSTITIAL_AD_UNIT_ID } from '../../src/ads/adUnits';
 import { logAdFreePrompt } from '../../src/analytics';
-import { useAdFree } from '../../src/iap/AdFreeContext';
+import { usePro } from '../../src/iap/ProContext';
 import { useRemoveAdsTeaser } from '../../src/iap/useRemoveAdsPrompt';
 import { LanguageSwitcherButton } from '../../src/components/shared/LanguageSwitcherButton';
 import { RemoveAdsButton } from '../../src/components/shared/RemoveAdsButton';
@@ -21,7 +21,7 @@ const REMOVE_ADS_PROMPT_CHANCE = 0.2;
 
 export default function TabsLayout() {
   const { t } = useTranslation();
-  const { isAdFree } = useAdFree();
+  const { isPro } = usePro();
   const { isLoaded, isClosed, load, show } = useInterstitialAd(INTERSTITIAL_AD_UNIT_ID);
   const showRemoveAdsTeaser = useRemoveAdsTeaser();
   const lastShownAt = useRef<number>(0);
@@ -62,7 +62,7 @@ export default function TabsLayout() {
     const now = Date.now();
     if (now - lastShownAt.current < INTERSTITIAL_COOLDOWN_MS) return;
 
-    if (isLoaded && !isAdFree) {
+    if (isLoaded && !isPro) {
       lastShownAt.current = now;
       show();
       // Reload for next time

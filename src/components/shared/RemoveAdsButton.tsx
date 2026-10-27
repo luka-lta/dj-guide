@@ -1,17 +1,17 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useAdFree } from '../../iap/AdFreeContext';
+import { usePro } from '../../iap/ProContext';
 import { useRemoveAdsPrompt } from '../../iap/useRemoveAdsPrompt';
 import { COLORS } from '../../theme/colors';
 import { RADIUS } from '../../theme/radius';
 
 export function RemoveAdsButton() {
   const { t } = useTranslation();
-  const { isAdFree, isPending } = useAdFree();
+  const { isPro, isPending } = usePro();
   const showRemoveAdsPrompt = useRemoveAdsPrompt();
 
-  if (isAdFree) {
+  if (isPro) {
     return (
       <View style={styles.badge}>
         <Text style={styles.badgeText}>{t('iap.adFreeActive')}</Text>

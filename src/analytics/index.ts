@@ -1,3 +1,4 @@
+import type { PurchaseSource } from '../iap/ProContext';
 import { getAnalytics, logEvent, logScreenView as fbLogScreenView } from '@react-native-firebase/analytics';
 
 function a() {
@@ -34,9 +35,9 @@ export async function logDeviceSelect(device: string): Promise<void> {
   } catch {}
 }
 
-export async function logIap(event: 'purchase' | 'restore'): Promise<void> {
+export async function logIap(event: 'purchase' | 'restore', source?: PurchaseSource): Promise<void> {
   try {
-    await logEvent(a(), `iap_${event}`);
+    await logEvent(a(), `iap_${event}`, source ? { source } : undefined);
   } catch {}
 }
 
