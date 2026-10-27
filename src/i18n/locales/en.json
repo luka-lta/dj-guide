@@ -1,0 +1,99 @@
+{
+  "tabs": {
+    "pult": {
+      "title": "Mixer Explainer",
+      "label": "Mixer"
+    },
+    "rekordbox": {
+      "title": "rekordbox Guide",
+      "label": "rekordbox"
+    },
+    "grundlagen": {
+      "title": "Basics & Mixing",
+      "label": "Basics"
+    },
+    "troubleshoot": {
+      "title": "Troubleshoot",
+      "label": "Problems"
+    }
+  },
+  "common": {
+    "noResults": "No results. Try a different term.",
+    "relatedTopic": "Related Topic",
+    "cancel": "Cancel",
+    "language": {
+      "title": "Language",
+      "de": "Deutsch",
+      "en": "English"
+    }
+  },
+  "iap": {
+    "removeAdsButton": "Ad-Free",
+    "title": "Remove Ads",
+    "description": "One-time purchase for {{price}} — removes all ads permanently.",
+    "buy": "Buy ({{price}})",
+    "restore": "Restore Purchase",
+    "adFreeActive": "Ad-Free ✓",
+    "teaserTitle": "Tired of ads?",
+    "teaserMessage": "Remove ads for good — one-time purchase.",
+    "teaserYes": "Show me",
+    "teaserNo": "Not now"
+  },
+  "pult": {
+    "searchPlaceholder": "Enter button, knob, function or label…",
+    "hint": "Spelling, capitalisation and hyphens don't matter. Type a term or tap an area of the mixer.",
+    "emptyInitial": "Enter a search term or tap a section above to see all controls in that area.",
+    "emptyNoResults": "No results. Try a different term, e.g. the button name or its printed label.",
+    "zone": {
+      "deckL": "Deck Left",
+      "deckR": "Deck Right",
+      "mixer": "Mixer & Display",
+      "browser": "Browser & USB"
+    },
+    "controlCard": {
+      "practiceLabel": "Practice & Effect"
+    },
+    "zoneDiagram": {
+      "entryCount": "{{count}} entries"
+    }
+  },
+  "rekordbox": {
+    "searchPlaceholder": "Search topic, e.g. 'Smart List', 'USB', 'Beatgrid'…",
+    "noResults": "No results. Try a different term.",
+    "categories": {
+      "einrichtung": "Setup",
+      "bibliothek": "Library",
+      "exportLink": "Export & Link",
+      "amPult": "At the Mixer",
+      "mixing": "Mixing"
+    }
+  },
+  "grundlagen": {
+    "searchPlaceholder": "Search topic, e.g. 'Sub', 'Trim', 'Room Modes', 'Camelot'…",
+    "noResults": "No results. Try a different term.",
+    "camelot": {
+      "legendMajor": "Major (B)",
+      "legendMinor": "Minor (A)"
+    },
+    "categories": {
+      "gainStaging": "Gain Staging",
+      "lautstaerke": "Volume",
+      "fehlerdiagnose": "Diagnostics",
+      "setupRaum": "Setup & Room",
+      "harmonischesMixen": "Harmonic Mixing"
+    }
+  },
+  "troubleshoot": {
+    "searchPlaceholder": "Describe the problem, e.g. 'track won't start'…",
+    "emptyInitial": "Enter a short search term or tap a category above.",
+    "emptyNoResults": "No results. Try a shorter or different keyword.",
+    "causeLabel": "Cause",
+    "fixLabel": "Fix",
+    "categories": {
+      "pult": "Mixer",
+      "rekordbox": "rekordbox",
+      "tracks": "Tracks",
+      "mixing": "Mixing"
+    }
+  }
+}

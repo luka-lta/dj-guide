@@ -7,9 +7,6 @@ import { COLORS } from '../../theme/colors';
 const CX = WHEEL_SIZE / 2.0;
 const CY = WHEEL_SIZE / 2.0;
 
-const MAJOR_FILL = 'rgba(63,224,232,0.14)';
-const MINOR_FILL = 'rgba(255,62,196,0.14)';
-
 export function CamelotWheel() {
   return (
     <View style={{ alignItems: 'center', marginVertical: 20 }}>
@@ -18,7 +15,7 @@ export function CamelotWheel() {
           cx={CX}
           cy={CY}
           r={RING_RADIUS}
-          stroke={COLORS.line}
+          stroke={COLORS.border}
           strokeWidth={1}
           fill="none"
         />
@@ -26,14 +23,14 @@ export function CamelotWheel() {
           <G key={chip.label} transform={`translate(${chip.x}, ${chip.y})`}>
             <Circle
               r={CHIP_RADIUS}
-              fill={chip.isMajor ? MAJOR_FILL : MINOR_FILL}
-              stroke={COLORS.line}
+              fill={chip.isMajor ? COLORS.amberMuted : COLORS.surfaceRaised}
+              stroke={chip.isMajor ? COLORS.amber : COLORS.borderStrong}
               strokeWidth={1}
             />
             <SvgText
               textAnchor="middle"
               alignmentBaseline="central"
-              fill={chip.isMajor ? COLORS.cyan : COLORS.magenta}
+              fill={chip.isMajor ? COLORS.amber : COLORS.textMuted}
               fontSize={11}
               fontWeight="700"
             >
@@ -46,7 +43,7 @@ export function CamelotWheel() {
           y={CY - 7}
           textAnchor="middle"
           alignmentBaseline="central"
-          fill={COLORS.muted}
+          fill={COLORS.textFaint}
           fontSize={10}
         >
           Camelot
@@ -56,7 +53,7 @@ export function CamelotWheel() {
           y={CY + 7}
           textAnchor="middle"
           alignmentBaseline="central"
-          fill={COLORS.muted}
+          fill={COLORS.textFaint}
           fontSize={10}
         >
           Wheel

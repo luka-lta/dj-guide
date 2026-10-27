@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { logFilterChip, logSearch } from '../../src/analytics';
 import { ChapterAccordion } from '../../src/components/rekordbox/ChapterAccordion';
+import { BannerAdComponent } from '../../src/components/shared/BannerAdComponent';
 import { ChipRow } from '../../src/components/shared/ChipRow';
 import { EmptyState } from '../../src/components/shared/EmptyState';
 import { SearchInput } from '../../src/components/shared/SearchInput';
@@ -8,20 +11,35 @@ import { chapters } from '../../src/data/chapters';
 import { useActiveChip } from '../../src/hooks/useActiveChip';
 import { useSearch } from '../../src/hooks/useSearch';
 import { COLORS } from '../../src/theme/colors';
+import { SPACING } from '../../src/theme/spacing';
 import { matches } from '../../src/utils/search';
 
-const CATS = ['Einrichtung', 'Bibliothek', 'Export & Link', 'Am Pult', 'Mixing'];
+type RekordboxCatKey = 'einrichtung' | 'bibliothek' | 'exportLink' | 'amPult' | 'mixing';
+const CAT_KEYS: RekordboxCatKey[] = ['einrichtung', 'bibliothek', 'exportLink', 'amPult', 'mixing'];
 
 export default function RekordboxScreen() {
+  const { t } = useTranslation();
   const [rawQuery, debouncedQuery, setRawQuery] = useSearch();
   const [activeCat, setActiveCat] = useActiveChip();
+
+  const CATS = CAT_KEYS.map(k => t(`rekordbox.categories.${k}` as const));
   const [openIndices, setOpenIndices] = useState<Set<number>>(new Set([0]));
+
+  useEffect(() => {
+    if (debouncedQuery) logSearch('rekordbox', debouncedQuery);
+  }, [debouncedQuery]);
+  useEffect(() => {
+    if (activeCat) logFilterChip('rekordbox', activeCat);
+  }, [activeCat]);
 
   const filtered = chapters
     .map((c, i) => {
-      const chapterMatches = matches(debouncedQuery, c.title);
-      const stepMatches = c.steps.filter(s => matches(debouncedQuery, s.t, s.d));
-      const catMatch = !activeCat || c.cat === activeCat;
+      const chapterMatches = matches(debouncedQuery, c.title.de, c.title.en);
+      const stepMatches = c.steps.filter(s => matches(debouncedQuery, s.t.de, s.t.en, s.d.de, s.d.en));
+      const activeKey = activeCat
+        ? CAT_KEYS.find(k => t(`rekordbox.categories.${k}` as const) === activeCat)
+        : null;
+      const catMatch = !activeKey || c.cat === activeKey;
       const textMatch = !debouncedQuery || chapterMatches || stepMatches.length > 0;
       const forceOpen = !!debouncedQuery && (chapterMatches || stepMatches.length > 0);
       return { c, globalIndex: i, catMatch, textMatch, forceOpen };
@@ -60,12 +78,12 @@ export default function RekordboxScreen() {
         <SearchInput
           value={rawQuery}
           onChangeText={setRawQuery}
-          placeholder="Thema suchen, z.B. 'Intelligente Liste', 'USB', 'Beatgrid'…"
+          placeholder={t('rekordbox.searchPlaceholder')}
         />
         <ChipRow chips={CATS} activeChip={activeCat} onSelect={setActiveCat} />
 
         {filtered.length === 0 ? (
-          <EmptyState message="Kein Treffer. Anderen Begriff versuchen." />
+          <EmptyState message={t('rekordbox.noResults')} />
         ) : (
           filtered.map(({ c, globalIndex, forceOpen }) => (
             <ChapterAccordion
@@ -79,6 +97,7 @@ export default function RekordboxScreen() {
           ))
         )}
       </ScrollView>
+      <BannerAdComponent />
     </KeyboardAvoidingView>
   );
 }
@@ -89,7 +108,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bg,
   },
   content: {
-    padding: 20,
-    paddingBottom: 60,
+    padding: SPACING.xl - 4,
+    paddingBottom: SPACING.xl - 4,
   },
 });

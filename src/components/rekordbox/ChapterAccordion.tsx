@@ -1,7 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Chapter } from '../../data/types';
+import { useL } from '../../i18n/useL';
 import { COLORS } from '../../theme/colors';
+import { RADIUS } from '../../theme/radius';
+import { SPACING } from '../../theme/spacing';
+import { TYPE } from '../../theme/typography';
 import { HighlightText } from '../shared/HighlightText';
 
 interface ChapterAccordionProps {
@@ -19,14 +23,16 @@ export function ChapterAccordion({
   onToggle,
   query,
 }: ChapterAccordionProps) {
+  const l = useL();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, isOpen && styles.containerOpen]}>
       <TouchableOpacity style={styles.head} onPress={onToggle}>
         <View style={styles.num}>
-          <Text style={styles.numText}>{globalIndex + 1}</Text>
+          <Text style={styles.numText}>{String(globalIndex + 1).padStart(2, '0')}</Text>
         </View>
         <HighlightText
-          text={chapter.title}
+          text={l(chapter.title)}
           query={query}
           style={styles.title}
           numberOfLines={2}
@@ -38,8 +44,8 @@ export function ChapterAccordion({
         <View style={styles.body}>
           {chapter.steps.map((step, i) => (
             <View key={i} style={styles.step}>
-              <HighlightText text={step.t} query={query} style={styles.stepTitle} />
-              <HighlightText text={step.d} query={query} style={styles.stepDesc} />
+              <HighlightText text={l(step.t)} query={query} style={styles.stepTitle} />
+              <HighlightText text={l(step.d)} query={query} style={styles.stepDesc} />
             </View>
           ))}
         </View>
@@ -50,63 +56,63 @@ export function ChapterAccordion({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.panel,
+    backgroundColor: COLORS.surface,
     borderWidth: 1,
-    borderColor: COLORS.line,
-    borderRadius: 10,
-    marginBottom: 10,
+    borderColor: COLORS.border,
+    borderRadius: RADIUS.lg,
+    marginBottom: SPACING.sm + 2,
     overflow: 'hidden',
+  },
+  containerOpen: {
+    borderColor: COLORS.borderStrong,
   },
   head: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    padding: 16,
+    gap: SPACING.md,
+    padding: SPACING.lg,
   },
   num: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: COLORS.cyan,
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: 26,
+    alignItems: 'flex-start',
     flexShrink: 0,
   },
   numText: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: COLORS.bg,
+    ...TYPE.mono,
+    color: COLORS.textFaint,
   },
   title: {
     flex: 1,
-    fontSize: 14.5,
+    ...TYPE.title,
     fontWeight: '600',
     color: COLORS.text,
   },
   arrow: {
-    color: COLORS.muted,
-    fontSize: 12,
+    color: COLORS.textMuted,
+    fontSize: 11,
   },
   arrowOpen: {
+    color: COLORS.amber,
     transform: [{ rotate: '90deg' }],
   },
   body: {
-    paddingHorizontal: 18,
-    paddingBottom: 18,
+    paddingHorizontal: SPACING.lg + 2,
+    paddingBottom: SPACING.lg + 2,
     paddingLeft: 54,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border,
+    paddingTop: SPACING.md,
   },
   step: {
-    marginBottom: 14,
+    marginBottom: SPACING.md + 2,
   },
   stepTitle: {
-    fontSize: 13.5,
-    fontWeight: '600',
+    ...TYPE.subtitle,
     color: COLORS.text,
-    marginBottom: 4,
+    marginBottom: SPACING.xs,
   },
   stepDesc: {
-    fontSize: 13,
-    lineHeight: 21,
-    color: COLORS.cardText,
+    ...TYPE.bodySmall,
+    color: COLORS.textMuted,
   },
 });

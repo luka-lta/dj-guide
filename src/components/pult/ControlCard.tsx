@@ -1,28 +1,22 @@
+import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Control, Zone } from '../../data/types';
+import { useL } from '../../i18n/useL';
 import { COLORS } from '../../theme/colors';
+import { RADIUS } from '../../theme/radius';
+import { SPACING } from '../../theme/spacing';
+import { TYPE } from '../../theme/typography';
 import { HighlightText } from '../shared/HighlightText';
 
-const ZONE_COLORS: Record<Zone, string> = {
-  deckL: COLORS.cyan,
-  deckR: COLORS.orange,
-  mixer: COLORS.magenta,
-  browser: COLORS.lime,
-};
+type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
-const ZONE_BG: Record<Zone, string> = {
-  deckL: 'rgba(63,224,232,0.12)',
-  deckR: 'rgba(255,138,61,0.12)',
-  mixer: 'rgba(255,62,196,0.12)',
-  browser: 'rgba(198,255,62,0.12)',
-};
-
-const ZONE_NAMES: Record<Zone, string> = {
-  deckL: 'Deck links',
-  deckR: 'Deck rechts',
-  mixer: 'Mixer & Display',
-  browser: 'Browser & USB',
+const ZONE_ICONS: Record<Zone, IoniconName> = {
+  deckL: 'disc-outline',
+  deckR: 'disc-outline',
+  mixer: 'options-outline',
+  browser: 'folder-outline',
 };
 
 interface ControlCardProps {
@@ -31,16 +25,23 @@ interface ControlCardProps {
 }
 
 export function ControlCard({ control, query }: ControlCardProps) {
+  const { t } = useTranslation();
+  const l = useL();
   const [tipOpen, setTipOpen] = useState(false);
-  const zoneColor = ZONE_COLORS[control.zone];
-  const zoneBg = ZONE_BG[control.zone];
-  const zoneName = ZONE_NAMES[control.zone];
+  const zoneNames: Record<Zone, string> = {
+    deckL: t('pult.zone.deckL'),
+    deckR: t('pult.zone.deckR'),
+    mixer: t('pult.zone.mixer'),
+    browser: t('pult.zone.browser'),
+  };
+  const zoneName = zoneNames[control.zone];
 
   return (
     <View style={styles.card}>
       <View style={styles.tagRow}>
-        <View style={[styles.tag, { backgroundColor: zoneBg }]}>
-          <Text style={[styles.tagText, { color: zoneColor }]}>{zoneName}</Text>
+        <View style={styles.tag}>
+          <Ionicons name={ZONE_ICONS[control.zone]} size={11} color={COLORS.textMuted} />
+          <Text style={styles.tagText}>{zoneName}</Text>
         </View>
         {control.label ? (
           <View style={styles.tagLabel}>
@@ -48,15 +49,15 @@ export function ControlCard({ control, query }: ControlCardProps) {
           </View>
         ) : null}
       </View>
-      <HighlightText text={control.name} query={query} style={styles.name} />
-      <HighlightText text={control.desc} query={query} style={styles.desc} />
+      <HighlightText text={l(control.name)} query={query} style={styles.name} />
+      <HighlightText text={l(control.desc)} query={query} style={styles.desc} />
       {control.tip ? (
         <View style={styles.tip}>
           <TouchableOpacity onPress={() => setTipOpen(v => !v)}>
-            <Text style={styles.tipLabel}>Praxis & Auswirkung {tipOpen ? '▾' : '▸'}</Text>
+            <Text style={styles.tipLabel}>{t('pult.controlCard.practiceLabel')} {tipOpen ? '▾' : '▸'}</Text>
           </TouchableOpacity>
           {tipOpen ? (
-            <HighlightText text={control.tip} query={query} style={styles.tipText} />
+            <HighlightText text={l(control.tip)} query={query} style={styles.tipText} />
           ) : null}
         </View>
       ) : null}
@@ -66,73 +67,67 @@ export function ControlCard({ control, query }: ControlCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: COLORS.panel,
+    backgroundColor: COLORS.surface,
     borderWidth: 1,
-    borderColor: COLORS.line,
-    borderRadius: 10,
-    padding: 16,
-    marginBottom: 10,
+    borderColor: COLORS.border,
+    borderRadius: RADIUS.lg,
+    padding: SPACING.lg,
+    marginBottom: SPACING.sm + 2,
   },
   tagRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 6,
-    marginBottom: 8,
+    gap: SPACING.xs + 2,
+    marginBottom: SPACING.sm,
   },
   tag: {
-    paddingVertical: 2,
-    paddingHorizontal: 8,
-    borderRadius: 100,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.xs,
+    paddingVertical: 3,
+    paddingHorizontal: SPACING.sm,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderRadius: RADIUS.sm,
   },
   tagText: {
-    fontSize: 10,
-    fontWeight: '700',
-    letterSpacing: 0.6,
-    textTransform: 'uppercase',
+    ...TYPE.label,
+    color: COLORS.textMuted,
   },
   tagLabel: {
-    backgroundColor: COLORS.bg2,
-    paddingVertical: 2,
-    paddingHorizontal: 8,
-    borderRadius: 100,
+    backgroundColor: COLORS.surfaceRaised,
+    paddingVertical: 3,
+    paddingHorizontal: SPACING.sm,
+    borderRadius: RADIUS.sm,
   },
   tagLabelText: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: COLORS.muted,
-    fontFamily: 'monospace',
-    letterSpacing: 0.3,
+    ...TYPE.mono,
+    color: COLORS.textMuted,
   },
   name: {
-    fontSize: 15,
-    fontWeight: '600',
+    ...TYPE.title,
     color: COLORS.text,
-    marginBottom: 6,
+    marginBottom: SPACING.xs + 2,
   },
   desc: {
-    fontSize: 13.5,
-    lineHeight: 21,
-    color: COLORS.cardText,
+    ...TYPE.body,
+    color: COLORS.textMuted,
   },
   tip: {
-    marginTop: 12,
-    padding: 10,
-    borderRadius: 8,
-    backgroundColor: 'rgba(198,255,62,0.06)',
+    marginTop: SPACING.md,
+    padding: SPACING.sm + 2,
+    borderRadius: RADIUS.sm,
+    backgroundColor: COLORS.amberMuted,
     borderLeftWidth: 2,
-    borderLeftColor: COLORS.lime,
+    borderLeftColor: COLORS.amber,
   },
   tipLabel: {
-    fontSize: 10,
-    fontWeight: '700',
-    letterSpacing: 0.6,
-    textTransform: 'uppercase',
-    color: COLORS.lime,
-    marginBottom: 4,
+    ...TYPE.label,
+    color: COLORS.amber,
+    marginBottom: SPACING.xs,
   },
   tipText: {
-    fontSize: 13.5,
-    lineHeight: 21,
-    color: '#d6d6de',
+    ...TYPE.body,
+    color: COLORS.text,
   },
 });

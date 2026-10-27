@@ -1,0 +1,99 @@
+{
+  "tabs": {
+    "pult": {
+      "title": "Pult-Erklärung",
+      "label": "Pult"
+    },
+    "rekordbox": {
+      "title": "rekordbox Anleitung",
+      "label": "rekordbox"
+    },
+    "grundlagen": {
+      "title": "Grundlagen & Mixing",
+      "label": "Grundlagen"
+    },
+    "troubleshoot": {
+      "title": "Problemlösung",
+      "label": "Probleme"
+    }
+  },
+  "common": {
+    "noResults": "Kein Treffer. Anderen Begriff versuchen.",
+    "relatedTopic": "Verwandtes Thema",
+    "cancel": "Abbrechen",
+    "language": {
+      "title": "Sprache",
+      "de": "Deutsch",
+      "en": "English"
+    }
+  },
+  "iap": {
+    "removeAdsButton": "Werbefrei",
+    "title": "Werbung entfernen",
+    "description": "Einmalig {{price}} – entfernt alle Werbeanzeigen dauerhaft.",
+    "buy": "Kaufen ({{price}})",
+    "restore": "Kauf wiederherstellen",
+    "adFreeActive": "Werbefrei ✓",
+    "teaserTitle": "Nervt die Werbung?",
+    "teaserMessage": "Werbung dauerhaft entfernen – einmalig kaufen.",
+    "teaserYes": "Zeig mir das",
+    "teaserNo": "Nicht jetzt"
+  },
+  "pult": {
+    "searchPlaceholder": "Taste, Regler, Funktion oder Aufdruck eingeben…",
+    "hint": "Schreibweise, Groß-/Kleinschreibung und Bindestriche sind egal. Tippe einen Begriff ein oder klicke auf einen Bereich des Pults.",
+    "emptyInitial": "Suche eingeben oder Bereich oben antippen, um alle Bedienelemente dieses Bereichs zu sehen.",
+    "emptyNoResults": "Kein Treffer. Anderen Begriff versuchen, z.B. den Namen der Taste oder den Aufdruck.",
+    "zone": {
+      "deckL": "Deck links",
+      "deckR": "Deck rechts",
+      "mixer": "Mixer & Display",
+      "browser": "Browser & USB"
+    },
+    "controlCard": {
+      "practiceLabel": "Praxis & Auswirkung"
+    },
+    "zoneDiagram": {
+      "entryCount": "{{count}} Einträge"
+    }
+  },
+  "rekordbox": {
+    "searchPlaceholder": "Thema suchen, z.B. 'Intelligente Liste', 'USB', 'Beatgrid'…",
+    "noResults": "Kein Treffer. Anderen Begriff versuchen.",
+    "categories": {
+      "einrichtung": "Einrichtung",
+      "bibliothek": "Bibliothek",
+      "exportLink": "Export & Link",
+      "amPult": "Am Pult",
+      "mixing": "Mixing"
+    }
+  },
+  "grundlagen": {
+    "searchPlaceholder": "Thema suchen, z.B. 'Sub', 'Trim', 'Raummoden', 'Camelot'…",
+    "noResults": "Kein Treffer. Anderen Begriff versuchen.",
+    "camelot": {
+      "legendMajor": "Dur / Major (B)",
+      "legendMinor": "Moll / Minor (A)"
+    },
+    "categories": {
+      "gainStaging": "Gain-Staging",
+      "lautstaerke": "Lautstärke",
+      "fehlerdiagnose": "Fehlerdiagnose",
+      "setupRaum": "Setup & Raum",
+      "harmonischesMixen": "Harmonisches Mixen"
+    }
+  },
+  "troubleshoot": {
+    "searchPlaceholder": "Problem kurz beschreiben, z.B. 'Track startet nicht'…",
+    "emptyInitial": "Kurzen Suchbegriff eingeben oder Kategorie oben antippen.",
+    "emptyNoResults": "Kein Treffer. Anderen Begriff versuchen, z.B. kürzer oder mit anderem Stichwort.",
+    "causeLabel": "Ursache",
+    "fixLabel": "Lösung",
+    "categories": {
+      "pult": "Pult",
+      "rekordbox": "rekordbox",
+      "tracks": "Tracks",
+      "mixing": "Mixing"
+    }
+  }
+}

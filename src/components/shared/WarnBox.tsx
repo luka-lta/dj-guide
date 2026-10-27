@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { COLORS } from '../../theme/colors';
+import { RADIUS } from '../../theme/radius';
+import { SPACING } from '../../theme/spacing';
+import { TYPE } from '../../theme/typography';
 
 interface WarnBoxProps {
   text: string;
@@ -16,16 +19,15 @@ export function WarnBox({ text }: WarnBoxProps) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(255,138,61,0.08)',
+    backgroundColor: COLORS.amberMuted,
     borderLeftWidth: 2,
-    borderLeftColor: COLORS.orange,
-    borderRadius: 8,
-    padding: 12,
-    marginTop: 10,
+    borderLeftColor: COLORS.amber,
+    borderRadius: RADIUS.sm,
+    padding: SPACING.md,
+    marginTop: SPACING.md,
   },
   text: {
-    color: '#d6d6de',
-    fontSize: 13,
-    lineHeight: 20,
+    ...TYPE.bodySmall,
+    color: COLORS.text,
   },
 });

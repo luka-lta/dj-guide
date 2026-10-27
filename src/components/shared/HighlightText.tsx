@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TextStyle } from 'react-native';
+import { COLORS } from '../../theme/colors';
 
 interface HighlightTextProps {
   text: string;
@@ -60,7 +61,8 @@ export function HighlightText({ text, query, style, numberOfLines }: HighlightTe
 
 const styles = StyleSheet.create({
   highlight: {
-    backgroundColor: 'rgba(198,255,62,0.35)',
+    backgroundColor: COLORS.highlight,
     borderRadius: 2,
+    color: COLORS.text,
   },
 });

@@ -1,6 +1,8 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { COLORS } from '../../theme/colors';
+import { RADIUS } from '../../theme/radius';
+import { SPACING } from '../../theme/spacing';
 
 interface SignalFlowDiagramProps {
   steps: string[];
@@ -28,27 +30,27 @@ export function SignalFlowDiagram({ steps }: SignalFlowDiagramProps) {
 
 const styles = StyleSheet.create({
   scroll: {
-    marginVertical: 18,
+    marginVertical: SPACING.lg + 2,
   },
   content: {
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'nowrap',
-    gap: 6,
+    gap: SPACING.sm - 2,
     paddingBottom: 4,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: SPACING.sm - 2,
   },
   step: {
-    backgroundColor: COLORS.panel,
+    backgroundColor: COLORS.surface,
     borderWidth: 1,
-    borderColor: COLORS.line,
-    borderRadius: 8,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
+    borderColor: COLORS.border,
+    borderRadius: RADIUS.sm,
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.md,
   },
   stepText: {
     fontSize: 12.5,
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     color: COLORS.text,
   },
   arrow: {
-    color: COLORS.muted,
+    color: COLORS.textFaint,
     fontSize: 14,
   },
 });
