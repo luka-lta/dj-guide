@@ -24,6 +24,11 @@ export function parseStoredBookmarks(raw: string | null): BookmarkKey[] {
   return parsed.filter((item): item is BookmarkKey => typeof item === 'string');
 }
 
+/** Combines the stored list with keys toggled in memory; in-memory keys not yet stored are appended. */
+export function mergeBookmarks(stored: readonly BookmarkKey[], pending: readonly BookmarkKey[]): BookmarkKey[] {
+  return [...stored, ...pending.filter(k => !stored.includes(k))];
+}
+
 export function toggleBookmark(keys: readonly BookmarkKey[], key: BookmarkKey): BookmarkKey[] {
   if (keys.includes(key)) return keys.filter(k => k !== key);
   return [...keys, key];

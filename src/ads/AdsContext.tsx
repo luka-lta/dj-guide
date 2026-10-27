@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { Alert, AppState } from 'react-native';
 import { logRewarded } from '../analytics';
 import { usePro } from '../iap/ProContext';
-import type { PurchaseSource } from '../iap/ProContext';
 import { isAdsAllowed } from './adGate';
 import { REWARDED_AD_UNIT_ID } from './adUnits';
 import { gatherAdsConsent, loadIsPrivacyOptionsRequired, showPrivacyOptionsForm } from './consent';
@@ -24,7 +23,7 @@ export interface AdsContextValue {
   showPrivacyOptions: () => Promise<void>;
   isRewardActive: boolean;
   isRewardedAvailable: boolean;
-  watchRewarded: (source: PurchaseSource) => void;
+  watchRewarded: () => void;
 }
 
 const AdsContext = createContext<AdsContextValue>({
@@ -138,6 +137,7 @@ export function AdsProvider({ children }: { children: React.ReactNode }) {
   }, [rewardedUnitId, isLoaded, isOpened, isClosed, load]);
 
   // The reward is granted once the video is closed: switching the unit off while it is showing would destroy the ad.
+  // Assumes the platform delivers EARNED before CLOSED (as on iOS), so isEarnedReward is already set when isClosed is.
   useEffect(() => {
     if (!isClosed) return;
     if (!isEarnedReward) {
@@ -152,15 +152,11 @@ export function AdsProvider({ children }: { children: React.ReactNode }) {
 
   const isRewardedAvailable = isLoaded && rewardedUnitId !== null;
 
-  // The source is reserved for analytics context in the UI task.
-  const watchRewarded = useCallback(
-    (_source: PurchaseSource) => {
-      if (!isRewardedAvailable) return;
-      logRewarded('started');
-      show();
-    },
-    [isRewardedAvailable, show],
-  );
+  const watchRewarded = useCallback(() => {
+    if (!isRewardedAvailable) return;
+    logRewarded('started');
+    show();
+  }, [isRewardedAvailable, show]);
 
   const shouldShowAds = isProResolved && isAdsAllowed({ isPro, canRequestAds, isRewardActive });
 

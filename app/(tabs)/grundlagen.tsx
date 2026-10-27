@@ -67,6 +67,8 @@ export default function GrundlagenScreen() {
     });
   }
 
+  const emptyMessage = isBookmarkFilter && !debouncedQuery ? t('bookmarks.empty') : t('grundlagen.noResults');
+
   return (
     <KeyboardAvoidingView
       style={styles.flex}
@@ -85,7 +87,7 @@ export default function GrundlagenScreen() {
         <ChipRow chips={CATS} activeChip={activeCat} onSelect={handleCatSelect} />
 
         {list.length === 0 ? (
-          <EmptyState message={isBookmarkFilter && !debouncedQuery ? t('bookmarks.empty') : t('grundlagen.noResults')} />
+          <EmptyState message={emptyMessage} />
         ) : (
           list.map(section => (
             <GrundlagenSection

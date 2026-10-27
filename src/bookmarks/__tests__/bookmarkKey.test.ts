@@ -1,4 +1,4 @@
-import { parseStoredBookmarks, toBookmarkKey, toggleBookmark } from '../bookmarkKey';
+import { BookmarkKey, mergeBookmarks, parseStoredBookmarks, toBookmarkKey, toggleBookmark } from '../bookmarkKey';
 
 describe('bookmarkKey', () => {
   it('shouldBuildPultKeyWithDevice', () => {
@@ -25,5 +25,23 @@ describe('bookmarkKey', () => {
   it('shouldRemoveExistingKey', () => {
     const k = toBookmarkKey('grundlagen', 'eq');
     expect(toggleBookmark([k], k)).toEqual([]);
+  });
+});
+
+describe('mergeBookmarks', () => {
+  const a = 'grundlagen:a' as BookmarkKey;
+  const b = 'grundlagen:b' as BookmarkKey;
+  const c = 'grundlagen:c' as BookmarkKey;
+
+  it('shouldKeepStoredKeysAndAppendPendingOnes', () => {
+    expect(mergeBookmarks([a, b], [c])).toEqual([a, b, c]);
+  });
+
+  it('shouldNotDuplicateKeysPresentInBoth', () => {
+    expect(mergeBookmarks([a, b], [b, c])).toEqual([a, b, c]);
+  });
+
+  it('shouldReturnStoredKeysWhenNothingIsPending', () => {
+    expect(mergeBookmarks([a], [])).toEqual([a]);
   });
 });

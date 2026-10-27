@@ -2,6 +2,7 @@ import { useRouter } from 'expo-router';
 import { Alert, AlertButton } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useAds } from '../ads/AdsContext';
+import { logRewarded } from '../analytics';
 
 /** Lightweight teaser shown before the Pro screen — only navigates there if the user opts in. */
 export function useProTeaser(): () => void {
@@ -18,7 +19,8 @@ export function useProTeaser(): () => void {
       },
     ];
     if (isRewardedAvailable) {
-      buttons.push({ text: t('pro.teaserWatch'), onPress: () => watchRewarded('teaser') });
+      logRewarded('offer_shown');
+      buttons.push({ text: t('pro.teaserWatch'), onPress: watchRewarded });
     }
     Alert.alert(t('pro.teaserTitle'), t('pro.teaserMessage'), buttons);
   };

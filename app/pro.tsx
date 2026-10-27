@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useEffect } from 'react';
+import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
+import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useAds } from '../src/ads/AdsContext';
@@ -38,10 +38,15 @@ export default function ProScreen() {
     if (showRewardedOption) logRewarded('offer_shown');
   }, [showRewardedOption]);
 
-  function onWatchRewarded() {
-    watchRewarded(source);
-    router.back();
-  }
+  // Close once a reward is granted while this screen is open. Not on dismissal of the video without reward, and not
+  // right after tapping: dismissing the modal would also dismiss the ad presented from it.
+  const isFocused = useIsFocused();
+  const wasRewardActive = useRef(isRewardActive);
+  useEffect(() => {
+    const justActivated = isRewardActive && !wasRewardActive.current;
+    wasRewardActive.current = isRewardActive;
+    if (justActivated && isFocused) router.back();
+  }, [isRewardActive, isFocused, router]);
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
@@ -77,7 +82,7 @@ export default function ProScreen() {
       )}
 
       {showRewardedOption && (
-        <TouchableOpacity style={styles.rewarded} onPress={onWatchRewarded}>
+        <TouchableOpacity style={styles.rewarded} onPress={watchRewarded}>
           <Text style={styles.rewardedText}>{t('pro.rewarded')}</Text>
         </TouchableOpacity>
       )}

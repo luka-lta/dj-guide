@@ -74,6 +74,9 @@ export default function TroubleshootScreen() {
     });
   }
 
+  const emptyMessage =
+    isBookmarkFilter && !debouncedQuery ? t('bookmarks.empty') : t('troubleshoot.emptyNoResults');
+
   return (
     <KeyboardAvoidingView
       style={styles.flex}
@@ -94,7 +97,7 @@ export default function TroubleshootScreen() {
         {isEmpty ? (
           <EmptyState message={t('troubleshoot.emptyInitial')} />
         ) : list.length === 0 ? (
-          <EmptyState message={isBookmarkFilter && !debouncedQuery ? t('bookmarks.empty') : t('troubleshoot.emptyNoResults')} />
+          <EmptyState message={emptyMessage} />
         ) : (
           list.map(entry => (
             <TroubleshootCard
