@@ -5,13 +5,14 @@ function mirrorDeck(list: Control[]): Control[] {
   list
     .filter(c => c.zone === 'deckL')
     .forEach(c =>
-      out.push({ name: c.name, zone: 'deckR', desc: c.desc, tip: c.tip, label: c.label }),
+      out.push({ id: `${c.id}-r`, name: c.name, zone: 'deckR', desc: c.desc, tip: c.tip, label: c.label }),
     );
   return out;
 }
 
 const rx3_raw: Control[] = [
   {
+    id: 'jogwheel',
     name: { de: 'Jogwheel', en: 'Jogwheel' },
     zone: 'deckL',
     desc: {
@@ -20,6 +21,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'vinyl-button',
     name: { de: 'Vinyl-Taste', en: 'Vinyl Button' },
     zone: 'deckL',
     label: 'VINYL',
@@ -29,6 +31,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'play-pause',
     name: { de: 'Play/Pause', en: 'Play/Pause' },
     zone: 'deckL',
     label: 'PLAY / PAUSE',
@@ -38,6 +41,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'cue',
     name: { de: 'Cue', en: 'Cue' },
     zone: 'deckL',
     label: 'CUE',
@@ -47,6 +51,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'beat-sync',
     name: { de: 'Beat Sync', en: 'Beat Sync' },
     zone: 'deckL',
     label: 'SYNC',
@@ -56,6 +61,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'tempo-fader',
     name: { de: 'Tempo-Fader', en: 'Tempo Fader' },
     zone: 'deckL',
     label: 'TEMPO',
@@ -69,6 +75,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'tempo-range-button',
     name: { de: 'Tempo-Range-Taste', en: 'Tempo Range Button' },
     zone: 'deckL',
     label: 'WIDE',
@@ -82,6 +89,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'master-tempo',
     name: { de: 'Master Tempo', en: 'Master Tempo' },
     zone: 'deckL',
     label: 'MT / MASTER TEMPO',
@@ -95,6 +103,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'loop-in-loop-out',
     name: { de: 'Loop In / Loop Out', en: 'Loop In / Loop Out' },
     zone: 'deckL',
     label: 'IN / OUT',
@@ -104,6 +113,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'reloop-exit',
     name: { de: 'Reloop/Exit', en: 'Reloop/Exit' },
     zone: 'deckL',
     label: 'RELOOP / EXIT',
@@ -113,6 +123,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'auto-loop',
     name: { de: 'Auto Loop', en: 'Auto Loop' },
     zone: 'deckL',
     label: 'AUTO LOOP',
@@ -122,6 +133,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'loop-halve-double',
     name: { de: 'Loop-Halbieren/Verdoppeln', en: 'Loop Halve/Double' },
     zone: 'deckL',
     label: '1/2X, 2X',
@@ -131,6 +143,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'performance-pads',
     name: { de: 'Performance-Pads', en: 'Performance Pads' },
     zone: 'deckL',
     label: 'PAD 1–8',
@@ -140,6 +153,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'pad-mode-buttons',
     name: { de: 'Pad-Modus-Tasten', en: 'Pad Mode Buttons' },
     zone: 'deckL',
     label: 'HOT CUE, PAD FX, BEAT JUMP …',
@@ -149,6 +163,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'hot-cue',
     name: { de: 'Hot Cue', en: 'Hot Cue' },
     zone: 'deckL',
     desc: {
@@ -157,6 +172,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'beat-jump',
     name: { de: 'Beat Jump', en: 'Beat Jump' },
     zone: 'deckL',
     desc: {
@@ -165,6 +181,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'keyboard-mode',
     name: { de: 'Keyboard-Modus', en: 'Keyboard Mode' },
     zone: 'deckL',
     desc: {
@@ -173,6 +190,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'key-shift',
     name: { de: 'Key Shift', en: 'Key Shift' },
     zone: 'deckL',
     desc: {
@@ -181,6 +199,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'shift-button',
     name: { de: 'Shift-Taste', en: 'Shift Button' },
     zone: 'deckL',
     label: 'SHIFT',
@@ -190,6 +209,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'slip-mode',
     name: { de: 'Slip-Modus', en: 'Slip Mode' },
     zone: 'deckL',
     label: 'SLIP',
@@ -203,6 +223,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'quantize',
     name: { de: 'Quantize', en: 'Quantize' },
     zone: 'deckL',
     label: 'QUANTIZE',
@@ -216,6 +237,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'load-load-track',
     name: { de: 'Load / Track laden', en: 'Load / Load Track' },
     zone: 'deckL',
     label: 'LOAD',
@@ -225,6 +247,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'search-deck-fast-forward',
     name: { de: 'Search (Deck-Vorlauf)', en: 'Search (Deck Fast-Forward)' },
     zone: 'deckL',
     label: 'SEARCH ◀▶',
@@ -234,6 +257,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'sampler-volume',
     name: { de: 'Sampler Volume', en: 'Sampler Volume' },
     zone: 'deckL',
     label: 'SAMPLER VOL',
@@ -243,6 +267,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'needle-search-touch-waveform',
     name: { de: 'Needle Search (Touch-Wellenform)', en: 'Needle Search (Touch Waveform)' },
     zone: 'deckL',
     desc: {
@@ -251,6 +276,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'track-previous-next',
     name: { de: 'Track-Vor-/Zurück', en: 'Track Previous/Next' },
     zone: 'deckL',
     label: 'TRACK ◀ ▶',
@@ -264,6 +290,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'beat-loop-pad-mode',
     name: { de: 'Beat Loop (Pad-Modus)', en: 'Beat Loop (Pad Mode)' },
     zone: 'deckL',
     label: 'BEAT LOOP',
@@ -277,6 +304,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'memory-cue',
     name: { de: 'Memory-Cue', en: 'Memory Cue' },
     zone: 'deckL',
     label: 'MEMORY',
@@ -291,6 +319,7 @@ const rx3_raw: Control[] = [
   },
 
   {
+    id: 'power-switch',
     name: { de: 'Power-Schalter', en: 'Power Switch' },
     zone: 'mixer',
     label: 'STANDBY/ON',
@@ -300,6 +329,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'preview-touchscreen',
     name: { de: 'Preview (Touchscreen)', en: 'Preview (Touchscreen)' },
     zone: 'mixer',
     desc: {
@@ -308,6 +338,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'waveform-zoom-touchscreen',
     name: { de: 'Wellenform-Zoom (Touchscreen)', en: 'Waveform Zoom (Touchscreen)' },
     zone: 'mixer',
     desc: {
@@ -316,6 +347,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'channel-trim-gain',
     name: { de: 'Kanal-Trim/Gain', en: 'Channel Trim/Gain' },
     zone: 'mixer',
     label: 'TRIM',
@@ -329,6 +361,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: '3-band-eq',
     name: { de: '3-Band-EQ', en: '3-Band EQ' },
     zone: 'mixer',
     label: 'HI / MID / LOW',
@@ -342,6 +375,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'colour-fx-filter',
     name: { de: 'Colour FX / Filter', en: 'Colour FX / Filter' },
     zone: 'mixer',
     label: 'COLOR',
@@ -355,6 +389,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'colour-fx-type-button',
     name: { de: 'Colour FX Typ-Taste', en: 'Colour FX Type Button' },
     zone: 'mixer',
     label: 'COLOR TYPE',
@@ -368,6 +403,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'crossfader-assignment-a-thru-b',
     name: { de: 'Crossfader-Zuweisung (A / THRU / B)', en: 'Crossfader Assignment (A / THRU / B)' },
     zone: 'mixer',
     label: 'ASSIGN A / THRU / B',
@@ -381,6 +417,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'channel-level-meter',
     name: { de: 'Kanal-Pegelanzeige', en: 'Channel Level Meter' },
     zone: 'mixer',
     label: 'LEVEL METER',
@@ -394,6 +431,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'master-level-meter',
     name: { de: 'Master-Pegelanzeige', en: 'Master Level Meter' },
     zone: 'mixer',
     label: 'MASTER METER',
@@ -407,6 +445,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'channel-fader',
     name: { de: 'Channel-Fader', en: 'Channel Fader' },
     zone: 'mixer',
     desc: {
@@ -419,6 +458,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'cue-button-headphones',
     name: { de: 'Cue-Taste (Kopfhörer)', en: 'Cue Button (Headphones)' },
     zone: 'mixer',
     label: 'HEADPHONES CUE',
@@ -432,6 +472,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'crossfader',
     name: { de: 'Crossfader', en: 'Crossfader' },
     zone: 'mixer',
     desc: {
@@ -444,6 +485,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'master-level',
     name: { de: 'Master-Level', en: 'Master Level' },
     zone: 'mixer',
     label: 'MASTER LEVEL',
@@ -457,6 +499,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'booth-level',
     name: { de: 'Booth-Level', en: 'Booth Level' },
     zone: 'mixer',
     label: 'BOOTH',
@@ -470,6 +513,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'mic-level-mic-eq',
     name: { de: 'Mic-Level & Mic-EQ', en: 'Mic Level & Mic EQ' },
     zone: 'mixer',
     label: 'MIC',
@@ -483,6 +527,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'headphones-mixing-level',
     name: { de: 'Kopfhörer Mixing/Level', en: 'Headphones Mixing/Level' },
     zone: 'mixer',
     label: 'HP MIXING / LEVEL',
@@ -496,6 +541,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'beat-fx-section',
     name: { de: 'Beat FX Sektion', en: 'Beat FX Section' },
     zone: 'mixer',
     label: 'BEAT FX',
@@ -509,6 +555,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'beat-fx-type-selector',
     name: { de: 'Beat FX Typ-Wähler', en: 'Beat FX Type Selector' },
     zone: 'mixer',
     label: 'BEAT FX TYPE',
@@ -522,6 +569,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'beat-fx-level-depth',
     name: { de: 'Beat FX Level/Depth', en: 'Beat FX Level/Depth' },
     zone: 'mixer',
     label: 'LEVEL / DEPTH',
@@ -535,6 +583,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'master-cue',
     name: { de: 'Master Cue', en: 'Master Cue' },
     zone: 'mixer',
     label: 'MASTER CUE',
@@ -548,6 +597,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'beat-fx-channel-select',
     name: { de: 'Beat FX Channel Select', en: 'Beat FX Channel Select' },
     zone: 'mixer',
     desc: {
@@ -560,6 +610,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'beat-fx-on-off',
     name: { de: 'Beat FX ON/OFF', en: 'Beat FX ON/OFF' },
     zone: 'mixer',
     desc: {
@@ -572,6 +623,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'beat-fx-time-tap',
     name: { de: 'Beat FX Time (TAP)', en: 'Beat FX Time (TAP)' },
     zone: 'mixer',
     label: 'TAP',
@@ -581,6 +633,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'talk-over',
     name: { de: 'Talk Over', en: 'Talk Over' },
     zone: 'mixer',
     label: 'TALK OVER',
@@ -590,6 +643,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'master-display-touchscreen',
     name: { de: 'Master-Display (Touchscreen)', en: 'Master Display (Touchscreen)' },
     zone: 'mixer',
     desc: {
@@ -598,6 +652,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'utility-menu-auto-cue',
     name: { de: 'Utility-Menü: Auto Cue', en: 'Utility Menu: Auto Cue' },
     zone: 'mixer',
     label: 'UTILITY → AUTO CUE',
@@ -611,6 +666,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'utility-menu-fader-start',
     name: { de: 'Utility-Menü: Fader Start', en: 'Utility Menu: Fader Start' },
     zone: 'mixer',
     label: 'UTILITY → FADER START',
@@ -620,6 +676,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'utility-menu-hot-cue-auto-load',
     name: { de: 'Utility-Menü: Hot Cue Auto Load', en: 'Utility Menu: Hot Cue Auto Load' },
     zone: 'mixer',
     label: 'UTILITY → HOT CUE AUTO LOAD',
@@ -629,6 +686,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'utility-menu-waveform-colour',
     name: { de: 'Utility-Menü: Wellenform-Farbe', en: 'Utility Menu: Waveform Colour' },
     zone: 'mixer',
     label: 'UTILITY → WAVEFORM COLOR',
@@ -638,6 +696,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'utility-menu-time-display',
     name: { de: 'Utility-Menü: Zeitanzeige', en: 'Utility Menu: Time Display' },
     zone: 'mixer',
     label: 'UTILITY → TIME MODE',
@@ -647,6 +706,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'utility-menu-jog-display-brightness',
     name: { de: 'Utility-Menü: Jog-Helligkeit/Display-Helligkeit', en: 'Utility Menu: Jog/Display Brightness' },
     zone: 'mixer',
     label: 'UTILITY → BRIGHTNESS',
@@ -656,6 +716,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'utility-menu-language',
     name: { de: 'Utility-Menü: Sprache', en: 'Utility Menu: Language' },
     zone: 'mixer',
     label: 'UTILITY → LANGUAGE',
@@ -665,6 +726,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'utility-menu-network-link-settings',
     name: { de: 'Utility-Menü: Netzwerk/Link-Einstellungen', en: 'Utility Menu: Network/Link Settings' },
     zone: 'mixer',
     label: 'UTILITY → NETWORK',
@@ -674,6 +736,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'master-out-xlr-rca',
     name: { de: 'Master Out (XLR/Cinch)', en: 'Master Out (XLR/RCA)' },
     zone: 'mixer',
     label: 'MASTER OUT',
@@ -683,6 +746,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'booth-out-rca',
     name: { de: 'Booth Out (Cinch)', en: 'Booth Out (RCA)' },
     zone: 'mixer',
     label: 'BOOTH OUT',
@@ -692,6 +756,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'mic-input-xlr-jack-combo',
     name: { de: 'Mic-Eingang (XLR/Klinke-Combo)', en: 'Mic Input (XLR/Jack Combo)' },
     zone: 'mixer',
     label: 'MIC INPUT',
@@ -701,6 +766,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'headphone-outputs-6-3-mm-3-5-mm',
     name: { de: 'Kopfhörerausgänge (6,3 mm & 3,5 mm)', en: 'Headphone Outputs (6.3 mm & 3.5 mm)' },
     zone: 'mixer',
     label: 'HEADPHONES',
@@ -710,6 +776,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'usb-b-port-audio-interface',
     name: { de: 'USB-B-Anschluss (Audio-Interface)', en: 'USB-B Port (Audio Interface)' },
     zone: 'mixer',
     label: 'USB-B',
@@ -719,6 +786,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'kensington-security-lock',
     name: { de: 'Kensington-Sicherheitsschloss', en: 'Kensington Security Lock' },
     zone: 'mixer',
     label: 'KENSINGTON LOCK',
@@ -729,6 +797,7 @@ const rx3_raw: Control[] = [
   },
 
   {
+    id: 'usb-ports',
     name: { de: 'USB-Anschlüsse', en: 'USB Ports' },
     zone: 'browser',
     label: 'USB 1 / USB 2',
@@ -738,6 +807,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'link-export-lan-port',
     name: { de: 'Link Export / LAN-Anschluss', en: 'Link Export / LAN Port' },
     zone: 'browser',
     label: 'LINK',
@@ -747,6 +817,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'rotary-selector',
     name: { de: 'Dreh-/Drück-Regler', en: 'Rotary Selector' },
     zone: 'browser',
     label: 'ROTARY SELECTOR',
@@ -756,6 +827,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'back-button',
     name: { de: 'Back-Taste', en: 'Back Button' },
     zone: 'browser',
     label: 'BACK',
@@ -765,6 +837,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'tag-button',
     name: { de: 'Tag-Taste', en: 'Tag Button' },
     zone: 'browser',
     label: 'TAG',
@@ -774,6 +847,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'search-browser',
     name: { de: 'Search (Browser-Suche)', en: 'Search (Browser)' },
     zone: 'browser',
     label: 'SEARCH',
@@ -783,6 +857,7 @@ const rx3_raw: Control[] = [
     },
   },
   {
+    id: 'sort-button',
     name: { de: 'Sort-Taste', en: 'Sort Button' },
     zone: 'browser',
     label: 'SORT',
@@ -795,6 +870,7 @@ const rx3_raw: Control[] = [
 
 const flx4_raw: Control[] = [
   {
+    id: 'jogwheel',
     name: { de: 'Jogwheel', en: 'Jogwheel' },
     zone: 'deckL',
     desc: {
@@ -803,6 +879,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'play-pause',
     name: { de: 'Play/Pause', en: 'Play/Pause' },
     zone: 'deckL',
     label: 'PLAY / PAUSE',
@@ -812,6 +889,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'cue',
     name: { de: 'Cue', en: 'Cue' },
     zone: 'deckL',
     label: 'CUE',
@@ -821,6 +899,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'beat-sync',
     name: { de: 'Beat Sync', en: 'Beat Sync' },
     zone: 'deckL',
     label: 'SYNC',
@@ -830,6 +909,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'shift-button',
     name: { de: 'Shift-Taste', en: 'Shift Button' },
     zone: 'deckL',
     label: 'SHIFT',
@@ -839,6 +919,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'performance-pads',
     name: { de: 'Performance-Pads', en: 'Performance Pads' },
     zone: 'deckL',
     label: 'PAD 1–8',
@@ -848,6 +929,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'pad-mode-buttons',
     name: { de: 'Pad-Modus-Tasten', en: 'Pad Mode Buttons' },
     zone: 'deckL',
     label: 'HOT CUE, BEAT JUMP, PAD FX, SAMPLER',
@@ -857,6 +939,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'tempo-fader',
     name: { de: 'Tempo-Fader', en: 'Tempo Fader' },
     zone: 'deckL',
     desc: {
@@ -865,6 +948,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'loop-buttons-auto-loop-in-out-reloop-exit',
     name: { de: 'Loop-Tasten (Auto Loop, In/Out, Reloop/Exit)', en: 'Loop Buttons (Auto Loop, In/Out, Reloop/Exit)' },
     zone: 'deckL',
     desc: {
@@ -873,6 +957,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'quantize',
     name: { de: 'Quantize', en: 'Quantize' },
     zone: 'deckL',
     label: 'QUANTIZE',
@@ -882,6 +967,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'slip-mode',
     name: { de: 'Slip-Modus', en: 'Slip Mode' },
     zone: 'deckL',
     label: 'SLIP',
@@ -895,6 +981,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'beat-loop-pad-mode',
     name: { de: 'Beat Loop (Pad-Modus)', en: 'Beat Loop (Pad Mode)' },
     zone: 'deckL',
     label: 'BEAT LOOP',
@@ -904,6 +991,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'not-standalone',
     name: { de: 'Kein eigenständiger Betrieb', en: 'Not Standalone' },
     zone: 'deckL',
     desc: {
@@ -912,6 +1000,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'trim-gain',
     name: { de: 'Trim/Gain', en: 'Trim/Gain' },
     zone: 'mixer',
     label: 'GAIN',
@@ -921,6 +1010,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: '3-band-eq',
     name: { de: '3-Band-EQ', en: '3-Band EQ' },
     zone: 'mixer',
     label: 'HI / MID / LOW',
@@ -930,6 +1020,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'filter',
     name: { de: 'Filter', en: 'Filter' },
     zone: 'mixer',
     label: 'FILTER',
@@ -939,6 +1030,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'crossfader-assignment-a-thru-b',
     name: { de: 'Crossfader-Zuweisung (A / THRU / B)', en: 'Crossfader Assignment (A / THRU / B)' },
     zone: 'mixer',
     label: 'ASSIGN A / THRU / B',
@@ -952,6 +1044,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'channel-level-meter',
     name: { de: 'Kanal-Pegelanzeige', en: 'Channel Level Meter' },
     zone: 'mixer',
     label: 'LEVEL METER',
@@ -965,6 +1058,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'smart-cfx',
     name: { de: 'Smart CFX', en: 'Smart CFX' },
     zone: 'mixer',
     label: 'SMART CFX',
@@ -974,6 +1068,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'channel-fader',
     name: { de: 'Channel-Fader', en: 'Channel Fader' },
     zone: 'mixer',
     desc: {
@@ -982,6 +1077,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'crossfader',
     name: { de: 'Crossfader', en: 'Crossfader' },
     zone: 'mixer',
     desc: {
@@ -990,6 +1086,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'cue-buttons-headphones',
     name: { de: 'Cue-Tasten (Kopfhörer)', en: 'Cue Buttons (Headphones)' },
     zone: 'mixer',
     desc: {
@@ -998,6 +1095,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'headphones-mixing-level',
     name: { de: 'Kopfhörer Mixing/Level', en: 'Headphones Mixing/Level' },
     zone: 'mixer',
     label: 'HEADPHONES MIXING/LEVEL',
@@ -1007,6 +1105,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'master-level',
     name: { de: 'Master-Level', en: 'Master Level' },
     zone: 'mixer',
     label: 'MASTER LEVEL',
@@ -1016,6 +1115,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'software-switch',
     name: { de: 'Software-Wahlschalter', en: 'Software Switch' },
     zone: 'mixer',
     label: 'REKORDBOX / SERATO',
@@ -1025,6 +1125,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'power-switch',
     name: { de: 'Power-Schalter', en: 'Power Switch' },
     zone: 'mixer',
     label: 'STANDBY/ON',
@@ -1034,6 +1135,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'browse-knob',
     name: { de: 'Browse-Regler', en: 'Browse Knob' },
     zone: 'browser',
     label: 'BROWSE',
@@ -1043,6 +1145,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'load-buttons',
     name: { de: 'Load-Tasten', en: 'Load Buttons' },
     zone: 'browser',
     label: 'LOAD',
@@ -1052,6 +1155,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'back-button',
     name: { de: 'Back-Taste', en: 'Back Button' },
     zone: 'browser',
     label: 'BACK',
@@ -1061,6 +1165,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'no-browser-display',
     name: { de: 'Kein Browser-Display', en: 'No Browser Display' },
     zone: 'browser',
     desc: {
@@ -1069,6 +1174,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'usb-b-port-to-laptop',
     name: { de: 'USB-B-Anschluss zum Laptop', en: 'USB-B Port to Laptop' },
     zone: 'browser',
     label: 'USB',
@@ -1078,6 +1184,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'headphone-output',
     name: { de: 'Kopfhörerausgang', en: 'Headphone Output' },
     zone: 'browser',
     label: 'HEADPHONES',
@@ -1087,6 +1194,7 @@ const flx4_raw: Control[] = [
     },
   },
   {
+    id: 'master-out-rca',
     name: { de: 'Master Out (Cinch)', en: 'Master Out (RCA)' },
     zone: 'browser',
     label: 'MASTER OUT',

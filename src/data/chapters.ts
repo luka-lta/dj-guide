@@ -2,6 +2,7 @@ import { Chapter } from './types';
 
 export const chapters: Chapter[] = [
   {
+    id: 'getting-started',
     cat: 'einrichtung',
     title: {
       de: 'Erste Schritte: Installation & erster Start',
@@ -32,6 +33,7 @@ export const chapters: Chapter[] = [
     ],
   },
   {
+    id: 'importing-music',
     cat: 'bibliothek',
     title: {
       de: 'Musik importieren',
@@ -62,6 +64,7 @@ export const chapters: Chapter[] = [
     ],
   },
   {
+    id: 'organising-library',
     cat: 'bibliothek',
     title: {
       de: 'Bibliothek organisieren',
@@ -92,6 +95,7 @@ export const chapters: Chapter[] = [
     ],
   },
   {
+    id: 'smart-playlists',
     cat: 'bibliothek',
     title: {
       de: 'Intelligente Playlists (Smart Playlists) nutzen',
@@ -129,6 +133,7 @@ export const chapters: Chapter[] = [
     ],
   },
   {
+    id: 'export-to-usb',
     cat: 'exportLink',
     title: {
       de: 'Musik auf USB exportieren',
@@ -159,6 +164,7 @@ export const chapters: Chapter[] = [
     ],
   },
   {
+    id: 'link-export',
     cat: 'exportLink',
     title: {
       de: 'Direktverbindung per Link Export (ohne USB)',
@@ -189,6 +195,7 @@ export const chapters: Chapter[] = [
     ],
   },
   {
+    id: 'browsing-and-loading',
     cat: 'amPult',
     title: {
       de: 'Am Pult browsen und laden',
@@ -219,6 +226,7 @@ export const chapters: Chapter[] = [
     ],
   },
   {
+    id: 'hot-cues-loops-beat-jump',
     cat: 'amPult',
     title: {
       de: 'Hot Cues, Loops & Beat Jump im Set nutzen',
@@ -249,6 +257,7 @@ export const chapters: Chapter[] = [
     ],
   },
   {
+    id: 'mixing-eq-filter-transitions',
     cat: 'mixing',
     title: {
       de: 'Mixen: EQ, Filter & Übergänge',
@@ -279,6 +288,7 @@ export const chapters: Chapter[] = [
     ],
   },
   {
+    id: 'beat-fx-and-sync',
     cat: 'mixing',
     title: {
       de: 'Beat FX & Sync gezielt einsetzen',

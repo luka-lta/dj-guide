@@ -4,6 +4,7 @@ export type Zone = 'deckL' | 'deckR' | 'mixer' | 'browser';
 export type LocalizedString = { de: string; en: string };
 
 export interface Control {
+  id: string;
   name: LocalizedString;
   zone: Zone;
   desc: LocalizedString;
@@ -25,6 +26,7 @@ export interface ChapterStep {
 }
 
 export interface Chapter {
+  id: string;
   cat: string;
   title: LocalizedString;
   steps: ChapterStep[];
