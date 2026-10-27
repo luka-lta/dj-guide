@@ -27,6 +27,12 @@
       "en": "English"
     }
   },
+  "bookmarks": {
+    "chip": "★ Gemerkt",
+    "empty": "Tippe auf das Lesezeichen-Symbol einer Karte, um sie hier zu sammeln.",
+    "add": "Merken",
+    "remove": "Nicht mehr merken"
+  },
   "pro": {
     "button": "Pro",
     "active": "Pro ✓",

@@ -27,6 +27,12 @@
       "en": "English"
     }
   },
+  "bookmarks": {
+    "chip": "★ Saved",
+    "empty": "Tap the bookmark icon on a card to collect it here.",
+    "add": "Save",
+    "remove": "Remove bookmark"
+  },
   "pro": {
     "button": "Pro",
     "active": "Pro ✓",

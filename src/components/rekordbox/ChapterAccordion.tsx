@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { BookmarkKey } from '../../bookmarks/bookmarkKey';
 import { Chapter } from '../../data/types';
 import { useL } from '../../i18n/useL';
 import { COLORS } from '../../theme/colors';
 import { RADIUS } from '../../theme/radius';
 import { SPACING } from '../../theme/spacing';
 import { TYPE } from '../../theme/typography';
+import { BookmarkButton } from '../shared/BookmarkButton';
 import { HighlightText } from '../shared/HighlightText';
 
 interface ChapterAccordionProps {
@@ -14,6 +16,7 @@ interface ChapterAccordionProps {
   isOpen: boolean;
   onToggle: () => void;
   query: string;
+  bookmarkKey: BookmarkKey;
 }
 
 export function ChapterAccordion({
@@ -22,23 +25,29 @@ export function ChapterAccordion({
   isOpen,
   onToggle,
   query,
+  bookmarkKey,
 }: ChapterAccordionProps) {
   const l = useL();
 
   return (
     <View style={[styles.container, isOpen && styles.containerOpen]}>
-      <TouchableOpacity style={styles.head} onPress={onToggle}>
-        <View style={styles.num}>
-          <Text style={styles.numText}>{String(globalIndex + 1).padStart(2, '0')}</Text>
+      <View style={styles.headRow}>
+        <TouchableOpacity style={styles.head} onPress={onToggle}>
+          <View style={styles.num}>
+            <Text style={styles.numText}>{String(globalIndex + 1).padStart(2, '0')}</Text>
+          </View>
+          <HighlightText
+            text={l(chapter.title)}
+            query={query}
+            style={styles.title}
+            numberOfLines={2}
+          />
+          <Text style={[styles.arrow, isOpen && styles.arrowOpen]}>▶</Text>
+        </TouchableOpacity>
+        <View style={styles.bookmark}>
+          <BookmarkButton bookmarkKey={bookmarkKey} tab="rekordbox" />
         </View>
-        <HighlightText
-          text={l(chapter.title)}
-          query={query}
-          style={styles.title}
-          numberOfLines={2}
-        />
-        <Text style={[styles.arrow, isOpen && styles.arrowOpen]}>▶</Text>
-      </TouchableOpacity>
+      </View>
 
       {isOpen ? (
         <View style={styles.body}>
@@ -66,7 +75,15 @@ const styles = StyleSheet.create({
   containerOpen: {
     borderColor: COLORS.borderStrong,
   },
+  headRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  bookmark: {
+    paddingRight: SPACING.lg,
+  },
   head: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.md,

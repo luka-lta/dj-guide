@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { BookmarkKey } from '../../bookmarks/bookmarkKey';
 import { GrundlagenBodyNode, GrundlagenSection as GrundlagenSectionType, LocalizedString } from '../../data/types';
 import { useL } from '../../i18n/useL';
 import { COLORS } from '../../theme/colors';
 import { RADIUS } from '../../theme/radius';
 import { SPACING } from '../../theme/spacing';
 import { TYPE } from '../../theme/typography';
+import { BookmarkButton } from '../shared/BookmarkButton';
 import { FormattedText } from '../shared/FormattedText';
 import { HighlightText } from '../shared/HighlightText';
 import { WarnBox } from '../shared/WarnBox';
@@ -56,24 +58,28 @@ interface GrundlagenSectionProps {
   section: GrundlagenSectionType;
   query: string;
   isViaConcept: boolean;
+  bookmarkKey: BookmarkKey;
 }
 
-export function GrundlagenSection({ section, query, isViaConcept }: GrundlagenSectionProps) {
+export function GrundlagenSection({ section, query, isViaConcept, bookmarkKey }: GrundlagenSectionProps) {
   const { t } = useTranslation();
   const l = useL();
   const catLabel = t(`grundlagen.categories.${section.cat}` as any) as string;
 
   return (
     <View style={styles.section}>
-      <View style={styles.tagRow}>
-        <View style={styles.tag}>
-          <Text style={styles.tagText}>{catLabel}</Text>
-        </View>
-        {isViaConcept ? (
-          <View style={styles.tagRelated}>
-            <Text style={styles.tagRelatedText}>{t('common.relatedTopic')}</Text>
+      <View style={styles.headerRow}>
+        <View style={styles.tagRow}>
+          <View style={styles.tag}>
+            <Text style={styles.tagText}>{catLabel}</Text>
           </View>
-        ) : null}
+          {isViaConcept ? (
+            <View style={styles.tagRelated}>
+              <Text style={styles.tagRelatedText}>{t('common.relatedTopic')}</Text>
+            </View>
+          ) : null}
+        </View>
+        <BookmarkButton bookmarkKey={bookmarkKey} tab="grundlagen" />
       </View>
       <HighlightText text={l(section.title)} query={query} style={styles.title} />
       {section.body.map((node, i) => renderNode(node, i, query, l))}
@@ -85,11 +91,18 @@ const styles = StyleSheet.create({
   section: {
     marginBottom: SPACING.xl - 4,
   },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    gap: SPACING.sm,
+    marginBottom: SPACING.sm,
+  },
   tagRow: {
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: SPACING.xs + 2,
-    marginBottom: SPACING.sm,
   },
   tag: {
     paddingVertical: 3,
