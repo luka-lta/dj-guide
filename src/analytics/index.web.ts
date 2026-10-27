@@ -10,3 +10,7 @@ export async function logIap(_event: 'purchase' | 'restore', _source?: PurchaseS
 export async function logAdFreePrompt(): Promise<void> {}
 export async function logReviewPromptTriggered(): Promise<void> {}
 export async function logBookmark(_action: 'add' | 'remove', _tab: BookmarkTab): Promise<void> {}
+export async function logRewarded(
+  _event: 'offer_shown' | 'started' | 'earned' | 'dismissed' | 'expired',
+): Promise<void> {}
+export async function logProScreenOpen(_source: PurchaseSource): Promise<void> {}

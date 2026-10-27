@@ -59,3 +59,17 @@ export async function logBookmark(action: 'add' | 'remove', tab: BookmarkTab): P
     await logEvent(a(), `bookmark_${action}`, { tab });
   } catch {}
 }
+
+export async function logRewarded(
+  event: 'offer_shown' | 'started' | 'earned' | 'dismissed' | 'expired',
+): Promise<void> {
+  try {
+    await logEvent(a(), `rewarded_${event}`);
+  } catch {}
+}
+
+export async function logProScreenOpen(source: PurchaseSource): Promise<void> {
+  try {
+    await logEvent(a(), 'pro_screen_open', { source });
+  } catch {}
+}

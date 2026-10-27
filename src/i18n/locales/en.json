@@ -27,6 +27,11 @@
       "en": "English"
     }
   },
+  "pro": {
+    "expiredTitle": "Ad-free time is over",
+    "expiredMessage": "Go Pro to stay ad-free for good.",
+    "expiredCta": "See Pro"
+  },
   "iap": {
     "removeAdsButton": "Ad-Free",
     "title": "Remove Ads",

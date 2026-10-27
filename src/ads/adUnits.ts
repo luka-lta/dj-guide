@@ -14,3 +14,12 @@ export const INTERSTITIAL_AD_UNIT_ID = __DEV__
       ios: 'ca-app-pub-3346959869225055/2142308521',
       android: 'REPLACE_WITH_ANDROID_INTERSTITIAL_AD_UNIT_ID',
     })!;
+
+function resolveRewardedAdUnitId(): string | null {
+  if (Platform.OS !== 'ios') return null;
+  if (__DEV__) return TestIds.REWARDED;
+  return 'ca-app-pub-3346959869225055/8944280703';
+}
+
+/** Rewarded video; `null` disables rewarded ads (Android has no unit yet). */
+export const REWARDED_AD_UNIT_ID: string | null = resolveRewardedAdUnitId();

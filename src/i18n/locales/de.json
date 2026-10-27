@@ -27,6 +27,11 @@
       "en": "English"
     }
   },
+  "pro": {
+    "expiredTitle": "Werbefreiheit abgelaufen",
+    "expiredMessage": "Mit Pro dauerhaft ohne Werbung.",
+    "expiredCta": "Pro ansehen"
+  },
   "iap": {
     "removeAdsButton": "Werbefrei",
     "title": "Werbung entfernen",
