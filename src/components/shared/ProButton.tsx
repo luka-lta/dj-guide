@@ -1,31 +1,30 @@
+import { useRouter } from 'expo-router';
 import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { usePro } from '../../iap/ProContext';
-import { useRemoveAdsPrompt } from '../../iap/useRemoveAdsPrompt';
 import { COLORS } from '../../theme/colors';
 import { RADIUS } from '../../theme/radius';
 
-export function RemoveAdsButton() {
+export function ProButton() {
   const { t } = useTranslation();
-  const { isPro, isPending } = usePro();
-  const showRemoveAdsPrompt = useRemoveAdsPrompt();
+  const { isPro } = usePro();
+  const router = useRouter();
 
   if (isPro) {
     return (
       <View style={styles.badge}>
-        <Text style={styles.badgeText}>{t('iap.adFreeActive')}</Text>
+        <Text style={styles.badgeText}>{t('pro.active')}</Text>
       </View>
     );
   }
 
   return (
-    <TouchableOpacity style={styles.button} onPress={showRemoveAdsPrompt} disabled={isPending}>
-      {isPending ? (
-        <ActivityIndicator size="small" color={COLORS.amber} />
-      ) : (
-        <Text style={styles.label}>{t('iap.removeAdsButton')}</Text>
-      )}
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => router.push({ pathname: '/pro', params: { source: 'header' } })}
+    >
+      <Text style={styles.label}>{t('pro.button')}</Text>
     </TouchableOpacity>
   );
 }

@@ -6,9 +6,9 @@ import { useInterstitialAd } from 'react-native-google-mobile-ads';
 import { useAds } from '../../src/ads/AdsContext';
 import { INTERSTITIAL_AD_UNIT_ID } from '../../src/ads/adUnits';
 import { logAdFreePrompt } from '../../src/analytics';
-import { useRemoveAdsTeaser } from '../../src/iap/useRemoveAdsPrompt';
+import { useProTeaser } from '../../src/iap/useProTeaser';
 import { LanguageSwitcherButton } from '../../src/components/shared/LanguageSwitcherButton';
-import { RemoveAdsButton } from '../../src/components/shared/RemoveAdsButton';
+import { ProButton } from '../../src/components/shared/ProButton';
 import { COLORS } from '../../src/theme/colors';
 import { SPACING } from '../../src/theme/spacing';
 
@@ -16,14 +16,14 @@ type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
 /** Minimum milliseconds between interstitial shows to avoid user annoyance. */
 const INTERSTITIAL_COOLDOWN_MS = 3 * 60 * 1000;
-/** Chance to show the remove-ads teaser after an interstitial closes — occasional, not every time. */
-const REMOVE_ADS_PROMPT_CHANCE = 0.2;
+/** Chance to show the Pro teaser after an interstitial closes — occasional, not every time. */
+const PRO_TEASER_CHANCE = 0.2;
 
 export default function TabsLayout() {
   const { t } = useTranslation();
   const { shouldShowAds } = useAds();
   const { isLoaded, isClosed, load, show } = useInterstitialAd(shouldShowAds ? INTERSTITIAL_AD_UNIT_ID : null);
-  const showRemoveAdsTeaser = useRemoveAdsTeaser();
+  const showProTeaser = useProTeaser();
   const lastShownAt = useRef<number>(0);
   const tabPressCount = useRef<number>(0);
   const wasClosed = useRef(false);
@@ -46,9 +46,9 @@ export default function TabsLayout() {
   }, [load, shouldShowAds]);
 
   useEffect(() => {
-    if (shouldShowAds && isClosed && !wasClosed.current && Math.random() < REMOVE_ADS_PROMPT_CHANCE) {
+    if (shouldShowAds && isClosed && !wasClosed.current && Math.random() < PRO_TEASER_CHANCE) {
       logAdFreePrompt();
-      showRemoveAdsTeaser();
+      showProTeaser();
     }
     wasClosed.current = isClosed;
   }, [isClosed, shouldShowAds]);
@@ -86,7 +86,7 @@ export default function TabsLayout() {
           letterSpacing: -0.1,
         },
         headerShadowVisible: false,
-        headerLeft: () => <RemoveAdsButton />,
+        headerLeft: () => <ProButton />,
         headerRight: () => <LanguageSwitcherButton />,
         tabBarStyle: {
           backgroundColor: COLORS.bg,

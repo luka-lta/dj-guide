@@ -28,21 +28,24 @@
     }
   },
   "pro": {
+    "button": "Pro",
+    "active": "Pro ✓",
+    "title": "DJ Guide Pro",
+    "benefitNoAds": "Keine Werbung",
+    "benefitBookmarks": "Lesezeichen in allen Bereichen",
+    "buy": "Einmalig kaufen ({{price}})",
+    "restore": "Kauf wiederherstellen",
+    "owned": "Du hast Pro ✓",
+    "rewarded": "Lieber gratis: Video ansehen → 1 Std. werbefrei",
+    "privacy": "Datenschutz-Einstellungen",
+    "teaserTitle": "Nervt die Werbung?",
+    "teaserMessage": "Mit DJ Guide Pro dauerhaft werbefrei – einmalig kaufen.",
+    "teaserYes": "Zeig mir das",
+    "teaserNo": "Nicht jetzt",
+    "teaserWatch": "Video ansehen",
     "expiredTitle": "Werbefreiheit abgelaufen",
     "expiredMessage": "Mit Pro dauerhaft ohne Werbung.",
     "expiredCta": "Pro ansehen"
-  },
-  "iap": {
-    "removeAdsButton": "Werbefrei",
-    "title": "Werbung entfernen",
-    "description": "Einmalig {{price}} – entfernt alle Werbeanzeigen dauerhaft.",
-    "buy": "Kaufen ({{price}})",
-    "restore": "Kauf wiederherstellen",
-    "adFreeActive": "Werbefrei ✓",
-    "teaserTitle": "Nervt die Werbung?",
-    "teaserMessage": "Werbung dauerhaft entfernen – einmalig kaufen.",
-    "teaserYes": "Zeig mir das",
-    "teaserNo": "Nicht jetzt"
   },
   "pult": {
     "searchPlaceholder": "Taste, Regler, Funktion oder Aufdruck eingeben…",

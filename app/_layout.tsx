@@ -43,7 +43,9 @@ export default function RootLayout() {
               <BookmarksProvider>
                 <ScreenTracker />
                 <StatusBar style="light" />
-                <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: COLORS.bg } }} />
+                <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: COLORS.bg } }}>
+                  <Stack.Screen name="pro" options={{ presentation: 'modal' }} />
+                </Stack>
               </BookmarksProvider>
             </AdsProvider>
           </ProProvider>

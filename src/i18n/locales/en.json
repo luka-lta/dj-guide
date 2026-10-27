@@ -28,21 +28,24 @@
     }
   },
   "pro": {
+    "button": "Pro",
+    "active": "Pro ✓",
+    "title": "DJ Guide Pro",
+    "benefitNoAds": "No ads",
+    "benefitBookmarks": "Bookmarks in every section",
+    "buy": "Buy once ({{price}})",
+    "restore": "Restore purchase",
+    "owned": "You have Pro ✓",
+    "rewarded": "Rather free: watch a video → 1 hour ad-free",
+    "privacy": "Privacy settings",
+    "teaserTitle": "Tired of ads?",
+    "teaserMessage": "Go ad-free for good with DJ Guide Pro — one-time purchase.",
+    "teaserYes": "Show me",
+    "teaserNo": "Not now",
+    "teaserWatch": "Watch video",
     "expiredTitle": "Ad-free time is over",
     "expiredMessage": "Go Pro to stay ad-free for good.",
     "expiredCta": "See Pro"
-  },
-  "iap": {
-    "removeAdsButton": "Ad-Free",
-    "title": "Remove Ads",
-    "description": "One-time purchase for {{price}} — removes all ads permanently.",
-    "buy": "Buy ({{price}})",
-    "restore": "Restore Purchase",
-    "adFreeActive": "Ad-Free ✓",
-    "teaserTitle": "Tired of ads?",
-    "teaserMessage": "Remove ads for good — one-time purchase.",
-    "teaserYes": "Show me",
-    "teaserNo": "Not now"
   },
   "pult": {
     "searchPlaceholder": "Enter button, knob, function or label…",
