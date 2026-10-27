@@ -3,11 +3,11 @@ import { Platform, View } from 'react-native';
 import { BannerAd, BannerAdSize, useForeground } from 'react-native-google-mobile-ads';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BANNER_AD_UNIT_ID } from '../../ads/adUnits';
-import { usePro } from '../../iap/ProContext';
+import { useAds } from '../../ads/AdsContext';
 import { COLORS } from '../../theme/colors';
 
 export function BannerAdComponent() {
-  const { isPro } = usePro();
+  const { shouldShowAds } = useAds();
   const bannerRef = useRef<BannerAd>(null);
   const insets = useSafeAreaInsets();
 
@@ -17,7 +17,7 @@ export function BannerAdComponent() {
     }
   });
 
-  if (isPro) return null;
+  if (!shouldShowAds) return null;
 
   return (
     <View

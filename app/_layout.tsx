@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { AdsProvider } from '../src/ads/AdsContext';
 import { logScreenView } from '../src/analytics';
 import { BookmarksProvider } from '../src/bookmarks/BookmarksContext';
 import i18n, { initI18n } from '../src/i18n';
@@ -38,11 +39,13 @@ export default function RootLayout() {
     <I18nextProvider i18n={i18n}>
       <SafeAreaProvider>
           <ProProvider>
-            <BookmarksProvider>
-              <ScreenTracker />
-              <StatusBar style="light" />
-              <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: COLORS.bg } }} />
-            </BookmarksProvider>
+            <AdsProvider>
+              <BookmarksProvider>
+                <ScreenTracker />
+                <StatusBar style="light" />
+                <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: COLORS.bg } }} />
+              </BookmarksProvider>
+            </AdsProvider>
           </ProProvider>
       </SafeAreaProvider>
     </I18nextProvider>

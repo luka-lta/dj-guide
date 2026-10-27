@@ -24,6 +24,10 @@
       "icon": "./assets/DJ_GUIDE_DARK.png",
       "predictiveBackGestureEnabled": false
     },
+    "locales": {
+      "de": "./locales/de.json",
+      "en": "./locales/en.json"
+    },
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
@@ -34,7 +38,8 @@
         "react-native-google-mobile-ads",
         {
           "androidAppId": "ca-app-pub-3940256099942544~3347511713",
-          "iosAppId": "ca-app-pub-3346959869225055~6261637072"
+          "iosAppId": "ca-app-pub-3346959869225055~6261637072",
+          "userTrackingUsageDescription": "Lets us show you more relevant ads and keep the app free."
         }
       ],
       "expo-localization",

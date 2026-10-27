@@ -10,6 +10,8 @@ export type PurchaseSource = 'header' | 'bookmark' | 'teaser' | 'expiry_notice';
 
 interface ProContextValue {
   isPro: boolean;
+  /** False until the persisted Pro state has been read from storage. */
+  isProResolved: boolean;
   isPending: boolean;
   price: string | null;
   buy: (source: PurchaseSource) => Promise<void>;
@@ -18,6 +20,7 @@ interface ProContextValue {
 
 const ProContext = createContext<ProContextValue>({
   isPro: false,
+  isProResolved: false,
   isPending: false,
   price: null,
   buy: async () => {},
@@ -30,6 +33,7 @@ export function usePro() {
 
 export function ProProvider({ children }: { children: React.ReactNode }) {
   const [isPro, setIsPro] = useState(false);
+  const [isProResolved, setIsProResolved] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const purchaseSourceRef = useRef<PurchaseSource | undefined>(undefined);
 
@@ -47,9 +51,12 @@ export function ProProvider({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
-    AsyncStorage.getItem(STORAGE_KEY).then(v => {
-      if (v === '1') setIsPro(true);
-    });
+    AsyncStorage.getItem(STORAGE_KEY)
+      .then(v => {
+        if (v === '1') setIsPro(true);
+      })
+      .catch(() => {})
+      .finally(() => setIsProResolved(true));
   }, []);
 
   useEffect(() => {
@@ -90,7 +97,7 @@ export function ProProvider({ children }: { children: React.ReactNode }) {
   const price = products.find(p => p.id === REMOVE_ADS_SKU)?.displayPrice ?? null;
 
   return (
-    <ProContext.Provider value={{ isPro, isPending, price, buy, restore }}>
+    <ProContext.Provider value={{ isPro, isProResolved, isPending, price, buy, restore }}>
       {children}
     </ProContext.Provider>
   );
