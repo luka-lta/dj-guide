@@ -1,3 +1,4 @@
+import type { BookmarkTab } from '../bookmarks/bookmarkKey';
 import type { PurchaseSource } from '../iap/ProContext';
 import { getAnalytics, logEvent, logScreenView as fbLogScreenView } from '@react-native-firebase/analytics';
 
@@ -50,5 +51,11 @@ export async function logAdFreePrompt(): Promise<void> {
 export async function logReviewPromptTriggered(): Promise<void> {
   try {
     await logEvent(a(), 'review_prompt_triggered');
+  } catch {}
+}
+
+export async function logBookmark(action: 'add' | 'remove', tab: BookmarkTab): Promise<void> {
+  try {
+    await logEvent(a(), `bookmark_${action}`, { tab });
   } catch {}
 }

@@ -1,3 +1,4 @@
+import type { BookmarkTab } from '../bookmarks/bookmarkKey';
 import type { PurchaseSource } from '../iap/ProContext';
 
 export async function logScreenView(_routeName: string): Promise<void> {}
@@ -8,3 +9,4 @@ export async function logDeviceSelect(_device: string): Promise<void> {}
 export async function logIap(_event: 'purchase' | 'restore', _source?: PurchaseSource): Promise<void> {}
 export async function logAdFreePrompt(): Promise<void> {}
 export async function logReviewPromptTriggered(): Promise<void> {}
+export async function logBookmark(_action: 'add' | 'remove', _tab: BookmarkTab): Promise<void> {}
