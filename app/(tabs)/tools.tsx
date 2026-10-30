@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from 'react-native';
 import { logToolOpen } from '../../src/analytics';
-import { BannerAdComponent } from '../../src/components/shared/BannerAdComponent';
 import { ChipRow } from '../../src/components/shared/ChipRow';
 import { BpmTool } from '../../src/components/tools/BpmTool';
 import { CamelotTool } from '../../src/components/tools/CamelotTool';
@@ -50,7 +49,6 @@ export default function ToolsScreen() {
         {activeTool === 'phrase' && <PhraseTool />}
         {activeTool === 'bpm' && <BpmTool />}
       </ScrollView>
-      <BannerAdComponent />
     </KeyboardAvoidingView>
   );
 }
