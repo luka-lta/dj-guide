@@ -39,6 +39,7 @@ export default function TabsLayout() {
     { name: 'rekordbox', title: t('tabs.rekordbox.title'), label: t('tabs.rekordbox.label'), icon: 'disc-outline', iconActive: 'disc' },
     { name: 'grundlagen', title: t('tabs.grundlagen.title'), label: t('tabs.grundlagen.label'), icon: 'musical-notes-outline', iconActive: 'musical-notes' },
     { name: 'troubleshoot', title: t('tabs.troubleshoot.title'), label: t('tabs.troubleshoot.label'), icon: 'construct-outline', iconActive: 'construct' },
+    { name: 'tools', title: t('tabs.tools.title'), label: t('tabs.tools.label'), icon: 'options-outline', iconActive: 'options' },
   ];
 
   useEffect(() => {

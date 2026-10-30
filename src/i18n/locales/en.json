@@ -15,6 +15,10 @@
     "troubleshoot": {
       "title": "Troubleshoot",
       "label": "Problems"
+    },
+    "tools": {
+      "title": "DJ Tools",
+      "label": "Tools"
     }
   },
   "common": {
@@ -39,6 +43,7 @@
     "title": "DJ Guide Pro",
     "benefitNoAds": "No ads",
     "benefitBookmarks": "Bookmarks in every section",
+    "benefitTools": "Phrase Trainer and BPM Tapper",
     "buy": "Buy once ({{price}})",
     "restore": "Restore purchase",
     "owned": "You have Pro ✓",
@@ -108,6 +113,58 @@
       "rekordbox": "rekordbox",
       "tracks": "Tracks",
       "mixing": "Mixing"
+    }
+  },
+  "tools": {
+    "names": {
+      "camelot": "Camelot Wheel",
+      "phrase": "Phrase Trainer",
+      "bpm": "BPM Tapper"
+    },
+    "camelot": {
+      "intro": "Tap your track's key. The app shows which keys go with it.",
+      "match": {
+        "perfect": {
+          "title": "Same key",
+          "text": "The safest choice, always sounds clean."
+        },
+        "energyUp": {
+          "title": "One step forward",
+          "text": "Smooth change, energy rises slightly."
+        },
+        "energyDown": {
+          "title": "One step back",
+          "text": "Smooth change, energy drops slightly."
+        },
+        "relative": {
+          "title": "Major/minor switch",
+          "text": "Same notes, but the mood changes."
+        },
+        "energyBoost": {
+          "title": "Energy boost",
+          "text": "Two steps forward: a clear lift. Keep it short and time it well."
+        }
+      }
+    },
+    "phrase": {
+      "intro": "Count along with the click. The high tone marks the start of a phrase, which is where your transition begins.",
+      "bar": "Bar {{bar}} of {{total}}",
+      "phrase": "Phrase {{phrase}}",
+      "cue": "Last bar: get your transition ready",
+      "bpm": "{{bpm}} BPM",
+      "bars": "{{bars}} bars",
+      "slower": "Slower",
+      "faster": "Faster",
+      "start": "Start",
+      "stop": "Stop"
+    },
+    "bpm": {
+      "intro": "Tap along to measure a track's tempo. With a target BPM, the app shows the pitch you need.",
+      "tap": "Tap to the beat",
+      "reset": "Reset",
+      "target": "Target BPM",
+      "pitch": "Pitch needed",
+      "outOfRange": "Outside ±{{percent}} %. Pick a track with a closer tempo."
     }
   }
 }

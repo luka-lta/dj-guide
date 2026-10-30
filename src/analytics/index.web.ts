@@ -13,4 +13,5 @@ export async function logBookmark(_action: 'add' | 'remove', _tab: BookmarkTab):
 export async function logRewarded(
   _event: 'offer_shown' | 'started' | 'earned' | 'dismissed' | 'expired',
 ): Promise<void> {}
+export async function logToolOpen(_tool: string): Promise<void> {}
 export async function logProScreenOpen(_source: PurchaseSource): Promise<void> {}

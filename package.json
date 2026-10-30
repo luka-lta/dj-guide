@@ -10,6 +10,8 @@
     "@react-native-firebase/app": "^26.1.0",
     "@react-native-firebase/crashlytics": "^26.1.0",
     "expo": "~57.0.2",
+    "expo-asset": "~57.0.20",
+    "expo-audio": "~57.0.5",
     "expo-build-properties": "^57.0.8",
     "expo-iap": "^4.7.2",
     "expo-linking": "~57.0.1",

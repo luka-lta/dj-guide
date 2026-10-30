@@ -15,6 +15,10 @@
     "troubleshoot": {
       "title": "Problemlösung",
       "label": "Probleme"
+    },
+    "tools": {
+      "title": "DJ-Tools",
+      "label": "Tools"
     }
   },
   "common": {
@@ -39,6 +43,7 @@
     "title": "DJ Guide Pro",
     "benefitNoAds": "Keine Werbung",
     "benefitBookmarks": "Lesezeichen in allen Bereichen",
+    "benefitTools": "Phrasen-Trainer und BPM-Tapper",
     "buy": "Einmalig kaufen ({{price}})",
     "restore": "Kauf wiederherstellen",
     "owned": "Du hast Pro ✓",
@@ -108,6 +113,58 @@
       "rekordbox": "rekordbox",
       "tracks": "Tracks",
       "mixing": "Mixing"
+    }
+  },
+  "tools": {
+    "names": {
+      "camelot": "Camelot-Rad",
+      "phrase": "Phrasen-Trainer",
+      "bpm": "BPM-Tapper"
+    },
+    "camelot": {
+      "intro": "Tippe die Tonart deines Tracks an. Die App zeigt, welche Tonarten dazu passen.",
+      "match": {
+        "perfect": {
+          "title": "Gleiche Tonart",
+          "text": "Die sicherste Wahl, klingt immer sauber."
+        },
+        "energyUp": {
+          "title": "Einen Schritt vor",
+          "text": "Sanfter Wechsel, die Energie steigt leicht."
+        },
+        "energyDown": {
+          "title": "Einen Schritt zurück",
+          "text": "Sanfter Wechsel, die Energie sinkt leicht."
+        },
+        "relative": {
+          "title": "Dur/Moll-Wechsel",
+          "text": "Gleiche Töne, aber die Stimmung ändert sich."
+        },
+        "energyBoost": {
+          "title": "Energie-Boost",
+          "text": "Zwei Schritte vor: deutlicher Schub. Kurz halten und gut timen."
+        }
+      }
+    },
+    "phrase": {
+      "intro": "Zähle mit dem Klick mit. Der hohe Ton markiert den Start einer Phrase, dort beginnt dein Übergang.",
+      "bar": "Takt {{bar}} von {{total}}",
+      "phrase": "Phrase {{phrase}}",
+      "cue": "Letzter Takt: Übergang vorbereiten",
+      "bpm": "{{bpm}} BPM",
+      "bars": "{{bars}} Takte",
+      "slower": "Langsamer",
+      "faster": "Schneller",
+      "start": "Start",
+      "stop": "Stopp"
+    },
+    "bpm": {
+      "intro": "Tippe im Takt mit, um das Tempo eines Tracks zu messen. Mit Ziel-BPM zeigt die App den nötigen Pitch.",
+      "tap": "Im Takt tippen",
+      "reset": "Zurücksetzen",
+      "target": "Ziel-BPM",
+      "pitch": "Nötiger Pitch",
+      "outOfRange": "Liegt außerhalb von ±{{percent}} %. Wähle einen Track mit näherem Tempo."
     }
   }
 }

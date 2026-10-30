@@ -68,6 +68,12 @@ export async function logRewarded(
   } catch {}
 }
 
+export async function logToolOpen(tool: string): Promise<void> {
+  try {
+    await logEvent(a(), 'tool_open', { tool });
+  } catch {}
+}
+
 export async function logProScreenOpen(source: PurchaseSource): Promise<void> {
   try {
     await logEvent(a(), 'pro_screen_open', { source });

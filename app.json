@@ -44,6 +44,13 @@
       ],
       "expo-localization",
       "expo-iap",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
       "@react-native-firebase/app",
       "@react-native-firebase/crashlytics",
       [
@@ -55,7 +62,8 @@
         }
       ],
       "./plugins/withFirebaseSPMFix",
-      "./plugins/withPodsDeploymentTarget"
+      "./plugins/withPodsDeploymentTarget",
+      "expo-asset"
     ],
     "extra": {
       "router": {},

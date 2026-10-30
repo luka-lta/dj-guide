@@ -12,7 +12,7 @@ import { RADIUS } from '../src/theme/radius';
 import { SPACING } from '../src/theme/spacing';
 import { TYPE } from '../src/theme/typography';
 
-const PURCHASE_SOURCES: readonly PurchaseSource[] = ['header', 'bookmark', 'teaser', 'expiry_notice'];
+const PURCHASE_SOURCES: readonly PurchaseSource[] = ['header', 'bookmark', 'teaser', 'expiry_notice', 'tools'];
 
 /** Parses the `source` search param; anything unknown falls back to the header. */
 function parseSource(raw: string | string[] | undefined): PurchaseSource {
@@ -55,6 +55,7 @@ export default function ProScreen() {
       <View style={styles.benefits}>
         <Benefit label={t('pro.benefitNoAds')} />
         <Benefit label={t('pro.benefitBookmarks')} />
+        <Benefit label={t('pro.benefitTools')} />
       </View>
 
       {isPro ? (

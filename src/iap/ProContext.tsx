@@ -6,7 +6,7 @@ import { logIap } from '../analytics';
 export const REMOVE_ADS_SKU = 'free_ads';
 const STORAGE_KEY = 'adFree_v1';
 
-export type PurchaseSource = 'header' | 'bookmark' | 'teaser' | 'expiry_notice';
+export type PurchaseSource = 'header' | 'bookmark' | 'teaser' | 'expiry_notice' | 'tools';
 
 interface ProContextValue {
   isPro: boolean;
