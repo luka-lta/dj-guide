@@ -7,6 +7,14 @@ export function toRewardEnd(nowMs: number): number {
   return nowMs + REWARD_DURATION_MS;
 }
 
+/** Formats remaining time as `m:ss`, rounded up so a running reward never reads `0:00`. */
+export function formatRewardRemaining(remainingMs: number): string {
+  const totalSeconds = Math.max(0, Math.ceil(remainingMs / 1000));
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${String(seconds).padStart(2, '0')}`;
+}
+
 function parseFiniteTimestamp(raw: string | null): number | null {
   if (raw === null || raw.trim() === '') return null;
   const value = Number(raw);

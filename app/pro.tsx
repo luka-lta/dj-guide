@@ -4,6 +4,8 @@ import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useAds } from '../src/ads/AdsContext';
+import { openAdInspector } from '../src/ads/adSdk';
+import { useRewardCountdown } from '../src/ads/useRewardCountdown';
 import { logProScreenOpen, logRewarded } from '../src/analytics';
 import { usePro } from '../src/iap/ProContext';
 import type { PurchaseSource } from '../src/iap/ProContext';
@@ -26,8 +28,9 @@ export default function ProScreen() {
   const params = useLocalSearchParams<{ source?: string }>();
   const source = parseSource(params.source);
   const { isPro, isPending, price, buy, restore } = usePro();
-  const { isRewardedAvailable, isRewardActive, isPrivacyOptionsRequired, showPrivacyOptions, watchRewarded } =
+  const { isRewardedAvailable, isRewardActive, rewardEnd, isPrivacyOptionsRequired, showPrivacyOptions, watchRewarded } =
     useAds();
+  const rewardRemaining = useRewardCountdown(rewardEnd);
   const showRewardedOption = isRewardedAvailable && !isPro && !isRewardActive;
 
   useEffect(() => {
@@ -88,9 +91,19 @@ export default function ProScreen() {
         </TouchableOpacity>
       )}
 
+      {rewardRemaining !== null && !isPro && (
+        <Text style={styles.rewardedText}>{t('pro.rewardActive', { time: rewardRemaining })}</Text>
+      )}
+
       {isPrivacyOptionsRequired && (
         <TouchableOpacity style={styles.link} onPress={showPrivacyOptions}>
           <Text style={styles.linkText}>{t('pro.privacy')}</Text>
+        </TouchableOpacity>
+      )}
+
+      {__DEV__ && (
+        <TouchableOpacity style={styles.link} onPress={openAdInspector}>
+          <Text style={styles.linkText}>Ad Inspector</Text>
         </TouchableOpacity>
       )}
     </ScrollView>

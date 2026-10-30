@@ -1,5 +1,6 @@
 import {
   REWARD_DURATION_MS,
+  formatRewardRemaining,
   isExpiryNoticeDue,
   parseExpiredRewardEnd,
   parseStoredRewardEnd,
@@ -7,6 +8,19 @@ import {
 } from '../rewardTime';
 
 const NOW = 1_800_000_000_000;
+
+describe('formatRewardRemaining', () => {
+  it.each([
+    [REWARD_DURATION_MS, '60:00'],
+    [61_000, '1:01'],
+    [9_000, '0:09'],
+    [1, '0:01'],
+    [0, '0:00'],
+    [-5_000, '0:00'],
+  ])('shouldFormat %i ms', (remainingMs, expected) => {
+    expect(formatRewardRemaining(remainingMs)).toBe(expected);
+  });
+});
 
 describe('rewardTime', () => {
   it('shouldEndRewardSixtyMinutesFromNow', () => {

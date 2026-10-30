@@ -1,12 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useInterstitialAd } from 'react-native-google-mobile-ads';
 import { useAds } from '../../src/ads/AdsContext';
-import { INTERSTITIAL_AD_UNIT_ID } from '../../src/ads/adUnits';
-import { logAdFreePrompt } from '../../src/analytics';
-import { useProTeaser } from '../../src/iap/useProTeaser';
+import { AdTabBar } from '../../src/components/shared/AdTabBar';
 import { LanguageSwitcherButton } from '../../src/components/shared/LanguageSwitcherButton';
 import { ProButton } from '../../src/components/shared/ProButton';
 import { COLORS } from '../../src/theme/colors';
@@ -14,19 +10,11 @@ import { SPACING } from '../../src/theme/spacing';
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
-/** Minimum milliseconds between interstitial shows to avoid user annoyance. */
-const INTERSTITIAL_COOLDOWN_MS = 3 * 60 * 1000;
-/** Chance to show the Pro teaser after an interstitial closes — occasional, not every time. */
-const PRO_TEASER_CHANCE = 0.2;
+const renderTabBar: NonNullable<React.ComponentProps<typeof Tabs>['tabBar']> = props => <AdTabBar {...props} />;
 
 export default function TabsLayout() {
   const { t } = useTranslation();
-  const { shouldShowAds } = useAds();
-  const { isLoaded, isClosed, load, show } = useInterstitialAd(shouldShowAds ? INTERSTITIAL_AD_UNIT_ID : null);
-  const showProTeaser = useProTeaser();
-  const lastShownAt = useRef<number>(0);
-  const tabPressCount = useRef<number>(0);
-  const wasClosed = useRef(false);
+  const { tryShowInterstitial } = useAds();
 
   const SCREENS: {
     name: string;
@@ -42,37 +30,9 @@ export default function TabsLayout() {
     { name: 'tools', title: t('tabs.tools.title'), label: t('tabs.tools.label'), icon: 'options-outline', iconActive: 'options' },
   ];
 
-  useEffect(() => {
-    if (shouldShowAds) load();
-  }, [load, shouldShowAds]);
-
-  useEffect(() => {
-    if (shouldShowAds && isClosed && !wasClosed.current && Math.random() < PRO_TEASER_CHANCE) {
-      logAdFreePrompt();
-      showProTeaser();
-    }
-    wasClosed.current = isClosed;
-  }, [isClosed, shouldShowAds]);
-
-  function tryShowInterstitial() {
-    tabPressCount.current += 1;
-
-    // Skip first tab press (app open), show after subsequent switches
-    if (tabPressCount.current < 2) return;
-
-    const now = Date.now();
-    if (now - lastShownAt.current < INTERSTITIAL_COOLDOWN_MS) return;
-
-    if (shouldShowAds && isLoaded) {
-      lastShownAt.current = now;
-      show();
-      // Reload for next time
-      load();
-    }
-  }
-
   return (
     <Tabs
+      tabBar={renderTabBar}
       screenOptions={{
         headerStyle: {
           backgroundColor: COLORS.bg,
@@ -104,11 +64,12 @@ export default function TabsLayout() {
           marginBottom: 2,
         },
       }}
-      screenListeners={{
+      screenListeners={({ navigation }) => ({
         tabPress: () => {
-          tryShowInterstitial();
+          // Only a real switch is a natural break; tapping the open tab is not.
+          if (!navigation.isFocused()) tryShowInterstitial();
         },
-      }}
+      })}
     >
       {SCREENS.map(s => (
         <Tabs.Screen

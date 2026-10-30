@@ -7,9 +7,9 @@ import { useBookmarks } from '../../src/bookmarks/BookmarksContext';
 import { toBookmarkKey } from '../../src/bookmarks/bookmarkKey';
 import { ControlCard } from '../../src/components/pult/ControlCard';
 import { ZoneDiagram } from '../../src/components/pult/ZoneDiagram';
-import { BannerAdComponent } from '../../src/components/shared/BannerAdComponent';
 import { ChipRow } from '../../src/components/shared/ChipRow';
 import { EmptyState } from '../../src/components/shared/EmptyState';
+import { RewardCard } from '../../src/components/shared/RewardCard';
 import { SearchInput } from '../../src/components/shared/SearchInput';
 import { devices } from '../../src/data/controls';
 import { DeviceId, Zone } from '../../src/data/types';
@@ -98,6 +98,8 @@ export default function PultScreen() {
         contentContainerStyle={styles.content}
         keyboardShouldPersistTaps="handled"
       >
+        <RewardCard />
+
         <ChipRow
           chips={DEVICE_IDS.map(id => devices[id].label)}
           activeChip={devices[currentDevice].label}
@@ -151,7 +153,6 @@ export default function PultScreen() {
           ))
         )}
       </ScrollView>
-      <BannerAdComponent />
     </KeyboardAvoidingView>
   );
 }

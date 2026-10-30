@@ -56,7 +56,11 @@
     "teaserWatch": "Video ansehen",
     "expiredTitle": "Werbefreiheit abgelaufen",
     "expiredMessage": "Mit Pro dauerhaft ohne Werbung.",
-    "expiredCta": "Pro ansehen"
+    "expiredCta": "Pro ansehen",
+    "rewardActive": "Werbefrei noch {{time}}",
+    "rewardCta": "1 Std. werbefrei – Video ansehen",
+    "rewardHint": "Lieber ohne Werbung? Ein Video bringt dir 1 Std. Ruhe.",
+    "rewardHintCta": "Ansehen"
   },
   "pult": {
     "searchPlaceholder": "Taste, Regler, Funktion oder Aufdruck eingeben…",

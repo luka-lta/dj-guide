@@ -1,13 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, AppState } from 'react-native';
 import { logRewarded } from '../analytics';
 import { usePro } from '../iap/ProContext';
 import { isAdsAllowed } from './adGate';
-import { REWARDED_AD_UNIT_ID } from './adUnits';
-import { gatherAdsConsent, loadIsPrivacyOptionsRequired, showPrivacyOptionsForm } from './consent';
+import { SessionClock, isInterstitialDue } from './adPolicy';
+import { startMobileAds } from './adSdk';
+import { createInterstitialSlot, createRewardedSlot } from './adSlots';
+import { gatherAdsConsent, showPrivacyOptionsForm } from './consent';
+import type { ConsentState } from './consent';
 import {
   REWARD_END_STORAGE_KEY,
   isExpiryNoticeDue,
@@ -15,15 +18,19 @@ import {
   parseStoredRewardEnd,
   toRewardEnd,
 } from './rewardTime';
-import { useRewardedVideo } from './useRewardedVideo';
 
 export interface AdsContextValue {
   shouldShowAds: boolean;
   isPrivacyOptionsRequired: boolean;
   showPrivacyOptions: () => Promise<void>;
   isRewardActive: boolean;
+  /** Wall-clock end of the running ad-free period, `null` without one. */
+  rewardEnd: number | null;
   isRewardedAvailable: boolean;
   watchRewarded: () => void;
+  tryShowInterstitial: () => void;
+  /** Interstitials closed since app start; rises only after an ad was really shown. */
+  interstitialCloseCount: number;
 }
 
 const AdsContext = createContext<AdsContextValue>({
@@ -31,8 +38,11 @@ const AdsContext = createContext<AdsContextValue>({
   isPrivacyOptionsRequired: false,
   showPrivacyOptions: async () => {},
   isRewardActive: false,
+  rewardEnd: null,
   isRewardedAvailable: false,
   watchRewarded: () => {},
+  tryShowInterstitial: () => {},
+  interstitialCloseCount: 0,
 });
 
 export function useAds(): AdsContextValue {
@@ -46,22 +56,62 @@ export function AdsProvider({ children }: { children: React.ReactNode }) {
   const [canRequestAds, setCanRequestAds] = useState(false);
   const [isPrivacyOptionsRequired, setIsPrivacyOptionsRequired] = useState(false);
   const [hasGathered, setHasGathered] = useState(false);
+  const [isSdkReady, setIsSdkReady] = useState(false);
   const [rewardEnd, setRewardEnd] = useState<number | null>(null);
+  const [isRewardedReady, setIsRewardedReady] = useState(false);
+  const [interstitialCloseCount, setInterstitialCloseCount] = useState(0);
+  const [sessionClock] = useState(() => new SessionClock(Date.now()));
+  const lastInterstitialAtMs = useRef<number | null>(null);
+  // Set when the reward is earned; the UI follows on close because hiding ads earlier would disturb the open video.
+  const pendingRewardEnd = useRef<number | null>(null);
+
+  const [interstitialSlot] = useState(() =>
+    createInterstitialSlot({ onClosed: () => setInterstitialCloseCount(count => count + 1) }),
+  );
+  const [rewardedSlot] = useState(() =>
+    createRewardedSlot({
+      onReadyChange: setIsRewardedReady,
+      onEarned: () => {
+        const end = toRewardEnd(Date.now());
+        pendingRewardEnd.current = end;
+        // Stored at once, so the reward survives the app being killed before the video is closed.
+        AsyncStorage.setItem(REWARD_END_STORAGE_KEY, String(end)).catch(() => {});
+        logRewarded('earned');
+      },
+      onClosed: () => {
+        const end = pendingRewardEnd.current;
+        pendingRewardEnd.current = null;
+        if (end === null) {
+          logRewarded('dismissed');
+          return;
+        }
+        rewardedSlot?.stop();
+        setRewardEnd(end);
+      },
+    }),
+  );
+
+  const applyConsent = useCallback((state: ConsentState) => {
+    setCanRequestAds(state.canRequestAds);
+    setIsPrivacyOptionsRequired(state.isPrivacyOptionsRequired);
+  }, []);
 
   // Consent is gathered once, and only for non-Pro users, so Pro users never see a prompt.
   useEffect(() => {
     if (!isProResolved || isPro || hasGathered) return;
     setHasGathered(true);
-    gatherAdsConsent().then(async allowed => {
-      setCanRequestAds(allowed);
-      setIsPrivacyOptionsRequired(await loadIsPrivacyOptionsRequired());
-    });
-  }, [isProResolved, isPro, hasGathered]);
+    gatherAdsConsent(applyConsent);
+  }, [isProResolved, isPro, hasGathered, applyConsent]);
+
+  useEffect(() => {
+    if (!canRequestAds) return;
+    startMobileAds().then(() => setIsSdkReady(true));
+  }, [canRequestAds]);
 
   const showPrivacyOptions = useCallback(async () => {
-    const allowed = await showPrivacyOptionsForm();
-    if (allowed !== null) setCanRequestAds(allowed);
-  }, []);
+    const state = await showPrivacyOptionsForm();
+    if (state !== null) applyConsent(state);
+  }, [applyConsent]);
 
   const isRewardActive = rewardEnd !== null;
 
@@ -127,38 +177,45 @@ export function AdsProvider({ children }: { children: React.ReactNode }) {
     };
   }, [rewardEnd, isPro, clearStoredReward, showExpiryNotice]);
 
-  const rewardedUnitId = !isPro && canRequestAds && !isRewardActive ? REWARDED_AD_UNIT_ID : null;
-  const { isLoaded, isOpened, isClosed, isEarnedReward, load, show } = useRewardedVideo(rewardedUnitId);
+  const shouldShowAds =
+    isProResolved && isAdsAllowed({ isPro, canRequestAds: canRequestAds && isSdkReady, isRewardActive });
 
   useEffect(() => {
-    if (rewardedUnitId === null || isLoaded) return;
-    if (isOpened && !isClosed) return;
-    load();
-  }, [rewardedUnitId, isLoaded, isOpened, isClosed, load]);
-
-  // The reward is granted once the video is closed: switching the unit off while it is showing would destroy the ad.
-  // Assumes the platform delivers EARNED before CLOSED (as on iOS), so isEarnedReward is already set when isClosed is.
-  useEffect(() => {
-    if (!isClosed) return;
-    if (!isEarnedReward) {
-      logRewarded('dismissed');
+    if (shouldShowAds) {
+      interstitialSlot.start();
+      rewardedSlot?.start();
       return;
     }
-    const end = toRewardEnd(Date.now());
-    setRewardEnd(end);
-    AsyncStorage.setItem(REWARD_END_STORAGE_KEY, String(end)).catch(() => {});
-    logRewarded('earned');
-  }, [isClosed, isEarnedReward]);
+    interstitialSlot.stop();
+    rewardedSlot?.stop();
+  }, [shouldShowAds, interstitialSlot, rewardedSlot]);
 
-  const isRewardedAvailable = isLoaded && rewardedUnitId !== null;
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', state => {
+      const nowMs = Date.now();
+      if (state === 'background') sessionClock.markBackground(nowMs);
+      if (state !== 'active') return;
+      sessionClock.markForeground(nowMs);
+      interstitialSlot.checkExpiry();
+      rewardedSlot?.checkExpiry();
+    });
+    return () => subscription.remove();
+  }, [sessionClock, interstitialSlot, rewardedSlot]);
+
+  const tryShowInterstitial = useCallback(() => {
+    if (!shouldShowAds) return;
+    const nowMs = Date.now();
+    const sessionUsedMs = sessionClock.getUsedMs(nowMs);
+    if (!isInterstitialDue({ sessionUsedMs, lastShownAtMs: lastInterstitialAtMs.current, nowMs })) return;
+    if (interstitialSlot.show()) lastInterstitialAtMs.current = nowMs;
+  }, [shouldShowAds, sessionClock, interstitialSlot]);
+
+  const isRewardedAvailable = isRewardedReady && shouldShowAds;
 
   const watchRewarded = useCallback(() => {
     if (!isRewardedAvailable) return;
-    logRewarded('started');
-    show();
-  }, [isRewardedAvailable, show]);
-
-  const shouldShowAds = isProResolved && isAdsAllowed({ isPro, canRequestAds, isRewardActive });
+    if (rewardedSlot?.show()) logRewarded('started');
+  }, [isRewardedAvailable, rewardedSlot]);
 
   const value = useMemo(
     () => ({
@@ -166,10 +223,23 @@ export function AdsProvider({ children }: { children: React.ReactNode }) {
       isPrivacyOptionsRequired,
       showPrivacyOptions,
       isRewardActive,
+      rewardEnd,
       isRewardedAvailable,
       watchRewarded,
+      tryShowInterstitial,
+      interstitialCloseCount,
     }),
-    [shouldShowAds, isPrivacyOptionsRequired, showPrivacyOptions, isRewardActive, isRewardedAvailable, watchRewarded],
+    [
+      shouldShowAds,
+      isPrivacyOptionsRequired,
+      showPrivacyOptions,
+      isRewardActive,
+      rewardEnd,
+      isRewardedAvailable,
+      watchRewarded,
+      tryShowInterstitial,
+      interstitialCloseCount,
+    ],
   );
 
   return <AdsContext.Provider value={value}>{children}</AdsContext.Provider>;

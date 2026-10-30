@@ -56,7 +56,11 @@
     "teaserWatch": "Watch video",
     "expiredTitle": "Ad-free time is over",
     "expiredMessage": "Go Pro to stay ad-free for good.",
-    "expiredCta": "See Pro"
+    "expiredCta": "See Pro",
+    "rewardActive": "Ad-free for {{time}}",
+    "rewardCta": "Watch a video for 1 hour ad-free",
+    "rewardHint": "Fewer ads? One video gets you 1 hour without any.",
+    "rewardHintCta": "Watch"
   },
   "pult": {
     "searchPlaceholder": "Enter button, knob, function or label…",
