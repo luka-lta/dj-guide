@@ -1,41 +1,57 @@
-import { AdsConsent, AdsConsentPrivacyOptionsRequirementStatus } from 'react-native-google-mobile-ads';
+import {
+  AdsConsent,
+  AdsConsentDebugGeography,
+  AdsConsentPrivacyOptionsRequirementStatus,
+} from 'react-native-google-mobile-ads';
+import type { AdsConsentInfo, AdsConsentInfoOptions } from 'react-native-google-mobile-ads';
+import { AD_TEST_DEVICE_IDS, IS_UMP_DEBUG_EEA } from './adDebug';
+
+export interface ConsentState {
+  canRequestAds: boolean;
+  isPrivacyOptionsRequired: boolean;
+}
+
+const DENIED_CONSENT: ConsentState = { canRequestAds: false, isPrivacyOptionsRequired: false };
+
+function toConsentState(info: AdsConsentInfo): ConsentState {
+  return {
+    canRequestAds: info.canRequestAds,
+    isPrivacyOptionsRequired:
+      info.privacyOptionsRequirementStatus === AdsConsentPrivacyOptionsRequirementStatus.REQUIRED,
+  };
+}
+
+function toInfoOptions(): AdsConsentInfoOptions {
+  if (!IS_UMP_DEBUG_EEA) return {};
+  return { debugGeography: AdsConsentDebugGeography.EEA, testDeviceIdentifiers: AD_TEST_DEVICE_IDS };
+}
 
 /**
- * Gathers Google UMP consent (also triggers the iOS ATT prompt via the configured IDFA message).
+ * Gathers Google UMP consent (also triggers the iOS ATT prompt via the configured IDFA message). Reports the state
+ * right after the info update, because consent from a previous session already allows ads, and again after the form.
  * Falls back to the last known consent state when gathering fails, and denies ads if that fails too.
  */
-export async function gatherAdsConsent(): Promise<boolean> {
+export async function gatherAdsConsent(onUpdate: (state: ConsentState) => void): Promise<void> {
   try {
-    const info = await AdsConsent.gatherConsent();
-    return info.canRequestAds;
+    onUpdate(toConsentState(await AdsConsent.requestInfoUpdate(toInfoOptions())));
+    onUpdate(toConsentState(await AdsConsent.loadAndShowConsentFormIfRequired()));
   } catch {
-    return getLastKnownCanRequestAds();
+    onUpdate(await loadLastKnownConsent());
   }
 }
 
-async function getLastKnownCanRequestAds(): Promise<boolean> {
+async function loadLastKnownConsent(): Promise<ConsentState> {
   try {
-    const info = await AdsConsent.getConsentInfo();
-    return info.canRequestAds;
+    return toConsentState(await AdsConsent.getConsentInfo());
   } catch {
-    return false;
+    return DENIED_CONSENT;
   }
 }
 
-export async function loadIsPrivacyOptionsRequired(): Promise<boolean> {
+/** Shows the UMP privacy options form; resolves with the updated state, or null if it failed. */
+export async function showPrivacyOptionsForm(): Promise<ConsentState | null> {
   try {
-    const info = await AdsConsent.getConsentInfo();
-    return info.privacyOptionsRequirementStatus === AdsConsentPrivacyOptionsRequirementStatus.REQUIRED;
-  } catch {
-    return false;
-  }
-}
-
-/** Shows the UMP privacy options form; resolves with the updated canRequestAds, or null if it failed. */
-export async function showPrivacyOptionsForm(): Promise<boolean | null> {
-  try {
-    const info = await AdsConsent.showPrivacyOptionsForm();
-    return info.canRequestAds;
+    return toConsentState(await AdsConsent.showPrivacyOptionsForm());
   } catch {
     return null;
   }

@@ -1,11 +1,10 @@
-export async function gatherAdsConsent(): Promise<boolean> {
-  return false;
+export interface ConsentState {
+  canRequestAds: boolean;
+  isPrivacyOptionsRequired: boolean;
 }
 
-export async function loadIsPrivacyOptionsRequired(): Promise<boolean> {
-  return false;
-}
+export async function gatherAdsConsent(_onUpdate: (state: ConsentState) => void): Promise<void> {}
 
-export async function showPrivacyOptionsForm(): Promise<boolean | null> {
+export async function showPrivacyOptionsForm(): Promise<ConsentState | null> {
   return null;
 }

@@ -6,7 +6,6 @@ import { logFilterChip, logSearch } from '../../src/analytics';
 import { useBookmarks } from '../../src/bookmarks/BookmarksContext';
 import { toBookmarkKey } from '../../src/bookmarks/bookmarkKey';
 import { GrundlagenSection } from '../../src/components/grundlagen/GrundlagenSection';
-import { BannerAdComponent } from '../../src/components/shared/BannerAdComponent';
 import { ChipRow } from '../../src/components/shared/ChipRow';
 import { EmptyState } from '../../src/components/shared/EmptyState';
 import { SearchInput } from '../../src/components/shared/SearchInput';
@@ -100,7 +99,6 @@ export default function GrundlagenScreen() {
           ))
         )}
       </ScrollView>
-      <BannerAdComponent />
     </KeyboardAvoidingView>
   );
 }

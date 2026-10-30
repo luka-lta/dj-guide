@@ -26,7 +26,8 @@ mehr Umsatz pro Nutzer zu erzielen, ohne bestehende Nutzer zu verärgern:
 - Tools-Tab, Quiz, Geräte-Packs (spätere Projekte).
 - Cloud-Sync oder Accounts für Lesezeichen.
 - Änderungen an Interstitial-Logik (Tab-Wechsel, 3 Min. Cooldown) — bleibt unverändert, damit Effekt der Rewarded Ads
-  messbar ist.
+  messbar ist. **Überholt am 2026-10-30:** Das Ad-Revenue-Projekt ändert die Logik bewusst (Nachladen, 2 Min.
+  Mindestnutzung, nur echte Tab-Wechsel). Daten vor und nach diesem Release sind deshalb nicht vergleichbar.
 - Abo-Modell.
 
 ## Anti-Ziele (wäre ein Fehlschlag, selbst wenn es technisch läuft)
