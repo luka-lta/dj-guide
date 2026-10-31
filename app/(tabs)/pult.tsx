@@ -1,22 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useRouter } from 'expo-router';
+import { logDeviceSelect, logFilterChip, logSearch, logZoneSelect } from '../../src/analytics';
+import { useBookmarks } from '../../src/bookmarks/BookmarksContext';
+import { toBookmarkKey } from '../../src/bookmarks/bookmarkKey';
 import { ControlCard } from '../../src/components/pult/ControlCard';
 import { ZoneDiagram } from '../../src/components/pult/ZoneDiagram';
 import { ChipRow } from '../../src/components/shared/ChipRow';
 import { EmptyState } from '../../src/components/shared/EmptyState';
+import { RewardCard } from '../../src/components/shared/RewardCard';
 import { SearchInput } from '../../src/components/shared/SearchInput';
 import { devices } from '../../src/data/controls';
 import { DeviceId, Zone } from '../../src/data/types';
+import { usePro } from '../../src/iap/ProContext';
+import { useL } from '../../src/i18n/useL';
 import { useSearch } from '../../src/hooks/useSearch';
 import { COLORS } from '../../src/theme/colors';
+import { RADIUS } from '../../src/theme/radius';
+import { SPACING } from '../../src/theme/spacing';
+import { TYPE } from '../../src/theme/typography';
 import { matches } from '../../src/utils/search';
 
 const DEVICE_IDS: DeviceId[] = ['rx3', 'flx4'];
 
 export default function PultScreen() {
+  const { t } = useTranslation();
+  const l = useL();
   const [currentDevice, setCurrentDevice] = useState<DeviceId>('rx3');
   const [activeZone, setActiveZone] = useState<Zone | null>(null);
+  const [isBookmarkFilter, setIsBookmarkFilter] = useState(false);
   const [rawQuery, debouncedQuery, setRawQuery] = useSearch();
+  const router = useRouter();
+  const { isPro } = usePro();
+  const { isBookmarked } = useBookmarks();
+
+  const isFirstMount = useRef(true);
+  useEffect(() => {
+    if (isFirstMount.current) { isFirstMount.current = false; return; }
+    logDeviceSelect(currentDevice);
+  }, [currentDevice]);
+  useEffect(() => {
+    if (debouncedQuery) logSearch('pult', debouncedQuery);
+  }, [debouncedQuery]);
+  useEffect(() => {
+    if (activeZone) logZoneSelect(activeZone);
+  }, [activeZone]);
 
   const device = devices[currentDevice];
   let list = device.controls;
@@ -24,16 +53,37 @@ export default function PultScreen() {
   if (activeZone) {
     list = list.filter(c => c.zone === activeZone);
   }
+  if (isBookmarkFilter) {
+    list = list.filter(c => isBookmarked(toBookmarkKey('pult', c.id, currentDevice)));
+  }
   if (debouncedQuery) {
-    list = list.filter(c => matches(debouncedQuery, c.name, c.label, c.desc, c.tip));
+    list = list.filter(c =>
+      matches(debouncedQuery, c.name.de, c.name.en, c.label, c.desc.de, c.desc.en, c.tip?.de, c.tip?.en),
+    );
   }
 
-  const isEmpty = !debouncedQuery && !activeZone;
+  const isEmpty = !debouncedQuery && !activeZone && !isBookmarkFilter;
+  const bookmarkChip = t('bookmarks.chip');
+
+  function handleBookmarkChipSelect(chip: string | null) {
+    if (chip !== null && !isPro) {
+      router.push({ pathname: '/pro', params: { source: 'bookmark' } });
+      return;
+    }
+    setIsBookmarkFilter(chip !== null);
+    if (chip !== null) setActiveZone(null);
+  }
+
+  function handleZoneSelect(zone: Zone | null) {
+    setActiveZone(zone);
+    setIsBookmarkFilter(false);
+  }
 
   function handleDeviceSelect(chip: string | null) {
     const id = chip as DeviceId | null;
     if (!id) return;
     setCurrentDevice(id);
+    setIsBookmarkFilter(false);
     setActiveZone(null);
     setRawQuery('');
   }
@@ -48,6 +98,8 @@ export default function PultScreen() {
         contentContainerStyle={styles.content}
         keyboardShouldPersistTaps="handled"
       >
+        <RewardCard />
+
         <ChipRow
           chips={DEVICE_IDS.map(id => devices[id].label)}
           activeChip={devices[currentDevice].label}
@@ -62,7 +114,7 @@ export default function PultScreen() {
             <Text style={styles.deviceNoteText}>
               <Text style={{ fontWeight: '700', color: COLORS.text }}>{device.full}</Text>
               {' – '}
-              {device.note}
+              {l(device.note)}
             </Text>
           </View>
         ) : null}
@@ -70,25 +122,35 @@ export default function PultScreen() {
         <SearchInput
           value={rawQuery}
           onChangeText={setRawQuery}
-          placeholder="Taste, Regler, Funktion oder Aufdruck eingeben…"
+          placeholder={t('pult.searchPlaceholder')}
         />
-        <Text style={styles.hint}>
-          Schreibweise, Groß-/Kleinschreibung und Bindestriche sind egal. Tippe einen Begriff ein
-          oder klicke auf einen Bereich des Pults.
-        </Text>
+        <Text style={styles.hint}>{t('pult.hint')}</Text>
+
+        <ChipRow
+          chips={[bookmarkChip]}
+          activeChip={isBookmarkFilter ? bookmarkChip : null}
+          onSelect={handleBookmarkChipSelect}
+        />
 
         <ZoneDiagram
           controls={device.controls}
           activeZone={activeZone}
-          onZoneSelect={setActiveZone}
+          onZoneSelect={handleZoneSelect}
         />
 
         {isEmpty ? (
-          <EmptyState message="Suche eingeben oder Bereich oben antippen, um alle Bedienelemente dieses Bereichs zu sehen." />
+          <EmptyState message={t('pult.emptyInitial')} />
         ) : list.length === 0 ? (
-          <EmptyState message="Kein Treffer. Anderen Begriff versuchen, z.B. den Namen der Taste oder den Aufdruck." />
+          <EmptyState message={isBookmarkFilter && !debouncedQuery ? t('bookmarks.empty') : t('pult.emptyNoResults')} />
         ) : (
-          list.map((c, i) => <ControlCard key={`${c.zone}-${c.name}-${i}`} control={c} query={debouncedQuery} />)
+          list.map(c => (
+            <ControlCard
+              key={c.id}
+              control={c}
+              query={debouncedQuery}
+              bookmarkKey={toBookmarkKey('pult', c.id, currentDevice)}
+            />
+          ))
         )}
       </ScrollView>
     </KeyboardAvoidingView>
@@ -101,28 +163,27 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bg,
   },
   content: {
-    padding: 20,
-    paddingBottom: 60,
+    padding: SPACING.xl - 4,
+    paddingBottom: SPACING.xl - 4,
   },
   deviceNote: {
-    backgroundColor: 'rgba(63,224,232,0.06)',
+    backgroundColor: COLORS.surface,
     borderWidth: 1,
-    borderColor: COLORS.line,
+    borderColor: COLORS.border,
     borderLeftWidth: 2,
-    borderLeftColor: COLORS.cyan,
-    borderRadius: 8,
-    padding: 12,
-    marginBottom: 18,
+    borderLeftColor: COLORS.amber,
+    borderRadius: RADIUS.sm,
+    padding: SPACING.md,
+    marginBottom: SPACING.lg + 2,
   },
   deviceNoteText: {
-    fontSize: 13,
-    lineHeight: 20,
-    color: '#c8c8d6',
+    ...TYPE.bodySmall,
+    color: COLORS.textMuted,
   },
   hint: {
-    color: COLORS.muted,
-    fontSize: 12,
-    marginBottom: 18,
-    marginTop: 4,
+    color: COLORS.textFaint,
+    fontSize: 11.5,
+    marginBottom: SPACING.lg + 2,
+    marginTop: SPACING.xs,
   },
 });

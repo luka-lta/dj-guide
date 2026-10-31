@@ -1,0 +1,174 @@
+{
+  "tabs": {
+    "pult": {
+      "title": "Pult-Erklärung",
+      "label": "Pult"
+    },
+    "rekordbox": {
+      "title": "rekordbox Anleitung",
+      "label": "rekordbox"
+    },
+    "grundlagen": {
+      "title": "Grundlagen & Mixing",
+      "label": "Grundlagen"
+    },
+    "troubleshoot": {
+      "title": "Problemlösung",
+      "label": "Probleme"
+    },
+    "tools": {
+      "title": "DJ-Tools",
+      "label": "Tools"
+    }
+  },
+  "common": {
+    "noResults": "Kein Treffer. Anderen Begriff versuchen.",
+    "relatedTopic": "Verwandtes Thema",
+    "cancel": "Abbrechen",
+    "language": {
+      "title": "Sprache",
+      "de": "Deutsch",
+      "en": "English"
+    }
+  },
+  "bookmarks": {
+    "chip": "★ Gemerkt",
+    "empty": "Tippe auf das Lesezeichen-Symbol einer Karte, um sie hier zu sammeln.",
+    "add": "Merken",
+    "remove": "Nicht mehr merken"
+  },
+  "pro": {
+    "button": "Pro",
+    "active": "Pro ✓",
+    "title": "DJ Guide Pro",
+    "benefitNoAds": "Keine Werbung",
+    "benefitBookmarks": "Lesezeichen in allen Bereichen",
+    "benefitTools": "Phrasen-Trainer und BPM-Tapper",
+    "buy": "Einmalig kaufen ({{price}})",
+    "restore": "Kauf wiederherstellen",
+    "owned": "Du hast Pro ✓",
+    "rewarded": "Lieber gratis: Video ansehen → 1 Std. werbefrei",
+    "privacy": "Datenschutz-Einstellungen",
+    "teaserTitle": "Nervt die Werbung?",
+    "teaserMessage": "Mit DJ Guide Pro dauerhaft werbefrei – einmalig kaufen.",
+    "teaserYes": "Zeig mir das",
+    "teaserNo": "Nicht jetzt",
+    "teaserWatch": "Video ansehen",
+    "expiredTitle": "Werbefreiheit abgelaufen",
+    "expiredMessage": "Mit Pro dauerhaft ohne Werbung.",
+    "expiredCta": "Pro ansehen",
+    "rewardActive": "Werbefrei noch {{time}}",
+    "rewardCta": "1 Std. werbefrei – Video ansehen",
+    "rewardHint": "Lieber ohne Werbung? Ein Video bringt dir 1 Std. Ruhe.",
+    "rewardHintCta": "Ansehen"
+  },
+  "pult": {
+    "searchPlaceholder": "Taste, Regler, Funktion oder Aufdruck eingeben…",
+    "hint": "Schreibweise, Groß-/Kleinschreibung und Bindestriche sind egal. Tippe einen Begriff ein oder klicke auf einen Bereich des Pults.",
+    "emptyInitial": "Suche eingeben oder Bereich oben antippen, um alle Bedienelemente dieses Bereichs zu sehen.",
+    "emptyNoResults": "Kein Treffer. Anderen Begriff versuchen, z.B. den Namen der Taste oder den Aufdruck.",
+    "zone": {
+      "deckL": "Deck links",
+      "deckR": "Deck rechts",
+      "mixer": "Mixer & Display",
+      "browser": "Browser & USB"
+    },
+    "controlCard": {
+      "practiceLabel": "Praxis & Auswirkung"
+    },
+    "zoneDiagram": {
+      "entryCount": "{{count}} Einträge"
+    }
+  },
+  "rekordbox": {
+    "searchPlaceholder": "Thema suchen, z.B. 'Intelligente Liste', 'USB', 'Beatgrid'…",
+    "noResults": "Kein Treffer. Anderen Begriff versuchen.",
+    "categories": {
+      "einrichtung": "Einrichtung",
+      "bibliothek": "Bibliothek",
+      "exportLink": "Export & Link",
+      "amPult": "Am Pult",
+      "mixing": "Mixing"
+    }
+  },
+  "grundlagen": {
+    "searchPlaceholder": "Thema suchen, z.B. 'Sub', 'Trim', 'Raummoden', 'Camelot'…",
+    "noResults": "Kein Treffer. Anderen Begriff versuchen.",
+    "camelot": {
+      "legendMajor": "Dur / Major (B)",
+      "legendMinor": "Moll / Minor (A)"
+    },
+    "categories": {
+      "gainStaging": "Gain-Staging",
+      "lautstaerke": "Lautstärke",
+      "fehlerdiagnose": "Fehlerdiagnose",
+      "setupRaum": "Setup & Raum",
+      "harmonischesMixen": "Harmonisches Mixen"
+    }
+  },
+  "troubleshoot": {
+    "searchPlaceholder": "Problem kurz beschreiben, z.B. 'Track startet nicht'…",
+    "emptyInitial": "Kurzen Suchbegriff eingeben oder Kategorie oben antippen.",
+    "emptyNoResults": "Kein Treffer. Anderen Begriff versuchen, z.B. kürzer oder mit anderem Stichwort.",
+    "causeLabel": "Ursache",
+    "fixLabel": "Lösung",
+    "categories": {
+      "pult": "Pult",
+      "rekordbox": "rekordbox",
+      "tracks": "Tracks",
+      "mixing": "Mixing"
+    }
+  },
+  "tools": {
+    "names": {
+      "camelot": "Camelot-Rad",
+      "phrase": "Phrasen-Trainer",
+      "bpm": "BPM-Tapper"
+    },
+    "camelot": {
+      "intro": "Tippe die Tonart deines Tracks an. Die App zeigt, welche Tonarten dazu passen.",
+      "match": {
+        "perfect": {
+          "title": "Gleiche Tonart",
+          "text": "Die sicherste Wahl, klingt immer sauber."
+        },
+        "energyUp": {
+          "title": "Einen Schritt vor",
+          "text": "Sanfter Wechsel, die Energie steigt leicht."
+        },
+        "energyDown": {
+          "title": "Einen Schritt zurück",
+          "text": "Sanfter Wechsel, die Energie sinkt leicht."
+        },
+        "relative": {
+          "title": "Dur/Moll-Wechsel",
+          "text": "Gleiche Töne, aber die Stimmung ändert sich."
+        },
+        "energyBoost": {
+          "title": "Energie-Boost",
+          "text": "Zwei Schritte vor: deutlicher Schub. Kurz halten und gut timen."
+        }
+      }
+    },
+    "phrase": {
+      "intro": "Zähle mit dem Klick mit. Der hohe Ton markiert den Start einer Phrase, dort beginnt dein Übergang.",
+      "bar": "Takt {{bar}} von {{total}}",
+      "phrase": "Phrase {{phrase}}",
+      "cue": "Letzter Takt: Übergang vorbereiten",
+      "bpm": "{{bpm}} BPM",
+      "bars": "{{bars}} Takte",
+      "slower": "Langsamer",
+      "faster": "Schneller",
+      "start": "Start",
+      "stop": "Stopp"
+    },
+    "bpm": {
+      "intro": "Tippe im Takt mit, um das Tempo eines Tracks zu messen. Mit Ziel-BPM zeigt die App den nötigen Pitch.",
+      "tap": "Im Takt tippen",
+      "reset": "Zurücksetzen",
+      "target": "Ziel-BPM",
+      "pitch": "Nötiger Pitch",
+      "outOfRange": "Liegt außerhalb von ±{{percent}} %. Wähle einen Track mit näherem Tempo."
+    }
+  }
+}

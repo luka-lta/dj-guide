@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { COLORS } from '../../theme/colors';
+import { SPACING } from '../../theme/spacing';
+import { TYPE } from '../../theme/typography';
 
 interface EmptyStateProps {
   message: string;
@@ -16,12 +18,12 @@ export function EmptyState({ message }: EmptyStateProps) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 40,
+    paddingVertical: SPACING.xxl + SPACING.sm,
     alignItems: 'center',
   },
   text: {
-    color: COLORS.muted,
-    fontSize: 14,
+    ...TYPE.body,
+    color: COLORS.textMuted,
     textAlign: 'center',
   },
 });

@@ -1,9 +1,9 @@
-export const WHEEL_SIZE = 280;
+export const WHEEL_SIZE = 300;
 
 const CX = WHEEL_SIZE / 2.0;
 const CY = WHEEL_SIZE / 2.0;
-const R_OUTER = 110;
-const R_INNER = 72;
+const R_OUTER = 122;
+const R_INNER = 80;
 
 export const CHIP_RADIUS = 20;
 export const RING_RADIUS = R_OUTER + CHIP_RADIUS;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TextStyle } from 'react-native';
+import { COLORS } from '../../theme/colors';
 
 interface FormattedTextProps {
   text: string;
@@ -28,7 +29,7 @@ export function FormattedText({ text, style }: FormattedTextProps) {
     <Text style={style}>
       {segments.map((seg, i) =>
         seg.isBold ? (
-          <Text key={i} style={{ fontWeight: '700' }}>
+          <Text key={i} style={{ fontWeight: '700', color: COLORS.text }}>
             {seg.text}
           </Text>
         ) : (

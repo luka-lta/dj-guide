@@ -1,53 +1,58 @@
 export type DeviceId = 'rx3' | 'flx4';
 export type Zone = 'deckL' | 'deckR' | 'mixer' | 'browser';
 
+export type LocalizedString = { de: string; en: string };
+
 export interface Control {
-  name: string;
+  id: string;
+  name: LocalizedString;
   zone: Zone;
-  desc: string;
+  desc: LocalizedString;
   label?: string;
-  tip?: string;
+  tip?: LocalizedString;
   tags?: string[];
 }
 
 export interface Device {
   label: string;
   full: string;
-  note: string | null;
+  note: LocalizedString | null;
   controls: Control[];
 }
 
 export interface ChapterStep {
-  t: string;
-  d: string;
+  t: LocalizedString;
+  d: LocalizedString;
 }
 
 export interface Chapter {
+  id: string;
   cat: string;
-  title: string;
+  title: LocalizedString;
   steps: ChapterStep[];
 }
 
 export type GrundlagenBodyNode =
-  | { type: 'paragraph'; text: string }
-  | { type: 'warn'; text: string }
-  | { type: 'signalFlow'; steps: string[] }
+  | { type: 'paragraph'; text: LocalizedString }
+  | { type: 'warn'; text: LocalizedString }
+  | { type: 'signalFlow'; steps: LocalizedString[] }
   | { type: 'camelotWheel' };
 
 export interface GrundlagenSection {
   id: string;
   cat: string;
   tags: string[];
-  title: string;
+  title: LocalizedString;
   keywords: string;
   body: GrundlagenBodyNode[];
 }
 
 export interface TroubleshootEntry {
+  id: string;
   cat: string;
-  title: string;
+  title: LocalizedString;
   keywords: string;
-  cause: string;
-  fix: string;
+  cause: LocalizedString;
+  fix: LocalizedString;
   tags?: string[];
 }

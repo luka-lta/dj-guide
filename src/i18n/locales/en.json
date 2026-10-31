@@ -1,0 +1,174 @@
+{
+  "tabs": {
+    "pult": {
+      "title": "Mixer Explainer",
+      "label": "Mixer"
+    },
+    "rekordbox": {
+      "title": "rekordbox Guide",
+      "label": "rekordbox"
+    },
+    "grundlagen": {
+      "title": "Basics & Mixing",
+      "label": "Basics"
+    },
+    "troubleshoot": {
+      "title": "Troubleshoot",
+      "label": "Problems"
+    },
+    "tools": {
+      "title": "DJ Tools",
+      "label": "Tools"
+    }
+  },
+  "common": {
+    "noResults": "No results. Try a different term.",
+    "relatedTopic": "Related Topic",
+    "cancel": "Cancel",
+    "language": {
+      "title": "Language",
+      "de": "Deutsch",
+      "en": "English"
+    }
+  },
+  "bookmarks": {
+    "chip": "★ Saved",
+    "empty": "Tap the bookmark icon on a card to collect it here.",
+    "add": "Save",
+    "remove": "Remove bookmark"
+  },
+  "pro": {
+    "button": "Pro",
+    "active": "Pro ✓",
+    "title": "DJ Guide Pro",
+    "benefitNoAds": "No ads",
+    "benefitBookmarks": "Bookmarks in every section",
+    "benefitTools": "Phrase Trainer and BPM Tapper",
+    "buy": "Buy once ({{price}})",
+    "restore": "Restore purchase",
+    "owned": "You have Pro ✓",
+    "rewarded": "Rather free: watch a video → 1 hour ad-free",
+    "privacy": "Privacy settings",
+    "teaserTitle": "Tired of ads?",
+    "teaserMessage": "Go ad-free for good with DJ Guide Pro — one-time purchase.",
+    "teaserYes": "Show me",
+    "teaserNo": "Not now",
+    "teaserWatch": "Watch video",
+    "expiredTitle": "Ad-free time is over",
+    "expiredMessage": "Go Pro to stay ad-free for good.",
+    "expiredCta": "See Pro",
+    "rewardActive": "Ad-free for {{time}}",
+    "rewardCta": "Watch a video for 1 hour ad-free",
+    "rewardHint": "Fewer ads? One video gets you 1 hour without any.",
+    "rewardHintCta": "Watch"
+  },
+  "pult": {
+    "searchPlaceholder": "Enter button, knob, function or label…",
+    "hint": "Spelling, capitalisation and hyphens don't matter. Type a term or tap an area of the mixer.",
+    "emptyInitial": "Enter a search term or tap a section above to see all controls in that area.",
+    "emptyNoResults": "No results. Try a different term, e.g. the button name or its printed label.",
+    "zone": {
+      "deckL": "Deck Left",
+      "deckR": "Deck Right",
+      "mixer": "Mixer & Display",
+      "browser": "Browser & USB"
+    },
+    "controlCard": {
+      "practiceLabel": "Practice & Effect"
+    },
+    "zoneDiagram": {
+      "entryCount": "{{count}} entries"
+    }
+  },
+  "rekordbox": {
+    "searchPlaceholder": "Search topic, e.g. 'Smart List', 'USB', 'Beatgrid'…",
+    "noResults": "No results. Try a different term.",
+    "categories": {
+      "einrichtung": "Setup",
+      "bibliothek": "Library",
+      "exportLink": "Export & Link",
+      "amPult": "At the Mixer",
+      "mixing": "Mixing"
+    }
+  },
+  "grundlagen": {
+    "searchPlaceholder": "Search topic, e.g. 'Sub', 'Trim', 'Room Modes', 'Camelot'…",
+    "noResults": "No results. Try a different term.",
+    "camelot": {
+      "legendMajor": "Major (B)",
+      "legendMinor": "Minor (A)"
+    },
+    "categories": {
+      "gainStaging": "Gain Staging",
+      "lautstaerke": "Volume",
+      "fehlerdiagnose": "Diagnostics",
+      "setupRaum": "Setup & Room",
+      "harmonischesMixen": "Harmonic Mixing"
+    }
+  },
+  "troubleshoot": {
+    "searchPlaceholder": "Describe the problem, e.g. 'track won't start'…",
+    "emptyInitial": "Enter a short search term or tap a category above.",
+    "emptyNoResults": "No results. Try a shorter or different keyword.",
+    "causeLabel": "Cause",
+    "fixLabel": "Fix",
+    "categories": {
+      "pult": "Mixer",
+      "rekordbox": "rekordbox",
+      "tracks": "Tracks",
+      "mixing": "Mixing"
+    }
+  },
+  "tools": {
+    "names": {
+      "camelot": "Camelot Wheel",
+      "phrase": "Phrase Trainer",
+      "bpm": "BPM Tapper"
+    },
+    "camelot": {
+      "intro": "Tap your track's key. The app shows which keys go with it.",
+      "match": {
+        "perfect": {
+          "title": "Same key",
+          "text": "The safest choice, always sounds clean."
+        },
+        "energyUp": {
+          "title": "One step forward",
+          "text": "Smooth change, energy rises slightly."
+        },
+        "energyDown": {
+          "title": "One step back",
+          "text": "Smooth change, energy drops slightly."
+        },
+        "relative": {
+          "title": "Major/minor switch",
+          "text": "Same notes, but the mood changes."
+        },
+        "energyBoost": {
+          "title": "Energy boost",
+          "text": "Two steps forward: a clear lift. Keep it short and time it well."
+        }
+      }
+    },
+    "phrase": {
+      "intro": "Count along with the click. The high tone marks the start of a phrase, which is where your transition begins.",
+      "bar": "Bar {{bar}} of {{total}}",
+      "phrase": "Phrase {{phrase}}",
+      "cue": "Last bar: get your transition ready",
+      "bpm": "{{bpm}} BPM",
+      "bars": "{{bars}} bars",
+      "slower": "Slower",
+      "faster": "Faster",
+      "start": "Start",
+      "stop": "Stop"
+    },
+    "bpm": {
+      "intro": "Tap along to measure a track's tempo. With a target BPM, the app shows the pitch you need.",
+      "tap": "Tap to the beat",
+      "reset": "Reset",
+      "target": "Target BPM",
+      "pitch": "Pitch needed",
+      "outOfRange": "Outside ±{{percent}} %. Pick a track with a closer tempo."
+    }
+  }
+}

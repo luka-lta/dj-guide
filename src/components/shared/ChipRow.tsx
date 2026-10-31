@@ -1,6 +1,9 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { COLORS } from '../../theme/colors';
+import { RADIUS } from '../../theme/radius';
+import { SPACING } from '../../theme/spacing';
+import { TYPE } from '../../theme/typography';
 
 interface ChipRowProps {
   chips: string[];
@@ -34,31 +37,31 @@ export function ChipRow({ chips, activeChip, onSelect }: ChipRowProps) {
 
 const styles = StyleSheet.create({
   row: {
-    marginBottom: 16,
+    marginBottom: SPACING.lg,
   },
   content: {
     paddingBottom: 2,
-    gap: 8,
+    gap: SPACING.sm,
     flexDirection: 'row',
   },
   chip: {
-    paddingVertical: 9,
-    paddingHorizontal: 14,
-    backgroundColor: COLORS.panel,
+    paddingVertical: 8,
+    paddingHorizontal: SPACING.md,
+    backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: COLORS.line,
-    borderRadius: 100,
+    borderColor: COLORS.border,
+    borderRadius: RADIUS.sm,
   },
   chipActive: {
-    backgroundColor: COLORS.cyan,
-    borderColor: COLORS.cyan,
+    backgroundColor: COLORS.amber,
+    borderColor: COLORS.amber,
   },
   label: {
-    color: COLORS.muted,
-    fontSize: 12.5,
-    fontWeight: '600',
+    ...TYPE.caption,
+    color: COLORS.textMuted,
   },
   labelActive: {
-    color: COLORS.bg,
+    color: COLORS.onAmber,
+    fontWeight: '700',
   },
 });

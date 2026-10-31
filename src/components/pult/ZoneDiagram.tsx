@@ -1,14 +1,14 @@
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Control, Zone } from '../../data/types';
 import { COLORS } from '../../theme/colors';
+import { RADIUS } from '../../theme/radius';
+import { SPACING } from '../../theme/spacing';
+import { TYPE } from '../../theme/typography';
 
-const ZONE_CONFIG: { zone: Zone; label: string; color: string }[] = [
-  { zone: 'deckL', label: 'Deck links', color: COLORS.cyan },
-  { zone: 'mixer', label: 'Mixer & Display', color: COLORS.magenta },
-  { zone: 'deckR', label: 'Deck rechts', color: COLORS.orange },
-  { zone: 'browser', label: 'Browser & USB', color: COLORS.lime },
-];
+type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
 interface ZoneDiagramProps {
   controls: Control[];
@@ -17,9 +17,17 @@ interface ZoneDiagramProps {
 }
 
 export function ZoneDiagram({ controls, activeZone, onZoneSelect }: ZoneDiagramProps) {
+  const { t } = useTranslation();
+  const ZONE_CONFIG: { zone: Zone; label: string; icon: IoniconName }[] = [
+    { zone: 'deckL', label: t('pult.zone.deckL'), icon: 'disc-outline' },
+    { zone: 'mixer', label: t('pult.zone.mixer'), icon: 'options-outline' },
+    { zone: 'deckR', label: t('pult.zone.deckR'), icon: 'disc-outline' },
+    { zone: 'browser', label: t('pult.zone.browser'), icon: 'folder-outline' },
+  ];
+
   return (
     <View style={styles.grid}>
-      {ZONE_CONFIG.map(({ zone, label, color }) => {
+      {ZONE_CONFIG.map(({ zone, label, icon }) => {
         const count = controls.filter(c => c.zone === zone).length;
         const isActive = activeZone === zone;
         return (
@@ -28,9 +36,9 @@ export function ZoneDiagram({ controls, activeZone, onZoneSelect }: ZoneDiagramP
             style={[styles.tile, isActive && styles.tileActive]}
             onPress={() => onZoneSelect(isActive ? null : zone)}
           >
-            <View style={[styles.dot, { backgroundColor: color }]} />
-            <Text style={styles.label}>{label}</Text>
-            <Text style={styles.count}>{count} Einträge</Text>
+            <Ionicons name={icon} size={16} color={isActive ? COLORS.amber : COLORS.textMuted} />
+            <Text style={[styles.label, isActive && styles.labelActive]}>{label}</Text>
+            <Text style={styles.count}>{t('pult.zoneDiagram.entryCount', { count })}</Text>
           </TouchableOpacity>
         );
       })}
@@ -42,39 +50,35 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
-    marginBottom: 22,
+    gap: SPACING.sm,
+    marginBottom: SPACING.xl - 2,
   },
   tile: {
     width: '48%',
-    backgroundColor: COLORS.panel,
+    backgroundColor: COLORS.surface,
     borderWidth: 1,
-    borderColor: COLORS.line,
-    borderRadius: 10,
-    padding: 14,
+    borderColor: COLORS.border,
+    borderRadius: RADIUS.lg,
+    padding: SPACING.md + 2,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 4,
+    gap: SPACING.xs,
     minHeight: 64,
   },
   tileActive: {
-    borderColor: COLORS.cyan,
-    backgroundColor: '#132226',
-  },
-  dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
+    borderColor: COLORS.amber,
+    backgroundColor: COLORS.amberMuted,
   },
   label: {
-    fontSize: 12,
-    fontWeight: '600',
+    ...TYPE.caption,
     color: COLORS.text,
-    letterSpacing: 0.3,
     textAlign: 'center',
+  },
+  labelActive: {
+    color: COLORS.amber,
   },
   count: {
     fontSize: 10,
-    color: COLORS.muted,
+    color: COLORS.textFaint,
   },
 });
