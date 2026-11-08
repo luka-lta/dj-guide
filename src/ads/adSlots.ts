@@ -13,13 +13,11 @@ export function createInterstitialSlot(callbacks: SlotCallbacks): FullScreenAdSl
   });
 }
 
-/** Returns `null` where no rewarded unit exists (Android). */
+/** Native platforms always have a rewarded unit; the `null` return exists for web. */
 export function createRewardedSlot(callbacks: SlotCallbacks): FullScreenAdSlot | null {
-  const unitId = REWARDED_AD_UNIT_ID;
-  if (unitId === null) return null;
   return new FullScreenAdSlot({
     ...callbacks,
     format: 'rewarded',
-    createAd: () => RewardedAd.createForAdRequest(unitId) as unknown as SlotAd,
+    createAd: () => RewardedAd.createForAdRequest(REWARDED_AD_UNIT_ID) as unknown as SlotAd,
   });
 }

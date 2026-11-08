@@ -21,6 +21,7 @@
     },
     "android": {
       "package": "dev.luka_lta.dj_guide",
+      "googleServicesFile": "./google-services.json",
       "icon": "./assets/DJ_GUIDE_DARK.png",
       "predictiveBackGestureEnabled": false
     },
@@ -37,7 +38,7 @@
       [
         "react-native-google-mobile-ads",
         {
-          "androidAppId": "ca-app-pub-3940256099942544~3347511713",
+          "androidAppId": "ca-app-pub-3346959869225055~6965010272",
           "iosAppId": "ca-app-pub-3346959869225055~6261637072",
           "userTrackingUsageDescription": "This lets us show you more relevant ads and keeps DJ Guide free.",
           "skAdNetworkItems": [
@@ -162,6 +163,7 @@
       ],
       "./plugins/withFirebaseSPMFix",
       "./plugins/withPodsDeploymentTarget",
+      "./plugins/withAdsKotlinMetadataFix",
       "expo-asset"
     ],
     "extra": {

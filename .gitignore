@@ -42,6 +42,10 @@ yarn-error.*
 /ios
 /android
 
+# Firebase app configs (EAS still uploads them because .easignore does not list them)
+google-services.json
+GoogleService-Info.plist
+
 # Google Service Account Keys (Play Store API)
 *-service-account.json
 google-service-account.json
