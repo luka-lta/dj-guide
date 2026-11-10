@@ -89,7 +89,7 @@ export function PhraseTool() {
       </View>
 
       <TouchableOpacity style={styles.toggle} onPress={isRunning ? stop : start}>
-        <Ionicons name={isRunning ? 'stop' : 'play'} size={20} color={COLORS.onAmber} />
+        <Ionicons name={isRunning ? 'stop' : 'play'} size={20} color={COLORS.onAccent} />
         <Text style={styles.toggleLabel}>{isRunning ? t('tools.phrase.stop') : t('tools.phrase.start')}</Text>
       </TouchableOpacity>
     </View>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     padding: SPACING.xl,
   },
   displayCue: {
-    borderColor: COLORS.amber,
+    borderColor: COLORS.accent,
   },
   beats: {
     flexDirection: 'row',
@@ -145,8 +145,8 @@ const styles = StyleSheet.create({
     borderColor: COLORS.borderStrong,
   },
   beatActive: {
-    backgroundColor: COLORS.amber,
-    borderColor: COLORS.amber,
+    backgroundColor: COLORS.accent,
+    borderColor: COLORS.accent,
   },
   barCount: {
     ...TYPE.screenTitle,
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   cueActive: {
-    color: COLORS.amber,
+    color: COLORS.accent,
   },
   stepper: {
     flexDirection: 'row',
@@ -191,15 +191,15 @@ const styles = StyleSheet.create({
     borderRadius: RADIUS.sm,
   },
   lengthActive: {
-    backgroundColor: COLORS.amber,
-    borderColor: COLORS.amber,
+    backgroundColor: COLORS.accent,
+    borderColor: COLORS.accent,
   },
   lengthLabel: {
     ...TYPE.caption,
     color: COLORS.textMuted,
   },
   lengthLabelActive: {
-    color: COLORS.onAmber,
+    color: COLORS.onAccent,
     fontWeight: '700',
   },
   toggle: {
@@ -207,12 +207,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: SPACING.sm,
-    backgroundColor: COLORS.amber,
+    backgroundColor: COLORS.accent,
     borderRadius: RADIUS.lg,
     paddingVertical: SPACING.md,
   },
   toggleLabel: {
     ...TYPE.title,
-    color: COLORS.onAmber,
+    color: COLORS.onAccent,
   },
 });

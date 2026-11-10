@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   cta: {
     ...TYPE.bodySmall,
-    color: COLORS.amber,
+    color: COLORS.accent,
     fontWeight: '700',
   },
 });

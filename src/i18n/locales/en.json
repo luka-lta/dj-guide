@@ -1,23 +1,23 @@
 {
   "tabs": {
     "pult": {
-      "title": "Mixer Explainer",
-      "label": "Mixer"
+      "title": "Your gear",
+      "label": "Gear"
     },
     "rekordbox": {
-      "title": "rekordbox Guide",
+      "title": "rekordbox",
       "label": "rekordbox"
     },
     "grundlagen": {
-      "title": "Basics & Mixing",
-      "label": "Basics"
+      "title": "Learn",
+      "label": "Learn"
     },
     "troubleshoot": {
-      "title": "Troubleshoot",
-      "label": "Problems"
+      "title": "What’s wrong?",
+      "label": "Help"
     },
     "tools": {
-      "title": "DJ Tools",
+      "title": "Tools",
       "label": "Tools"
     }
   },
@@ -63,22 +63,25 @@
     "rewardHintCta": "Watch"
   },
   "pult": {
-    "searchPlaceholder": "Enter button, knob, function or label…",
+    "searchPlaceholder": "Search a button or knob",
     "hint": "Spelling, capitalisation and hyphens don't matter. Type a term or tap an area of the mixer.",
     "emptyInitial": "Enter a search term or tap a section above to see all controls in that area.",
     "emptyNoResults": "No results. Try a different term, e.g. the button name or its printed label.",
     "zone": {
-      "deckL": "Deck Left",
-      "deckR": "Deck Right",
-      "mixer": "Mixer & Display",
-      "browser": "Browser & USB"
+      "deckL": "Deck left",
+      "deckR": "Deck right",
+      "mixer": "Mixer",
+      "browser": "Browser & ports"
     },
     "controlCard": {
       "practiceLabel": "Practice & Effect"
     },
     "zoneDiagram": {
       "entryCount": "{{count}} entries"
-    }
+    },
+    "switchDevice": "Switch device to {{device}}",
+    "printed": "Printed",
+    "more": "More in {{zone}}"
   },
   "rekordbox": {
     "searchPlaceholder": "Search topic, e.g. 'Smart List', 'USB', 'Beatgrid'…",
@@ -92,7 +95,7 @@
     }
   },
   "grundlagen": {
-    "searchPlaceholder": "Search topic, e.g. 'Sub', 'Trim', 'Room Modes', 'Camelot'…",
+    "searchPlaceholder": "Search a topic, e.g. trim, sub, Camelot",
     "noResults": "No results. Try a different term.",
     "camelot": {
       "legendMajor": "Major (B)",
@@ -104,11 +107,23 @@
       "fehlerdiagnose": "Diagnostics",
       "setupRaum": "Setup & Room",
       "harmonischesMixen": "Harmonic Mixing"
+    },
+    "trimDemo": {
+      "title": "Try it",
+      "turn": "Turn trim",
+      "quietWord": "Too quiet.",
+      "quietText": "The track gets lost in the mix and you end up pushing the master too far.",
+      "goodWord": "Good.",
+      "goodText": "Green, with a short yellow on the loudest parts. Exactly right.",
+      "hotWord": "Borderline.",
+      "hotText": "Bring it down a little, or the next drop will hit red.",
+      "clipWord": "Clipping.",
+      "clipText": "The peaks get cut off (red). It sounds harsh, however low the master is."
     }
   },
   "troubleshoot": {
-    "searchPlaceholder": "Describe the problem, e.g. 'track won't start'…",
-    "emptyInitial": "Enter a short search term or tap a category above.",
+    "searchPlaceholder": "e.g. no sound, crackling, sync",
+    "emptyInitial": "Find every other problem with the search or the categories above.",
     "emptyNoResults": "No results. Try a shorter or different keyword.",
     "causeLabel": "Cause",
     "fixLabel": "Fix",
@@ -117,7 +132,8 @@
       "rekordbox": "rekordbox",
       "tracks": "Tracks",
       "mixing": "Mixing"
-    }
+    },
+    "firstSetTitle": "Happens to almost everyone in their first set"
   },
   "tools": {
     "names": {
@@ -170,5 +186,24 @@
       "pitch": "Pitch needed",
       "outOfRange": "Outside ±{{percent}} %. Pick a track with a closer tempo."
     }
+  },
+  "settings": {
+    "title": "Settings",
+    "close": "Close",
+    "proCta": "See Pro: no ads, bookmarks, all tools"
+  },
+  "check": {
+    "counter": "Check {{current}} of {{total}}",
+    "now": "now",
+    "target": "like this",
+    "solved": "It works again",
+    "stillNot": "Still not, next check",
+    "stillNotLast": "Still not",
+    "solvedTitle": "Working again.",
+    "solvedBody": "Solved: {{cause}}. Happens to everyone.",
+    "exhaustedTitle": "All checks done.",
+    "done": "Back to the overview",
+    "back": "Back",
+    "notFound": "This check does not exist."
   }
 }

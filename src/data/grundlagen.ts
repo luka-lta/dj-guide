@@ -50,6 +50,7 @@ export const grundlagenSections: GrundlagenSection[] = [
           en: 'Load the track and set the fader to 0 dB (usually the middle-to-upper position with a noticeable detent), then turn up trim until the channel level meter peaks predominantly green with occasional brief yellow at the loudest parts of the track. Permanently red means clipping. Do this once per track — do not constantly readjust during a live mix.',
         },
       },
+      { type: 'trimDemo' },
       {
         type: 'warn',
         text: {

@@ -1,3 +1,8 @@
+import {
+  ArchivoNarrow_600SemiBold,
+  ArchivoNarrow_700Bold,
+  useFonts,
+} from '@expo-google-fonts/archivo-narrow';
 import { Stack, usePathname } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
@@ -22,6 +27,9 @@ function ScreenTracker() {
 
 export default function RootLayout() {
   const [ready, setReady] = useState(false);
+  // A font that fails to load falls back to the system font, so an error must not block the app.
+  const [fontsLoaded, fontError] = useFonts({ ArchivoNarrow_600SemiBold, ArchivoNarrow_700Bold });
+  const fontsDone = fontsLoaded || fontError !== null;
 
   useEffect(() => {
     initI18n().then(() => setReady(true));
@@ -31,7 +39,7 @@ export default function RootLayout() {
     if (ready) maybeRequestReview();
   }, [ready]);
 
-  if (!ready) {
+  if (!ready || !fontsDone) {
     return <View style={{ flex: 1, backgroundColor: COLORS.bg }} />;
   }
 
@@ -42,9 +50,11 @@ export default function RootLayout() {
             <AdsProvider>
               <BookmarksProvider>
                 <ScreenTracker />
-                <StatusBar style="light" />
+                <StatusBar style="dark" />
                 <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: COLORS.bg } }}>
                   <Stack.Screen name="pro" options={{ presentation: 'modal' }} />
+                  <Stack.Screen name="settings" options={{ presentation: 'modal' }} />
+                  <Stack.Screen name="check/[flow]" />
                 </Stack>
               </BookmarksProvider>
             </AdsProvider>

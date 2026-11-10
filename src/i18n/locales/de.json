@@ -1,23 +1,23 @@
 {
   "tabs": {
     "pult": {
-      "title": "Pult-Erklärung",
+      "title": "Dein Pult",
       "label": "Pult"
     },
     "rekordbox": {
-      "title": "rekordbox Anleitung",
+      "title": "rekordbox",
       "label": "rekordbox"
     },
     "grundlagen": {
-      "title": "Grundlagen & Mixing",
-      "label": "Grundlagen"
+      "title": "Lernen",
+      "label": "Lernen"
     },
     "troubleshoot": {
-      "title": "Problemlösung",
-      "label": "Probleme"
+      "title": "Was ist los?",
+      "label": "Hilfe"
     },
     "tools": {
-      "title": "DJ-Tools",
+      "title": "Tools",
       "label": "Tools"
     }
   },
@@ -63,22 +63,25 @@
     "rewardHintCta": "Ansehen"
   },
   "pult": {
-    "searchPlaceholder": "Taste, Regler, Funktion oder Aufdruck eingeben…",
+    "searchPlaceholder": "Taste oder Regler suchen",
     "hint": "Schreibweise, Groß-/Kleinschreibung und Bindestriche sind egal. Tippe einen Begriff ein oder klicke auf einen Bereich des Pults.",
     "emptyInitial": "Suche eingeben oder Bereich oben antippen, um alle Bedienelemente dieses Bereichs zu sehen.",
     "emptyNoResults": "Kein Treffer. Anderen Begriff versuchen, z.B. den Namen der Taste oder den Aufdruck.",
     "zone": {
       "deckL": "Deck links",
       "deckR": "Deck rechts",
-      "mixer": "Mixer & Display",
-      "browser": "Browser & USB"
+      "mixer": "Mixer",
+      "browser": "Browser & Anschlüsse"
     },
     "controlCard": {
       "practiceLabel": "Praxis & Auswirkung"
     },
     "zoneDiagram": {
       "entryCount": "{{count}} Einträge"
-    }
+    },
+    "switchDevice": "Gerät wechseln zu {{device}}",
+    "printed": "Aufdruck",
+    "more": "Mehr im Bereich {{zone}}"
   },
   "rekordbox": {
     "searchPlaceholder": "Thema suchen, z.B. 'Intelligente Liste', 'USB', 'Beatgrid'…",
@@ -92,7 +95,7 @@
     }
   },
   "grundlagen": {
-    "searchPlaceholder": "Thema suchen, z.B. 'Sub', 'Trim', 'Raummoden', 'Camelot'…",
+    "searchPlaceholder": "Thema suchen, z. B. Trim, Sub, Camelot",
     "noResults": "Kein Treffer. Anderen Begriff versuchen.",
     "camelot": {
       "legendMajor": "Dur / Major (B)",
@@ -104,11 +107,23 @@
       "fehlerdiagnose": "Fehlerdiagnose",
       "setupRaum": "Setup & Raum",
       "harmonischesMixen": "Harmonisches Mixen"
+    },
+    "trimDemo": {
+      "title": "Probier es aus",
+      "turn": "Trim drehen",
+      "quietWord": "Zu leise.",
+      "quietText": "Der Track geht im Mix unter, und du drehst später den Master zu weit auf.",
+      "goodWord": "Passt.",
+      "goodText": "Grün, an den lautesten Stellen kurz gelb. Genau so.",
+      "hotWord": "Grenzwertig.",
+      "hotText": "Noch ein Stück runter, sonst wird es beim nächsten Drop rot.",
+      "clipWord": "Clipping.",
+      "clipText": "Die Spitzen werden abgeschnitten (rot). Das klingt kratzig, egal wie leise der Master ist."
     }
   },
   "troubleshoot": {
-    "searchPlaceholder": "Problem kurz beschreiben, z.B. 'Track startet nicht'…",
-    "emptyInitial": "Kurzen Suchbegriff eingeben oder Kategorie oben antippen.",
+    "searchPlaceholder": "z. B. kein Ton, rauscht, Sync",
+    "emptyInitial": "Alle anderen Probleme findest du über die Suche oder die Kategorien oben.",
     "emptyNoResults": "Kein Treffer. Anderen Begriff versuchen, z.B. kürzer oder mit anderem Stichwort.",
     "causeLabel": "Ursache",
     "fixLabel": "Lösung",
@@ -117,7 +132,8 @@
       "rekordbox": "rekordbox",
       "tracks": "Tracks",
       "mixing": "Mixing"
-    }
+    },
+    "firstSetTitle": "Passiert fast jedem im ersten Set"
   },
   "tools": {
     "names": {
@@ -170,5 +186,24 @@
       "pitch": "Nötiger Pitch",
       "outOfRange": "Liegt außerhalb von ±{{percent}} %. Wähle einen Track mit näherem Tempo."
     }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "close": "Schließen",
+    "proCta": "Pro ansehen: keine Werbung, Lesezeichen, alle Tools"
+  },
+  "check": {
+    "counter": "Check {{current}} von {{total}}",
+    "now": "jetzt",
+    "target": "so",
+    "solved": "Läuft wieder",
+    "stillNot": "Immer noch nicht, weiter",
+    "stillNotLast": "Immer noch nicht",
+    "solvedTitle": "Läuft wieder.",
+    "solvedBody": "Gelöst: {{cause}}. Das passiert jedem mal.",
+    "exhaustedTitle": "Alle Checks durch.",
+    "done": "Zurück zur Übersicht",
+    "back": "Zurück",
+    "notFound": "Diese Fehlersuche gibt es nicht."
   }
 }

@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -11,15 +10,6 @@ import { SPACING } from '../../theme/spacing';
 import { TYPE } from '../../theme/typography';
 import { BookmarkButton } from '../shared/BookmarkButton';
 import { HighlightText } from '../shared/HighlightText';
-
-type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
-
-const ZONE_ICONS: Record<Zone, IoniconName> = {
-  deckL: 'disc-outline',
-  deckR: 'disc-outline',
-  mixer: 'options-outline',
-  browser: 'folder-outline',
-};
 
 interface ControlCardProps {
   control: Control;
@@ -44,7 +34,6 @@ export function ControlCard({ control, query, bookmarkKey }: ControlCardProps) {
       <View style={styles.headerRow}>
         <View style={styles.tagRow}>
           <View style={styles.tag}>
-            <Ionicons name={ZONE_ICONS[control.zone]} size={11} color={COLORS.textMuted} />
             <Text style={styles.tagText}>{zoneName}</Text>
           </View>
           {control.label ? (
@@ -73,12 +62,9 @@ export function ControlCard({ control, query, bookmarkKey }: ControlCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: COLORS.surface,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: RADIUS.lg,
-    padding: SPACING.lg,
-    marginBottom: SPACING.sm + 2,
+    paddingVertical: SPACING.lg,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
   },
   headerRow: {
     flexDirection: 'row',
@@ -96,16 +82,10 @@ const styles = StyleSheet.create({
   tag: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: SPACING.xs,
-    paddingVertical: 3,
-    paddingHorizontal: SPACING.sm,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: RADIUS.sm,
   },
   tagText: {
     ...TYPE.label,
-    color: COLORS.textMuted,
+    color: COLORS.accent,
   },
   tagLabel: {
     backgroundColor: COLORS.surfaceRaised,
@@ -127,17 +107,14 @@ const styles = StyleSheet.create({
     color: COLORS.textMuted,
   },
   tip: {
-    marginTop: SPACING.md,
-    padding: SPACING.sm + 2,
-    borderRadius: RADIUS.sm,
-    backgroundColor: COLORS.amberMuted,
-    borderLeftWidth: 2,
-    borderLeftColor: COLORS.amber,
+    marginTop: SPACING.sm,
   },
   tipLabel: {
-    ...TYPE.label,
-    color: COLORS.amber,
+    ...TYPE.subtitle,
+    color: COLORS.text,
     marginBottom: SPACING.xs,
+    minHeight: 32,
+    textAlignVertical: 'center',
   },
   tipText: {
     ...TYPE.body,

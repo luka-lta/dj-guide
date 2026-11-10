@@ -1,5 +1,6 @@
+import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { COLORS } from '../../theme/colors';
 import { RADIUS } from '../../theme/radius';
 import { SPACING } from '../../theme/spacing';
@@ -15,13 +16,14 @@ export function SearchInput({ value, onChangeText, placeholder }: SearchInputPro
 
   return (
     <View style={[styles.wrap, isFocused && styles.wrapFocused]}>
-      <Text style={styles.icon}>⌕</Text>
+      <Ionicons name="search" size={19} color={COLORS.textMuted} style={styles.icon} />
       <TextInput
         style={styles.input}
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={COLORS.textFaint}
+        accessibilityLabel={placeholder}
         autoCorrect={false}
         autoCapitalize="none"
         onFocus={() => setIsFocused(true)}
@@ -36,25 +38,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: COLORS.surface,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: RADIUS.md,
+    borderWidth: 2,
+    borderColor: 'transparent',
+    borderRadius: RADIUS.pill,
     marginBottom: SPACING.md,
+    minHeight: 48,
   },
   wrapFocused: {
-    borderColor: COLORS.amber,
+    borderColor: COLORS.ink,
   },
   icon: {
-    color: COLORS.textFaint,
-    fontSize: 17,
-    paddingLeft: SPACING.md,
-    paddingRight: SPACING.xs,
+    paddingLeft: SPACING.lg,
+    paddingRight: SPACING.sm,
   },
   input: {
     flex: 1,
-    paddingVertical: SPACING.md + 2,
+    paddingVertical: SPACING.md,
     paddingRight: SPACING.lg,
-    fontSize: 14.5,
+    fontSize: 16,
     color: COLORS.text,
   },
 });

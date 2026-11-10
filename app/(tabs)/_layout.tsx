@@ -1,10 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAds } from '../../src/ads/AdsContext';
 import { AdTabBar } from '../../src/components/shared/AdTabBar';
-import { LanguageSwitcherButton } from '../../src/components/shared/LanguageSwitcherButton';
-import { ProButton } from '../../src/components/shared/ProButton';
 import { COLORS } from '../../src/theme/colors';
 import { SPACING } from '../../src/theme/spacing';
 
@@ -15,6 +14,7 @@ const renderTabBar: NonNullable<React.ComponentProps<typeof Tabs>['tabBar']> = p
 export default function TabsLayout() {
   const { t } = useTranslation();
   const { tryShowInterstitial } = useAds();
+  const insets = useSafeAreaInsets();
 
   const SCREENS: {
     name: string;
@@ -23,44 +23,34 @@ export default function TabsLayout() {
     icon: IoniconName;
     iconActive: IoniconName;
   }[] = [
-    { name: 'pult', title: t('tabs.pult.title'), label: t('tabs.pult.label'), icon: 'radio-outline', iconActive: 'radio' },
+    { name: 'pult', title: t('tabs.pult.title'), label: t('tabs.pult.label'), icon: 'options-outline', iconActive: 'options' },
     { name: 'rekordbox', title: t('tabs.rekordbox.title'), label: t('tabs.rekordbox.label'), icon: 'disc-outline', iconActive: 'disc' },
-    { name: 'grundlagen', title: t('tabs.grundlagen.title'), label: t('tabs.grundlagen.label'), icon: 'musical-notes-outline', iconActive: 'musical-notes' },
-    { name: 'troubleshoot', title: t('tabs.troubleshoot.title'), label: t('tabs.troubleshoot.label'), icon: 'construct-outline', iconActive: 'construct' },
-    { name: 'tools', title: t('tabs.tools.title'), label: t('tabs.tools.label'), icon: 'options-outline', iconActive: 'options' },
+    { name: 'grundlagen', title: t('tabs.grundlagen.title'), label: t('tabs.grundlagen.label'), icon: 'book-outline', iconActive: 'book' },
+    { name: 'troubleshoot', title: t('tabs.troubleshoot.title'), label: t('tabs.troubleshoot.label'), icon: 'help-buoy-outline', iconActive: 'help-buoy' },
+    { name: 'tools', title: t('tabs.tools.title'), label: t('tabs.tools.label'), icon: 'construct-outline', iconActive: 'construct' },
   ];
 
   return (
     <Tabs
       tabBar={renderTabBar}
       screenOptions={{
-        headerStyle: {
-          backgroundColor: COLORS.bg,
-          shadowColor: 'transparent',
-          borderBottomWidth: 1,
-          borderBottomColor: COLORS.border,
-        },
-        headerTintColor: COLORS.text,
-        headerTitleStyle: {
-          fontWeight: '700',
-          fontSize: 16,
-          letterSpacing: -0.1,
-        },
-        headerShadowVisible: false,
-        headerLeft: () => <ProButton />,
-        headerRight: () => <LanguageSwitcherButton />,
+        // Each screen draws its own big title (ScreenHeader), so the navigation header stays hidden.
+        headerShown: false,
+        sceneStyle: { backgroundColor: COLORS.bg },
         tabBarStyle: {
           backgroundColor: COLORS.bg,
           borderTopColor: COLORS.border,
           borderTopWidth: 1,
-          paddingTop: SPACING.xs,
+          // Fixed height so icon and the larger label both fit, plus the home-indicator inset.
+          height: 60 + insets.bottom,
+          paddingTop: SPACING.xs + 2,
+          paddingBottom: insets.bottom + SPACING.xs,
         },
-        tabBarActiveTintColor: COLORS.amber,
+        tabBarActiveTintColor: COLORS.text,
         tabBarInactiveTintColor: COLORS.textFaint,
         tabBarLabelStyle: {
-          fontSize: 10,
+          fontSize: 11.5,
           fontWeight: '600',
-          letterSpacing: 0.2,
           marginBottom: 2,
         },
       }}

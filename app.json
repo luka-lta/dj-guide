@@ -6,15 +6,12 @@
     "version": "0.7.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "dev.luka-lta.dj-guide",
       "googleServicesFile": "./GoogleService-Info.plist",
-      "icon": {
-        "light": "./assets/DJ_GUDE_WHITE.jpg",
-        "dark": "./assets/DJ_GUIDE_DARK.png"
-      },
+      "icon": "./assets/icon.png",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -22,7 +19,12 @@
     "android": {
       "package": "dev.luka_lta.dj_guide",
       "googleServicesFile": "./google-services.json",
-      "icon": "./assets/DJ_GUIDE_DARK.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png",
+        "backgroundColor": "#141414"
+      },
       "predictiveBackGestureEnabled": false
     },
     "locales": {

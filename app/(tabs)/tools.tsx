@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from 'react-native';
 import { logToolOpen } from '../../src/analytics';
 import { ChipRow } from '../../src/components/shared/ChipRow';
+import { ScreenHeader } from '../../src/components/shared/ScreenHeader';
 import { BpmTool } from '../../src/components/tools/BpmTool';
 import { CamelotTool } from '../../src/components/tools/CamelotTool';
 import { PhraseTool } from '../../src/components/tools/PhraseTool';
@@ -43,6 +44,7 @@ export default function ToolsScreen() {
 
   return (
     <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <ScreenHeader title={t('tabs.tools.title')} />
       <ScrollView style={styles.flex} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <ChipRow chips={TOOL_IDS.map(toChipLabel)} activeChip={toChipLabel(activeTool)} onSelect={handleSelect} />
         {activeTool === 'camelot' && <CamelotTool />}
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bg,
   },
   content: {
-    padding: SPACING.xl - 4,
-    paddingBottom: SPACING.xl - 4,
+    paddingHorizontal: SPACING.xl - 4,
+    paddingBottom: SPACING.xl,
   },
 });

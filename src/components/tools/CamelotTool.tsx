@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   keyLabel: {
     ...TYPE.title,
-    color: COLORS.amber,
+    color: COLORS.accent,
   },
   keyClassic: {
     ...TYPE.caption,

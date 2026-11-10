@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { BookmarkKey } from '../../bookmarks/bookmarkKey';
 import { TroubleshootEntry } from '../../data/types';
+import { splitSteps } from '../../utils/steps';
 import { useL } from '../../i18n/useL';
 import { COLORS } from '../../theme/colors';
 import { RADIUS } from '../../theme/radius';
@@ -49,10 +50,15 @@ export function TroubleshootCard({ entry, query, isViaConcept, bookmarkKey }: Tr
       </View>
       <View style={styles.block}>
         <View style={styles.blockLabelRow}>
-          <Ionicons name="checkmark-circle-outline" size={13} color={COLORS.amber} />
+          <Ionicons name="checkmark-circle-outline" size={13} color={COLORS.accent} />
           <Text style={[styles.blockLabel, styles.fixLabel]}>{t('troubleshoot.fixLabel')}</Text>
         </View>
-        <HighlightText text={l(entry.fix)} query={query} style={styles.bodyText} />
+        {splitSteps(l(entry.fix)).map((stepText, i, all) => (
+          <View key={i} style={styles.stepRow}>
+            {all.length > 1 ? <Text style={styles.stepNo}>{i + 1}</Text> : null}
+            <HighlightText text={stepText} query={query} style={[styles.bodyText, styles.stepText]} />
+          </View>
+        ))}
       </View>
     </View>
   );
@@ -60,12 +66,9 @@ export function TroubleshootCard({ entry, query, isViaConcept, bookmarkKey }: Tr
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: COLORS.surface,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: RADIUS.lg,
-    padding: SPACING.lg,
-    marginBottom: SPACING.sm + 2,
+    paddingVertical: SPACING.lg,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
   },
   headerRow: {
     flexDirection: 'row',
@@ -80,32 +83,20 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: SPACING.xs + 2,
   },
-  tag: {
-    paddingVertical: 3,
-    paddingHorizontal: SPACING.sm,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: RADIUS.sm,
-  },
+  tag: {},
   tagText: {
     ...TYPE.label,
-    color: COLORS.textMuted,
+    color: COLORS.accent,
   },
-  tagRelated: {
-    paddingVertical: 3,
-    paddingHorizontal: SPACING.sm,
-    borderWidth: 1,
-    borderColor: COLORS.amberBorder,
-    borderRadius: RADIUS.sm,
-  },
+  tagRelated: {},
   tagRelatedText: {
     ...TYPE.label,
-    color: COLORS.amber,
+    color: COLORS.textFaint,
   },
   title: {
     ...TYPE.title,
     color: COLORS.text,
-    marginTop: SPACING.sm,
+    marginTop: SPACING.xs,
     marginBottom: SPACING.md,
   },
   block: {
@@ -122,10 +113,24 @@ const styles = StyleSheet.create({
     color: COLORS.textMuted,
   },
   fixLabel: {
-    color: COLORS.amber,
+    color: COLORS.accent,
   },
   bodyText: {
     ...TYPE.body,
     color: COLORS.textMuted,
+  },
+  stepRow: {
+    flexDirection: 'row',
+    gap: SPACING.sm + 2,
+    marginTop: SPACING.xs,
+  },
+  stepNo: {
+    ...TYPE.title,
+    color: COLORS.accent,
+    width: 16,
+  },
+  stepText: {
+    flex: 1,
+    color: COLORS.text,
   },
 });

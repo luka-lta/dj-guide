@@ -15,10 +15,10 @@ interface CamelotWheelProps {
 }
 
 function toChipColors(chip: WheelChip, selectedLabel?: string | null, matchLabels?: ReadonlySet<string>) {
-  if (selectedLabel === chip.label) return { fill: COLORS.amber, stroke: COLORS.amber, text: COLORS.onAmber };
-  if (matchLabels?.has(chip.label)) return { fill: COLORS.amberMuted, stroke: COLORS.amber, text: COLORS.amber };
+  if (selectedLabel === chip.label) return { fill: COLORS.accent, stroke: COLORS.accent, text: COLORS.onAccent };
+  if (matchLabels?.has(chip.label)) return { fill: COLORS.accentMuted, stroke: COLORS.accent, text: COLORS.accent };
   if (selectedLabel) return { fill: COLORS.surface, stroke: COLORS.border, text: COLORS.textFaint };
-  if (chip.isMajor) return { fill: COLORS.amberMuted, stroke: COLORS.amber, text: COLORS.amber };
+  if (chip.isMajor) return { fill: COLORS.accentMuted, stroke: COLORS.accent, text: COLORS.accent };
   return { fill: COLORS.surfaceRaised, stroke: COLORS.borderStrong, text: COLORS.textMuted };
 }
 

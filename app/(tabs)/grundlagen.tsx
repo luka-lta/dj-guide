@@ -7,6 +7,7 @@ import { useBookmarks } from '../../src/bookmarks/BookmarksContext';
 import { toBookmarkKey } from '../../src/bookmarks/bookmarkKey';
 import { GrundlagenSection } from '../../src/components/grundlagen/GrundlagenSection';
 import { ChipRow } from '../../src/components/shared/ChipRow';
+import { ScreenHeader } from '../../src/components/shared/ScreenHeader';
 import { EmptyState } from '../../src/components/shared/EmptyState';
 import { SearchInput } from '../../src/components/shared/SearchInput';
 import { grundlagenSections } from '../../src/data/grundlagen';
@@ -73,6 +74,7 @@ export default function GrundlagenScreen() {
       style={styles.flex}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
+      <ScreenHeader title={t('tabs.grundlagen.title')} />
       <ScrollView
         style={styles.flex}
         contentContainerStyle={styles.content}
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bg,
   },
   content: {
-    padding: SPACING.xl - 4,
-    paddingBottom: SPACING.xl - 4,
+    paddingHorizontal: SPACING.xl - 4,
+    paddingBottom: SPACING.xl,
   },
 });

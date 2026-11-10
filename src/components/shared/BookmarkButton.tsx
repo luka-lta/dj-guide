@@ -33,7 +33,7 @@ export function BookmarkButton({ bookmarkKey, tab }: BookmarkButtonProps) {
       <Ionicons
         name={isSet ? 'bookmark' : 'bookmark-outline'}
         size={BOOKMARK_ICON_SIZE}
-        color={isSet ? COLORS.amber : COLORS.textMuted}
+        color={isSet ? COLORS.accent : COLORS.textMuted}
       />
     </TouchableOpacity>
   );

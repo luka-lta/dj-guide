@@ -26,7 +26,7 @@ export function RewardCard() {
   if (remaining !== null && !isPro) {
     return (
       <View style={styles.card}>
-        <Ionicons name="time-outline" size={18} color={COLORS.amber} />
+        <Ionicons name="time-outline" size={18} color={COLORS.accent} />
         <Text style={styles.label}>{t('pro.rewardActive', { time: remaining })}</Text>
       </View>
     );
@@ -36,7 +36,7 @@ export function RewardCard() {
 
   return (
     <TouchableOpacity style={styles.card} onPress={watchRewarded}>
-      <Ionicons name="play-circle-outline" size={18} color={COLORS.amber} />
+      <Ionicons name="play-circle-outline" size={18} color={COLORS.accent} />
       <Text style={styles.label}>{t('pro.rewardCta')}</Text>
     </TouchableOpacity>
   );
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: SPACING.sm,
     borderWidth: 1,
-    borderColor: COLORS.amberBorder,
+    borderColor: COLORS.accentBorder,
     borderRadius: RADIUS.lg,
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.md,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   label: {
     ...TYPE.bodySmall,
-    color: COLORS.amber,
+    color: COLORS.accent,
     fontWeight: '700',
     flex: 1,
   },

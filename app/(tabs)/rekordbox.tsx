@@ -7,6 +7,7 @@ import { useBookmarks } from '../../src/bookmarks/BookmarksContext';
 import { toBookmarkKey } from '../../src/bookmarks/bookmarkKey';
 import { ChapterAccordion } from '../../src/components/rekordbox/ChapterAccordion';
 import { ChipRow } from '../../src/components/shared/ChipRow';
+import { ScreenHeader } from '../../src/components/shared/ScreenHeader';
 import { EmptyState } from '../../src/components/shared/EmptyState';
 import { SearchInput } from '../../src/components/shared/SearchInput';
 import { chapters } from '../../src/data/chapters';
@@ -88,6 +89,7 @@ export default function RekordboxScreen() {
       style={styles.flex}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
+      <ScreenHeader title={t('tabs.rekordbox.title')} />
       <ScrollView
         style={styles.flex}
         contentContainerStyle={styles.content}
@@ -126,7 +128,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bg,
   },
   content: {
-    padding: SPACING.xl - 4,
-    paddingBottom: SPACING.xl - 4,
+    paddingHorizontal: SPACING.xl - 4,
+    paddingBottom: SPACING.xl,
   },
 });

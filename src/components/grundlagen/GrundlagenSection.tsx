@@ -14,6 +14,7 @@ import { HighlightText } from '../shared/HighlightText';
 import { WarnBox } from '../shared/WarnBox';
 import { CamelotWheel } from './CamelotWheel';
 import { SignalFlowDiagram } from './SignalFlowDiagram';
+import { TrimDemo } from './TrimDemo';
 
 function WheelLegend() {
   const { t } = useTranslation();
@@ -44,6 +45,8 @@ function renderNode(
       return <WarnBox key={index} text={l(node.text)} />;
     case 'signalFlow':
       return <SignalFlowDiagram key={index} steps={node.steps.map(l)} />;
+    case 'trimDemo':
+      return <TrimDemo key={index} />;
     case 'camelotWheel':
       return (
         <React.Fragment key={index}>
@@ -89,7 +92,9 @@ export function GrundlagenSection({ section, query, isViaConcept, bookmarkKey }:
 
 const styles = StyleSheet.create({
   section: {
-    marginBottom: SPACING.xl - 4,
+    paddingVertical: SPACING.xl - 4,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
   },
   headerRow: {
     flexDirection: 'row',
@@ -104,32 +109,20 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: SPACING.xs + 2,
   },
-  tag: {
-    paddingVertical: 3,
-    paddingHorizontal: SPACING.sm,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: RADIUS.sm,
-  },
+  tag: {},
   tagText: {
     ...TYPE.label,
-    color: COLORS.textMuted,
+    color: COLORS.accent,
   },
-  tagRelated: {
-    paddingVertical: 3,
-    paddingHorizontal: SPACING.sm,
-    borderWidth: 1,
-    borderColor: COLORS.amberBorder,
-    borderRadius: RADIUS.sm,
-  },
+  tagRelated: {},
   tagRelatedText: {
     ...TYPE.label,
-    color: COLORS.amber,
+    color: COLORS.textFaint,
   },
   title: {
-    ...TYPE.title,
+    ...TYPE.headline,
     color: COLORS.text,
-    marginBottom: SPACING.sm,
+    marginBottom: SPACING.sm + 2,
   },
   paragraph: {
     ...TYPE.body,
@@ -157,8 +150,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.surfaceRaised,
   },
   legendDotMajor: {
-    borderColor: COLORS.amber,
-    backgroundColor: COLORS.amberMuted,
+    borderColor: COLORS.accent,
+    backgroundColor: COLORS.accentMuted,
   },
   legendText: {
     fontSize: 11.5,

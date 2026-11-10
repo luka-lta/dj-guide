@@ -36,7 +36,8 @@ export type GrundlagenBodyNode =
   | { type: 'paragraph'; text: LocalizedString }
   | { type: 'warn'; text: LocalizedString }
   | { type: 'signalFlow'; steps: LocalizedString[] }
-  | { type: 'camelotWheel' };
+  | { type: 'camelotWheel' }
+  | { type: 'trimDemo' };
 
 export interface GrundlagenSection {
   id: string;

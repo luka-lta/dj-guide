@@ -72,7 +72,7 @@ export default function ProScreen() {
           disabled={isPending}
         >
           {isPending ? (
-            <ActivityIndicator size="small" color={COLORS.onAmber} />
+            <ActivityIndicator size="small" color={COLORS.paper} />
           ) : (
             <Text style={styles.buyLabel}>{t('pro.buy', { price: price ?? '…' })}</Text>
           )}
@@ -113,7 +113,7 @@ export default function ProScreen() {
 function Benefit({ label }: { label: string }) {
   return (
     <View style={styles.benefit}>
-      <Ionicons name="checkmark-circle" size={20} color={COLORS.amber} />
+      <Ionicons name="checkmark-circle" size={20} color={COLORS.accent} />
       <Text style={styles.benefitText}>{label}</Text>
     </View>
   );
@@ -129,18 +129,13 @@ const styles = StyleSheet.create({
     gap: SPACING.lg,
   },
   title: {
-    ...TYPE.screenTitle,
+    ...TYPE.display,
     color: COLORS.text,
-    textAlign: 'center',
     marginTop: SPACING.lg,
   },
   benefits: {
     gap: SPACING.md,
-    backgroundColor: COLORS.surface,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: RADIUS.lg,
-    padding: SPACING.lg,
+    paddingVertical: SPACING.sm,
   },
   benefit: {
     flexDirection: 'row',
@@ -153,8 +148,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buyButton: {
-    backgroundColor: COLORS.amber,
-    borderRadius: RADIUS.lg,
+    backgroundColor: COLORS.ink,
+    borderRadius: RADIUS.lg + 4,
+    minHeight: 54,
     paddingVertical: SPACING.md,
     alignItems: 'center',
     justifyContent: 'center',
@@ -164,17 +160,17 @@ const styles = StyleSheet.create({
   },
   buyLabel: {
     ...TYPE.title,
-    color: COLORS.onAmber,
+    color: COLORS.paper,
   },
   owned: {
-    backgroundColor: COLORS.amberMuted,
+    backgroundColor: COLORS.accentMuted,
     borderRadius: RADIUS.lg,
     paddingVertical: SPACING.md,
     alignItems: 'center',
   },
   ownedText: {
     ...TYPE.title,
-    color: COLORS.amber,
+    color: COLORS.accent,
   },
   link: {
     alignItems: 'center',
@@ -187,7 +183,7 @@ const styles = StyleSheet.create({
   },
   rewarded: {
     borderWidth: 1,
-    borderColor: COLORS.amberBorder,
+    borderColor: COLORS.accentBorder,
     borderRadius: RADIUS.lg,
     paddingVertical: SPACING.md,
     paddingHorizontal: SPACING.lg,
@@ -195,7 +191,7 @@ const styles = StyleSheet.create({
   },
   rewardedText: {
     ...TYPE.subtitle,
-    color: COLORS.amber,
+    color: COLORS.accent,
     textAlign: 'center',
   },
 });

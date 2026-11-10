@@ -26,6 +26,8 @@ export function ChipRow({ chips, activeChip, onSelect }: ChipRowProps) {
             key={chip}
             style={[styles.chip, isActive && styles.chipActive]}
             onPress={() => onSelect(isActive ? null : chip)}
+            accessibilityRole="button"
+            accessibilityState={{ selected: isActive }}
           >
             <Text style={[styles.label, isActive && styles.labelActive]}>{chip}</Text>
           </TouchableOpacity>
@@ -45,23 +47,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   chip: {
-    paddingVertical: 8,
-    paddingHorizontal: SPACING.md,
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: RADIUS.sm,
+    minHeight: 40,
+    justifyContent: 'center',
+    paddingHorizontal: SPACING.lg,
+    backgroundColor: COLORS.surface,
+    borderRadius: RADIUS.pill,
   },
   chipActive: {
-    backgroundColor: COLORS.amber,
-    borderColor: COLORS.amber,
+    backgroundColor: COLORS.ink,
   },
   label: {
-    ...TYPE.caption,
+    ...TYPE.label,
     color: COLORS.textMuted,
   },
   labelActive: {
-    color: COLORS.onAmber,
-    fontWeight: '700',
+    color: COLORS.paper,
   },
 });

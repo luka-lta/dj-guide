@@ -69,20 +69,20 @@ const styles = StyleSheet.create({
   tapButton: {
     alignItems: 'center',
     gap: SPACING.xs,
-    backgroundColor: COLORS.amberMuted,
+    backgroundColor: COLORS.accentMuted,
     borderWidth: 1,
-    borderColor: COLORS.amberBorder,
+    borderColor: COLORS.accentBorder,
     borderRadius: RADIUS.lg,
     paddingVertical: SPACING.xxl,
   },
   tapValue: {
     fontSize: 40,
     fontWeight: '700',
-    color: COLORS.amber,
+    color: COLORS.accent,
   },
   tapLabel: {
     ...TYPE.label,
-    color: COLORS.amber,
+    color: COLORS.accent,
   },
   reset: {
     alignItems: 'center',
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   },
   warning: {
     ...TYPE.bodySmall,
-    color: COLORS.amber,
+    color: COLORS.accent,
     textAlign: 'center',
   },
 });

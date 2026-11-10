@@ -4,7 +4,6 @@ import { BookmarkKey } from '../../bookmarks/bookmarkKey';
 import { Chapter } from '../../data/types';
 import { useL } from '../../i18n/useL';
 import { COLORS } from '../../theme/colors';
-import { RADIUS } from '../../theme/radius';
 import { SPACING } from '../../theme/spacing';
 import { TYPE } from '../../theme/typography';
 import { BookmarkButton } from '../shared/BookmarkButton';
@@ -65,16 +64,10 @@ export function ChapterAccordion({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.surface,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: RADIUS.lg,
-    marginBottom: SPACING.sm + 2,
-    overflow: 'hidden',
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
   },
-  containerOpen: {
-    borderColor: COLORS.borderStrong,
-  },
+  containerOpen: {},
   headRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -87,7 +80,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.md,
-    padding: SPACING.lg,
+    paddingVertical: SPACING.lg,
   },
   num: {
     width: 26,
@@ -95,13 +88,12 @@ const styles = StyleSheet.create({
     flexShrink: 0,
   },
   numText: {
-    ...TYPE.mono,
-    color: COLORS.textFaint,
+    ...TYPE.title,
+    color: COLORS.accent,
   },
   title: {
     flex: 1,
     ...TYPE.title,
-    fontWeight: '600',
     color: COLORS.text,
   },
   arrow: {
@@ -109,16 +101,14 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
   arrowOpen: {
-    color: COLORS.amber,
+    color: COLORS.accent,
     transform: [{ rotate: '90deg' }],
   },
   body: {
     paddingHorizontal: SPACING.lg + 2,
     paddingBottom: SPACING.lg + 2,
-    paddingLeft: 54,
-    borderTopWidth: 1,
-    borderTopColor: COLORS.border,
-    paddingTop: SPACING.md,
+    paddingLeft: 38,
+    paddingTop: 0,
   },
   step: {
     marginBottom: SPACING.md + 2,
@@ -129,7 +119,7 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.xs,
   },
   stepDesc: {
-    ...TYPE.bodySmall,
+    ...TYPE.body,
     color: COLORS.textMuted,
   },
 });
