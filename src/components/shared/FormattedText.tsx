@@ -29,7 +29,7 @@ export function FormattedText({ text, style }: FormattedTextProps) {
     <Text style={style}>
       {segments.map((seg, i) =>
         seg.isBold ? (
-          <Text key={i} style={{ fontWeight: '700', color: COLORS.text }}>
+          <Text key={i} style={{ fontWeight: '600', color: COLORS.text }}>
             {seg.text}
           </Text>
         ) : (

@@ -23,11 +23,11 @@ export default function TabsLayout() {
     icon: IoniconName;
     iconActive: IoniconName;
   }[] = [
-    { name: 'pult', title: t('tabs.pult.title'), label: t('tabs.pult.label'), icon: 'radio-outline', iconActive: 'radio' },
+    { name: 'pult', title: t('tabs.pult.title'), label: t('tabs.pult.label'), icon: 'options-outline', iconActive: 'options' },
     { name: 'rekordbox', title: t('tabs.rekordbox.title'), label: t('tabs.rekordbox.label'), icon: 'disc-outline', iconActive: 'disc' },
     { name: 'grundlagen', title: t('tabs.grundlagen.title'), label: t('tabs.grundlagen.label'), icon: 'musical-notes-outline', iconActive: 'musical-notes' },
-    { name: 'troubleshoot', title: t('tabs.troubleshoot.title'), label: t('tabs.troubleshoot.label'), icon: 'construct-outline', iconActive: 'construct' },
-    { name: 'tools', title: t('tabs.tools.title'), label: t('tabs.tools.label'), icon: 'options-outline', iconActive: 'options' },
+    { name: 'troubleshoot', title: t('tabs.troubleshoot.title'), label: t('tabs.troubleshoot.label'), icon: 'help-buoy-outline', iconActive: 'help-buoy' },
+    { name: 'tools', title: t('tabs.tools.title'), label: t('tabs.tools.label'), icon: 'construct-outline', iconActive: 'construct' },
   ];
 
   return (
@@ -42,9 +42,8 @@ export default function TabsLayout() {
         },
         headerTintColor: COLORS.text,
         headerTitleStyle: {
-          fontWeight: '700',
+          fontWeight: '600',
           fontSize: 16,
-          letterSpacing: -0.1,
         },
         headerShadowVisible: false,
         headerLeft: () => <ProButton />,
@@ -59,8 +58,7 @@ export default function TabsLayout() {
         tabBarInactiveTintColor: COLORS.textFaint,
         tabBarLabelStyle: {
           fontSize: 10,
-          fontWeight: '600',
-          letterSpacing: 0.2,
+          fontWeight: '500',
           marginBottom: 2,
         },
       }}

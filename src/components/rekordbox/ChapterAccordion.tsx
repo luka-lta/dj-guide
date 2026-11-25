@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { BookmarkKey } from '../../bookmarks/bookmarkKey';
@@ -42,7 +43,12 @@ export function ChapterAccordion({
             style={styles.title}
             numberOfLines={2}
           />
-          <Text style={[styles.arrow, isOpen && styles.arrowOpen]}>▶</Text>
+          <Ionicons
+            name="chevron-forward"
+            size={16}
+            color={COLORS.textMuted}
+            style={isOpen ? styles.arrowOpen : undefined}
+          />
         </TouchableOpacity>
         <View style={styles.bookmark}>
           <BookmarkButton bookmarkKey={bookmarkKey} tab="rekordbox" />
@@ -69,7 +75,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.border,
     borderRadius: RADIUS.lg,
-    marginBottom: SPACING.sm + 2,
+    marginBottom: SPACING.md,
     overflow: 'hidden',
   },
   containerOpen: {
@@ -90,7 +96,7 @@ const styles = StyleSheet.create({
     padding: SPACING.lg,
   },
   num: {
-    width: 26,
+    width: 24,
     alignItems: 'flex-start',
     flexShrink: 0,
   },
@@ -101,27 +107,22 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     ...TYPE.title,
-    fontWeight: '600',
     color: COLORS.text,
   },
-  arrow: {
-    color: COLORS.textMuted,
-    fontSize: 11,
-  },
   arrowOpen: {
-    color: COLORS.amber,
     transform: [{ rotate: '90deg' }],
   },
   body: {
-    paddingHorizontal: SPACING.lg + 2,
-    paddingBottom: SPACING.lg + 2,
-    paddingLeft: 54,
+    paddingHorizontal: SPACING.lg,
+    paddingBottom: SPACING.lg,
+    // Bündig mit dem Kapiteltitel: Kopf-Padding + Nummernspalte + Lücke.
+    paddingLeft: SPACING.lg + 24 + SPACING.md,
     borderTopWidth: 1,
     borderTopColor: COLORS.border,
     paddingTop: SPACING.md,
   },
   step: {
-    marginBottom: SPACING.md + 2,
+    marginBottom: SPACING.lg,
   },
   stepTitle: {
     ...TYPE.subtitle,

@@ -45,23 +45,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   chip: {
-    paddingVertical: 8,
+    paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.md,
     backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: COLORS.border,
-    borderRadius: RADIUS.sm,
+    borderRadius: RADIUS.md,
   },
   chipActive: {
-    backgroundColor: COLORS.amber,
-    borderColor: COLORS.amber,
+    backgroundColor: COLORS.surfaceRaised,
+    borderColor: COLORS.amberBorder,
   },
   label: {
     ...TYPE.caption,
     color: COLORS.textMuted,
   },
   labelActive: {
-    color: COLORS.onAmber,
-    fontWeight: '700',
+    color: COLORS.amber,
   },
 });

@@ -4,6 +4,7 @@ import { useLanguage } from '../../i18n/useLanguage';
 import { SupportedLanguage } from '../../i18n/index';
 import { COLORS } from '../../theme/colors';
 import { RADIUS } from '../../theme/radius';
+import { FONT_MONO } from '../../theme/typography';
 
 export function LanguageSwitcherButton() {
   const { currentLanguage, setLanguage } = useLanguage();
@@ -25,14 +26,14 @@ const styles = StyleSheet.create({
     marginRight: 16,
     paddingVertical: 4,
     paddingHorizontal: 8,
-    borderRadius: RADIUS.sm,
+    borderRadius: RADIUS.md,
     borderWidth: 1,
     borderColor: COLORS.border,
   },
   label: {
     color: COLORS.textMuted,
-    fontSize: 11.5,
-    fontWeight: '700',
-    letterSpacing: 1,
+    fontFamily: FONT_MONO,
+    fontSize: 12,
+    fontWeight: '500',
   },
 });

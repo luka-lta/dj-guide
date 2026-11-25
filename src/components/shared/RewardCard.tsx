@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   label: {
     ...TYPE.bodySmall,
     color: COLORS.amber,
-    fontWeight: '700',
+    fontWeight: '600',
     flex: 1,
   },
 });

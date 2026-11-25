@@ -61,6 +61,6 @@ const styles = StyleSheet.create({
   cta: {
     ...TYPE.bodySmall,
     color: COLORS.amber,
-    fontWeight: '700',
+    fontWeight: '600',
   },
 });

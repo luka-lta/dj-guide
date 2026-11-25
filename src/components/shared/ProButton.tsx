@@ -31,10 +31,10 @@ export function ProButton() {
 
 const styles = StyleSheet.create({
   button: {
-    marginLeft: 14,
+    marginLeft: 16,
     paddingVertical: 4,
-    paddingHorizontal: 10,
-    borderRadius: RADIUS.sm,
+    paddingHorizontal: 8,
+    borderRadius: RADIUS.md,
     borderWidth: 1,
     borderColor: COLORS.amberBorder,
     justifyContent: 'center',
@@ -44,21 +44,19 @@ const styles = StyleSheet.create({
   },
   label: {
     color: COLORS.amber,
-    fontSize: 11,
-    fontWeight: '700',
-    letterSpacing: 0.3,
+    fontSize: 12,
+    fontWeight: '500',
   },
   badge: {
-    marginLeft: 14,
+    marginLeft: 16,
     paddingVertical: 4,
-    paddingHorizontal: 10,
-    borderRadius: RADIUS.sm,
+    paddingHorizontal: 8,
+    borderRadius: RADIUS.md,
     backgroundColor: COLORS.amberMuted,
   },
   badgeText: {
     color: COLORS.amber,
-    fontSize: 11,
-    fontWeight: '700',
-    letterSpacing: 0.3,
+    fontSize: 12,
+    fontWeight: '500',
   },
 });

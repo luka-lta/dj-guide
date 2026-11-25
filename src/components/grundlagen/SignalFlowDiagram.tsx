@@ -30,19 +30,19 @@ export function SignalFlowDiagram({ steps }: SignalFlowDiagramProps) {
 
 const styles = StyleSheet.create({
   scroll: {
-    marginVertical: SPACING.lg + 2,
+    marginVertical: SPACING.lg,
   },
   content: {
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'nowrap',
-    gap: SPACING.sm - 2,
+    gap: SPACING.sm,
     paddingBottom: 4,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: SPACING.sm - 2,
+    gap: SPACING.sm,
   },
   step: {
     backgroundColor: COLORS.surface,
