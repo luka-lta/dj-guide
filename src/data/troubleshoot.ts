@@ -173,6 +173,24 @@ export const troubleshoot: TroubleshootEntry[] = [
       en: '1. Turn up the Booth Level knob. 2. Check the cable connection: Booth Out (RCA) is a separate output, not the same as Master Out (XLR). 3. Make sure the monitor speaker is correctly cabled and switched on.',
     },
   },
+  {
+    id: 'pult-eq-kill-unvollstaendig',
+    cat: 'pult',
+    title: {
+      de: 'Bass/Höhen gehen beim Runterdrehen des EQs nicht ganz weg',
+      en: 'Bass/highs do not disappear completely when the EQ is turned down',
+    },
+    keywords: 'eq kill funktioniert nicht bass geht nicht weg iso isolator eq modus shortcut eq kill not working bass not gone isolator mode',
+    cause: {
+      de: 'Das Gerät steht im EQ-Modus statt im ISO-Modus. Im EQ-Modus wird ein Band ganz links nur stark abgesenkt (ca. −26 dB), nicht komplett stummgeschaltet. Bei lauter Anlage bleibt der Rest deutlich hörbar.',
+      en: 'The device is in EQ mode instead of ISO mode. In EQ mode a band at full left is only strongly attenuated (approx. −26 dB), not muted completely. On a loud system the remainder stays clearly audible.',
+    },
+    fix: {
+      de: '1. SHORTCUT-Taste am Display drücken. 2. Von EQ auf ISO umschalten. 3. Regler erneut ganz nach links drehen – das Band sollte jetzt komplett verschwinden. Wer lieber sanft blendet, kann bewusst im EQ-Modus bleiben.',
+      en: '1. Press the SHORTCUT button on the display. 2. Switch from EQ to ISO. 3. Turn the knob fully left again — the band should now disappear completely. If you prefer smooth blends, you can deliberately stay in EQ mode.',
+    },
+    tags: ['eq', 'iso', 'kill', 'bass'],
+  },
 
   // ---- REKORDBOX ----
   {

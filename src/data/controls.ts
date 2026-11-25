@@ -366,12 +366,12 @@ const rx3_raw: Control[] = [
     zone: 'mixer',
     label: 'HI / MID / LOW',
     desc: {
-      de: 'Klangregelung pro Kanal für Höhen, Mitten und Bässe. Bei vollständigem Herunterdrehen (Kill) wird das jeweilige Frequenzband komplett stummgeschaltet – Standardtechnik beim Bass-Swap zwischen zwei Tracks.',
-      en: 'Per-channel tone control for highs, mids, and lows. Turning a band fully down (Kill) mutes that frequency band completely — the standard technique in the bass swap between two tracks.',
+      de: 'Klangregelung pro Kanal für Höhen, Mitten und Bässe. Wie stark ganz links abgesenkt wird, hängt vom Modus ab (über SHORTCUT im Display umschaltbar): Im ISO-Modus wird das Band komplett stummgeschaltet (Kill) – Standardtechnik beim Bass-Swap. Im EQ-Modus bleibt ein leiser Rest hörbar.',
+      en: 'Per-channel tone control for highs, mids, and lows. How far a band is cut at full left depends on the mode (switchable via SHORTCUT on the display): in ISO mode the band is muted completely (Kill) — the standard technique in the bass swap. In EQ mode a quiet remainder stays audible.',
     },
     tip: {
-      de: 'Mittelstellung (12 Uhr) = neutral, keine Veränderung. Rechtsdrehen hebt das Band an, Linksdrehen senkt es ab, ganz links schneidet es komplett weg (Kill). Low regelt den Bassbereich (ca. unter 200 Hz), Mid die Mitten (Stimmen, Snares, viele Synths), Hi die Höhen (Hi-Hats, Cymbals, Luftigkeit). Faustregel: nie zwei Basslines gleichzeitig voll laufen lassen, das erzeugt Mulm im Mix.',
-      en: 'Centre (12 o\'clock) = neutral, no change. Turning right boosts the band; turning left cuts it; fully left removes it completely (Kill). Low controls the bass range (roughly below 200 Hz), Mid controls midrange (voices, snares, many synths), Hi controls highs (hi-hats, cymbals, air). Rule of thumb: never run two basslines at full volume simultaneously — it creates mud in the mix.',
+      de: 'Mittelstellung (12 Uhr) = neutral, keine Veränderung. Rechtsdrehen hebt das Band an, Linksdrehen senkt es ab, ganz links schneidet es im ISO-Modus komplett weg (Kill), im EQ-Modus nur stark ab. Low regelt den Bassbereich (ca. unter 200 Hz), Mid die Mitten (Stimmen, Snares, viele Synths), Hi die Höhen (Hi-Hats, Cymbals, Luftigkeit). Faustregel: nie zwei Basslines gleichzeitig voll laufen lassen, das erzeugt Mulm im Mix.',
+      en: 'Centre (12 o\'clock) = neutral, no change. Turning right boosts the band; turning left cuts it; fully left removes it completely in ISO mode (Kill), or only strongly attenuates it in EQ mode. Low controls the bass range (roughly below 200 Hz), Mid controls midrange (voices, snares, many synths), Hi controls highs (hi-hats, cymbals, air). Rule of thumb: never run two basslines at full volume simultaneously — it creates mud in the mix.',
     },
   },
   {
@@ -649,6 +649,20 @@ const rx3_raw: Control[] = [
     desc: {
       de: 'Der zentrale Farbbildschirm zeigt Wellenformen, Browser, Track-Infos, BPM/Key und dient zur Touch-Steuerung von Browsing und Wiedergabe direkt am Gerät, unabhängig vom Laptop.',
       en: 'The central colour display shows waveforms, browser, track info, BPM/key, and is used for touch control of browsing and playback directly on the device, independently of the laptop.',
+    },
+  },
+  {
+    id: 'shortcut-eq-iso',
+    name: { de: 'Shortcut: EQ/ISO-Umschaltung', en: 'Shortcut: EQ/ISO Switch' },
+    zone: 'mixer',
+    label: 'SHORTCUT → EQ / ISO',
+    desc: {
+      de: 'Legt fest, wie die 3-Band-Regler (HI/MID/LOW) arbeiten. ISO (Isolator): ganz links ist das Band komplett weg (ca. −∞ dB), ein echter Kill. EQ: ganz links wird das Band nur stark abgesenkt (ca. −26 dB), ein leiser Rest bleibt hörbar und die Regelung wirkt weicher. Nach oben heben beide Modi gleich an (ca. +6 dB).',
+      en: 'Determines how the 3-band knobs (HI/MID/LOW) behave. ISO (Isolator): fully left removes the band completely (approx. −∞ dB) — a true kill. EQ: fully left only strongly attenuates the band (approx. −26 dB); a quiet remainder stays audible and the response feels smoother. Both modes boost the same amount (approx. +6 dB).',
+    },
+    tip: {
+      de: 'SHORTCUT-Taste am Display drücken und EQ oder ISO antippen. ISO für harte Bass-Swaps und Cuts, bei denen ein Band schlagartig verschwinden soll. EQ für lange, sanfte Übergänge, bei denen man Frequenzen behutsam rein- und rausnimmt. Wenn der Bass beim Runterdrehen nicht ganz verschwindet, steht das Gerät meist auf EQ.',
+      en: 'Press the SHORTCUT button on the display and tap EQ or ISO. Use ISO for hard bass swaps and cuts where a band should disappear instantly. Use EQ for long, smooth transitions where frequencies are blended in and out gently. If the bass does not disappear completely when turned down, the device is usually set to EQ.',
     },
   },
   {
