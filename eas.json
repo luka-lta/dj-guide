@@ -19,6 +19,10 @@
     "production": {
       "ios": {
         "ascAppId": "6789975788"
+      },
+      "android": {
+        "serviceAccountKeyPath": "./flowtix-501208-c186f04d002b.json",
+        "track": "internal"
       }
     }
   }
