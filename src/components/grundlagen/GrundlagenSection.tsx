@@ -70,9 +70,7 @@ export function GrundlagenSection({ section, query, isViaConcept, bookmarkKey }:
     <View style={styles.section}>
       <View style={styles.headerRow}>
         <View style={styles.tagRow}>
-          <View style={styles.tag}>
-            <Text style={styles.tagText}>{catLabel}</Text>
-          </View>
+          <Text style={styles.category}>{catLabel}</Text>
           {isViaConcept ? (
             <View style={styles.tagRelated}>
               <Text style={styles.tagRelatedText}>{t('common.relatedTopic')}</Text>
@@ -94,7 +92,7 @@ const styles = StyleSheet.create({
   headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     gap: SPACING.sm,
     marginBottom: SPACING.sm,
   },
@@ -102,21 +100,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: SPACING.xs + 2,
+    gap: SPACING.sm,
   },
-  tag: {
-    paddingVertical: 3,
-    paddingHorizontal: SPACING.sm,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: RADIUS.sm,
-  },
-  tagText: {
+  category: {
     ...TYPE.label,
-    color: COLORS.textMuted,
+    color: COLORS.textFaint,
   },
   tagRelated: {
-    paddingVertical: 3,
+    paddingVertical: 2,
     paddingHorizontal: SPACING.sm,
     borderWidth: 1,
     borderColor: COLORS.amberBorder,
@@ -139,19 +130,19 @@ const styles = StyleSheet.create({
   wheelLegend: {
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: SPACING.md + 2,
+    gap: SPACING.md,
     flexWrap: 'wrap',
-    marginBottom: SPACING.lg + 2,
+    marginBottom: SPACING.lg,
   },
   legendItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 5,
+    gap: SPACING.xs,
   },
   legendDot: {
-    width: 9,
-    height: 9,
-    borderRadius: 4.5,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
     borderWidth: 1,
     borderColor: COLORS.borderStrong,
     backgroundColor: COLORS.surfaceRaised,
@@ -161,7 +152,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.amberMuted,
   },
   legendText: {
-    fontSize: 11.5,
+    ...TYPE.caption,
+    fontWeight: '400',
     color: COLORS.textMuted,
   },
 });

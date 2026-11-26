@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
   },
   tapValue: {
     fontSize: 40,
-    fontWeight: '700',
+    fontWeight: '600',
+    fontVariant: ['tabular-nums'],
     color: COLORS.amber,
   },
   tapLabel: {

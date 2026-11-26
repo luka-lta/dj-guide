@@ -32,21 +32,21 @@
     }
   },
   "bookmarks": {
-    "chip": "★ Gemerkt",
+    "chip": "Gemerkt",
     "empty": "Tippe auf das Lesezeichen-Symbol einer Karte, um sie hier zu sammeln.",
     "add": "Merken",
     "remove": "Nicht mehr merken"
   },
   "pro": {
     "button": "Pro",
-    "active": "Pro ✓",
+    "active": "Pro",
     "title": "DJ Guide Pro",
     "benefitNoAds": "Keine Werbung",
     "benefitBookmarks": "Lesezeichen in allen Bereichen",
     "benefitTools": "Phrasen-Trainer und BPM-Tapper",
     "buy": "Einmalig kaufen ({{price}})",
     "restore": "Kauf wiederherstellen",
-    "owned": "Du hast Pro ✓",
+    "owned": "Du hast Pro",
     "rewarded": "Lieber gratis: Video ansehen → 1 Std. werbefrei",
     "privacy": "Datenschutz-Einstellungen",
     "teaserTitle": "Nervt die Werbung?",
@@ -63,9 +63,9 @@
     "rewardHintCta": "Ansehen"
   },
   "pult": {
-    "searchPlaceholder": "Taste, Regler, Funktion oder Aufdruck eingeben…",
-    "hint": "Schreibweise, Groß-/Kleinschreibung und Bindestriche sind egal. Tippe einen Begriff ein oder klicke auf einen Bereich des Pults.",
-    "emptyInitial": "Suche eingeben oder Bereich oben antippen, um alle Bedienelemente dieses Bereichs zu sehen.",
+    "searchPlaceholder": "Taste, Regler oder Aufdruck",
+    "hint": "Schreibweise und Bindestriche sind egal",
+    "emptyInitial": "Tippe einen Bereich des Pults an oder suche nach einem Begriff.",
     "emptyNoResults": "Kein Treffer. Anderen Begriff versuchen, z.B. den Namen der Taste oder den Aufdruck.",
     "zone": {
       "deckL": "Deck links",
@@ -81,7 +81,7 @@
     }
   },
   "rekordbox": {
-    "searchPlaceholder": "Thema suchen, z.B. 'Intelligente Liste', 'USB', 'Beatgrid'…",
+    "searchPlaceholder": "Thema, z.B. USB oder Beatgrid",
     "noResults": "Kein Treffer. Anderen Begriff versuchen.",
     "categories": {
       "einrichtung": "Einrichtung",
@@ -92,7 +92,7 @@
     }
   },
   "grundlagen": {
-    "searchPlaceholder": "Thema suchen, z.B. 'Sub', 'Trim', 'Raummoden', 'Camelot'…",
+    "searchPlaceholder": "Thema, z.B. Trim oder Camelot",
     "noResults": "Kein Treffer. Anderen Begriff versuchen.",
     "camelot": {
       "legendMajor": "Dur / Major (B)",
@@ -107,7 +107,7 @@
     }
   },
   "troubleshoot": {
-    "searchPlaceholder": "Problem kurz beschreiben, z.B. 'Track startet nicht'…",
+    "searchPlaceholder": "Problem, z.B. Track startet nicht",
     "emptyInitial": "Kurzen Suchbegriff eingeben oder Kategorie oben antippen.",
     "emptyNoResults": "Kein Treffer. Anderen Begriff versuchen, z.B. kürzer oder mit anderem Stichwort.",
     "causeLabel": "Ursache",

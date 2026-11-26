@@ -112,7 +112,7 @@ export default function PultScreen() {
         {device.note ? (
           <View style={styles.deviceNote}>
             <Text style={styles.deviceNoteText}>
-              <Text style={{ fontWeight: '700', color: COLORS.text }}>{device.full}</Text>
+              <Text style={styles.deviceNoteName}>{device.full}</Text>
               {' – '}
               {l(device.note)}
             </Text>
@@ -149,6 +149,7 @@ export default function PultScreen() {
               control={c}
               query={debouncedQuery}
               bookmarkKey={toBookmarkKey('pult', c.id, currentDevice)}
+              isZoneVisible={activeZone === null}
             />
           ))
         )}
@@ -170,20 +171,22 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.surface,
     borderWidth: 1,
     borderColor: COLORS.border,
-    borderLeftWidth: 2,
-    borderLeftColor: COLORS.amber,
-    borderRadius: RADIUS.sm,
+    borderRadius: RADIUS.md,
     padding: SPACING.md,
-    marginBottom: SPACING.lg + 2,
+    marginBottom: SPACING.lg,
+  },
+  deviceNoteName: {
+    fontWeight: '500',
+    color: COLORS.text,
   },
   deviceNoteText: {
     ...TYPE.bodySmall,
     color: COLORS.textMuted,
   },
   hint: {
+    ...TYPE.caption,
+    fontWeight: '400',
     color: COLORS.textFaint,
-    fontSize: 11.5,
-    marginBottom: SPACING.lg + 2,
-    marginTop: SPACING.xs,
+    marginBottom: SPACING.lg,
   },
 });

@@ -23,7 +23,7 @@
   },
   "common": {
     "noResults": "No results. Try a different term.",
-    "relatedTopic": "Related Topic",
+    "relatedTopic": "Related topic",
     "cancel": "Cancel",
     "language": {
       "title": "Language",
@@ -32,21 +32,21 @@
     }
   },
   "bookmarks": {
-    "chip": "★ Saved",
+    "chip": "Saved",
     "empty": "Tap the bookmark icon on a card to collect it here.",
     "add": "Save",
     "remove": "Remove bookmark"
   },
   "pro": {
     "button": "Pro",
-    "active": "Pro ✓",
+    "active": "Pro",
     "title": "DJ Guide Pro",
     "benefitNoAds": "No ads",
     "benefitBookmarks": "Bookmarks in every section",
     "benefitTools": "Phrase Trainer and BPM Tapper",
     "buy": "Buy once ({{price}})",
     "restore": "Restore purchase",
-    "owned": "You have Pro ✓",
+    "owned": "You have Pro",
     "rewarded": "Rather free: watch a video → 1 hour ad-free",
     "privacy": "Privacy settings",
     "teaserTitle": "Tired of ads?",
@@ -63,9 +63,9 @@
     "rewardHintCta": "Watch"
   },
   "pult": {
-    "searchPlaceholder": "Enter button, knob, function or label…",
-    "hint": "Spelling, capitalisation and hyphens don't matter. Type a term or tap an area of the mixer.",
-    "emptyInitial": "Enter a search term or tap a section above to see all controls in that area.",
+    "searchPlaceholder": "Button, knob or label",
+    "hint": "Spelling and hyphens don't matter",
+    "emptyInitial": "Tap an area of the device or search for a term.",
     "emptyNoResults": "No results. Try a different term, e.g. the button name or its printed label.",
     "zone": {
       "deckL": "Deck Left",
@@ -81,7 +81,7 @@
     }
   },
   "rekordbox": {
-    "searchPlaceholder": "Search topic, e.g. 'Smart List', 'USB', 'Beatgrid'…",
+    "searchPlaceholder": "Topic, e.g. USB or beatgrid",
     "noResults": "No results. Try a different term.",
     "categories": {
       "einrichtung": "Setup",
@@ -92,7 +92,7 @@
     }
   },
   "grundlagen": {
-    "searchPlaceholder": "Search topic, e.g. 'Sub', 'Trim', 'Room Modes', 'Camelot'…",
+    "searchPlaceholder": "Topic, e.g. trim or Camelot",
     "noResults": "No results. Try a different term.",
     "camelot": {
       "legendMajor": "Major (B)",
@@ -107,7 +107,7 @@
     }
   },
   "troubleshoot": {
-    "searchPlaceholder": "Describe the problem, e.g. 'track won't start'…",
+    "searchPlaceholder": "Problem, e.g. track won't start",
     "emptyInitial": "Enter a short search term or tap a category above.",
     "emptyNoResults": "No results. Try a shorter or different keyword.",
     "causeLabel": "Cause",

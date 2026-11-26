@@ -50,3 +50,8 @@ GoogleService-Info.plist
 *-service-account.json
 google-service-account.json
 flowtix-501208-c186f04d002b.json
+
+.claude/
+.idea/
+.superpowers/
+docs/

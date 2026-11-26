@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
   },
   lengthLabelActive: {
     color: COLORS.onAmber,
-    fontWeight: '700',
+    fontWeight: '600',
   },
   toggle: {
     flexDirection: 'row',

@@ -11,6 +11,7 @@ import { SPACING } from '../../theme/spacing';
 import { TYPE } from '../../theme/typography';
 import { BookmarkButton } from '../shared/BookmarkButton';
 import { HighlightText } from '../shared/HighlightText';
+import { toSteps } from '../../utils/steps';
 
 interface TroubleshootCardProps {
   entry: TroubleshootEntry;
@@ -23,14 +24,13 @@ export function TroubleshootCard({ entry, query, isViaConcept, bookmarkKey }: Tr
   const { t } = useTranslation();
   const l = useL();
   const catLabel = t(`troubleshoot.categories.${entry.cat}` as any) as string;
+  const fixSteps = toSteps(l(entry.fix));
 
   return (
     <View style={styles.card}>
       <View style={styles.headerRow}>
         <View style={styles.tagRow}>
-          <View style={styles.tag}>
-            <Text style={styles.tagText}>{catLabel}</Text>
-          </View>
+          <Text style={styles.category}>{catLabel}</Text>
           {isViaConcept ? (
             <View style={styles.tagRelated}>
               <Text style={styles.tagRelatedText}>{t('common.relatedTopic')}</Text>
@@ -42,17 +42,30 @@ export function TroubleshootCard({ entry, query, isViaConcept, bookmarkKey }: Tr
       <HighlightText text={l(entry.title)} query={query} style={styles.title} />
       <View style={styles.block}>
         <View style={styles.blockLabelRow}>
-          <Ionicons name="alert-circle-outline" size={13} color={COLORS.textMuted} />
+          <Ionicons name="alert-circle-outline" size={16} color={COLORS.textMuted} />
           <Text style={styles.blockLabel}>{t('troubleshoot.causeLabel')}</Text>
         </View>
         <HighlightText text={l(entry.cause)} query={query} style={styles.bodyText} />
       </View>
-      <View style={styles.block}>
+      <View style={[styles.block, styles.blockLast]}>
         <View style={styles.blockLabelRow}>
-          <Ionicons name="checkmark-circle-outline" size={13} color={COLORS.amber} />
+          <Ionicons name="checkmark-circle-outline" size={16} color={COLORS.text} />
           <Text style={[styles.blockLabel, styles.fixLabel]}>{t('troubleshoot.fixLabel')}</Text>
         </View>
-        <HighlightText text={l(entry.fix)} query={query} style={styles.bodyText} />
+        {fixSteps.length === 1 ? (
+          <HighlightText text={fixSteps[0]} query={query} style={styles.fixText} />
+        ) : (
+          <View style={styles.steps}>
+            {fixSteps.map((step, i) => (
+              <View key={i} style={styles.step}>
+                <Text style={styles.stepNumber}>{i + 1}</Text>
+                <View style={styles.stepBody}>
+                  <HighlightText text={step} query={query} style={styles.fixText} />
+                </View>
+              </View>
+            ))}
+          </View>
+        )}
       </View>
     </View>
   );
@@ -65,12 +78,12 @@ const styles = StyleSheet.create({
     borderColor: COLORS.border,
     borderRadius: RADIUS.lg,
     padding: SPACING.lg,
-    marginBottom: SPACING.sm + 2,
+    marginBottom: SPACING.md,
   },
   headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     gap: SPACING.sm,
     marginBottom: SPACING.xs,
   },
@@ -78,21 +91,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: SPACING.xs + 2,
+    gap: SPACING.sm,
   },
-  tag: {
-    paddingVertical: 3,
-    paddingHorizontal: SPACING.sm,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: RADIUS.sm,
-  },
-  tagText: {
+  category: {
     ...TYPE.label,
-    color: COLORS.textMuted,
+    color: COLORS.textFaint,
   },
   tagRelated: {
-    paddingVertical: 3,
+    paddingVertical: 2,
     paddingHorizontal: SPACING.sm,
     borderWidth: 1,
     borderColor: COLORS.amberBorder,
@@ -105,27 +111,51 @@ const styles = StyleSheet.create({
   title: {
     ...TYPE.title,
     color: COLORS.text,
-    marginTop: SPACING.sm,
-    marginBottom: SPACING.md,
+    marginTop: SPACING.xs,
+    marginBottom: SPACING.lg,
   },
   block: {
-    marginBottom: SPACING.md,
+    marginBottom: SPACING.lg,
+  },
+  blockLast: {
+    marginBottom: 0,
+  },
+  steps: {
+    gap: SPACING.sm,
   },
   blockLabelRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 5,
-    marginBottom: SPACING.xs - 1,
+    gap: SPACING.sm,
+    marginBottom: SPACING.sm,
   },
   blockLabel: {
-    ...TYPE.label,
+    ...TYPE.subtitle,
     color: COLORS.textMuted,
   },
   fixLabel: {
-    color: COLORS.amber,
+    color: COLORS.text,
   },
   bodyText: {
     ...TYPE.body,
     color: COLORS.textMuted,
+  },
+  fixText: {
+    ...TYPE.body,
+    color: COLORS.text,
+  },
+  step: {
+    flexDirection: 'row',
+    gap: SPACING.sm,
+  },
+  stepNumber: {
+    ...TYPE.mono,
+    width: 16,
+    lineHeight: TYPE.body.lineHeight,
+    color: COLORS.textFaint,
+    fontVariant: ['tabular-nums'],
+  },
+  stepBody: {
+    flex: 1,
   },
 });
