@@ -158,6 +158,10 @@
                 "name": "GoogleMobileAdsMediationVungle"
               }
             ]
+          },
+          "android": {
+            "enableMinifyInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
           }
         }
       ],
